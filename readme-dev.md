@@ -14,7 +14,7 @@ If you want to contribute or report issues, please follow these steps:
 To build the project from source, run:
 
 ```bash
-yarn setup
+yarn install
 yarn build
 ```
 
