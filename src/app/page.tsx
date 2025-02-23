@@ -24,18 +24,16 @@ const initialSettings: SovendusAppSettings = {
 };
 
 export default function Home(): JSX.Element {
-  const [currentSettings, setCurrentSettings] = useState<SovendusAppSettings>(
-    () => {
-      try {
-        const savedData = localStorage.getItem("sovendus-settings");
-        return savedData
-          ? (JSON.parse(savedData) as SovendusAppSettings)
-          : initialSettings;
-      } catch {
-        return initialSettings;
-      }
-    },
-  );
+  const [currentSettings] = useState<SovendusAppSettings>(() => {
+    try {
+      const savedData = localStorage.getItem("sovendus-settings");
+      return savedData
+        ? (JSON.parse(savedData) as SovendusAppSettings)
+        : initialSettings;
+    } catch {
+      return initialSettings;
+    }
+  });
   const saveSettings = async (
     newSettings: SovendusAppSettings,
     // eslint-disable-next-line @typescript-eslint/require-await
@@ -43,6 +41,7 @@ export default function Home(): JSX.Element {
     // eslint-disable-next-line no-console
     console.log("Saving settings:", newSettings);
     localStorage.setItem("sovendus-settings", JSON.stringify(newSettings));
+
     return newSettings;
   };
 
@@ -50,11 +49,7 @@ export default function Home(): JSX.Element {
     <main className="min-h-screen p-4">
       <SovendusSettings
         currentStoredSettings={currentSettings}
-        saveSettings={async (newSettings) => {
-          const updated = await saveSettings(newSettings);
-          setCurrentSettings(updated);
-          return updated;
-        }}
+        saveSettings={saveSettings}
       />
     </main>
   );
