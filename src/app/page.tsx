@@ -1,9 +1,10 @@
 "use client";
 
-import type { JSX } from "react";
-import { type SovendusAppSettings, Versions } from "sovendus-integration-types";
+import "sovendus-integration-settings-ui/style.css";
 
-import { SovendusSettings } from "../sovendus-app-settings";
+import { type JSX, useState } from "react";
+import { SovendusSettings } from "sovendus-integration-settings-ui";
+import { type SovendusAppSettings, Versions } from "sovendus-integration-types";
 
 const initialSettings: SovendusAppSettings = {
   voucherNetwork: {
@@ -23,21 +24,37 @@ const initialSettings: SovendusAppSettings = {
 };
 
 export default function Home(): JSX.Element {
+  const [currentSettings, setCurrentSettings] = useState<SovendusAppSettings>(
+    () => {
+      try {
+        const savedData = localStorage.getItem("sovendus-settings");
+        return savedData
+          ? (JSON.parse(savedData) as SovendusAppSettings)
+          : initialSettings;
+      } catch {
+        return initialSettings;
+      }
+    },
+  );
   const saveSettings = async (
     newSettings: SovendusAppSettings,
+    // eslint-disable-next-line @typescript-eslint/require-await
   ): Promise<SovendusAppSettings> => {
-    // wait for 1,5 seconds to simulate a real API call
-    await new Promise((resolve) => setTimeout(resolve, 1500));
     // eslint-disable-next-line no-console
     console.log("Saving settings:", newSettings);
+    localStorage.setItem("sovendus-settings", JSON.stringify(newSettings));
     return newSettings;
   };
 
   return (
     <main className="min-h-screen p-4">
       <SovendusSettings
-        currentStoredSettings={initialSettings}
-        saveSettings={saveSettings}
+        currentStoredSettings={currentSettings}
+        saveSettings={async (newSettings) => {
+          const updated = await saveSettings(newSettings);
+          setCurrentSettings(updated);
+          return updated;
+        }}
       />
     </main>
   );

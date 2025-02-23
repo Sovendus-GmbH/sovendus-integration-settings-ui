@@ -1,6 +1,6 @@
 {
   "name": "sovendus-integration-settings-ui",
-  "version": "3.4.5",
+  "version": "3.4.6",
   "license": "GPL-3.0-only",
   "private": false,
   "description": "Sovendus Integration Plugin Settings UI - React/tailwind based UI to configure Sovendus Integration Plugins",
@@ -79,7 +79,7 @@
     "lucide-react": "^0.475.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "sovendus-integration-types": "3.3.19"
+    "sovendus-integration-types": "3.3.21"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.0.8",
