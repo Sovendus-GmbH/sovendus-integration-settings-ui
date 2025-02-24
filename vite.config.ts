@@ -10,6 +10,7 @@ export default defineConfig({
     react(),
     dts({
       include: ["src/**/*"],
+      entryRoot: "src",
     }),
     tailwindcss(),
     cssInjectedByJsPlugin(),

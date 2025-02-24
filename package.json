@@ -29,7 +29,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "vite build",
-    "lint": "eslint src --fix"
+    "lint": "eslint src --fix",
+    "pub": "sovendus-release-tool"
   },
   "repository": {
     "type": "git",
@@ -71,6 +72,7 @@
     "sovendus-integration-types": "3.3.21"
   },
   "devDependencies": {
+    "sovendus-release-tool": "^1.0.20",
     "@tailwindcss/postcss": "^4.0.8",
     "@tailwindcss/vite": "^4.0.8",
     "@types/eslint": "9.6.1",

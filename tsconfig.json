@@ -63,7 +63,8 @@
     "src/**/*.tsx",
     "tailwind.config.ts",
     "vite.config.ts",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    "sov_release.config.ts"
   ],
   "exclude": [
     "./node_modules",
