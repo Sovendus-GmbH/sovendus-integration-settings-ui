@@ -33,5 +33,6 @@ export default defineConfig({
     },
     sourcemap: true,
     minify: false,
+    emptyOutDir: true,
   },
 });
