@@ -1,4 +1,4 @@
-import type { ReleaseConfig } from "sovendus-release-tool";
+import type { ReleaseConfig } from "sovendus-release-tool/types";
 
 const releaseConfig: ReleaseConfig = {
   packages: [
