@@ -2994,10 +2994,10 @@ fraction.js@^4.3.7:
   resolved "https://registry.yarnpkg.com/fraction.js/-/fraction.js-4.3.7.tgz#06ca0085157e42fda7f9e726e79fefc4068840f7"
   integrity sha512-ZsDfxO51wGAXREY55a7la9LScWpwv9RxIrYABrlvOFBlH/ShPnrtsXeuUIfXKKOVicNxQ+o8JTbJvjS4M89yew==
 
-framer-motion@12.4.7:
-  version "12.4.7"
-  resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-12.4.7.tgz#52a9fe42852707bedbbbaa988d252a4a62dd58fa"
-  integrity sha512-VhrcbtcAMXfxlrjeHPpWVu2+mkcoR31e02aNSR7OUS/hZAciKa8q6o3YN2mA1h+jjscRsSyKvX6E1CiY/7OLMw==
+framer-motion@12.4.9:
+  version "12.4.9"
+  resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-12.4.9.tgz#2c4ccb7173ceca6a22e92d30bbffa4a6e74cf49b"
+  integrity sha512-c+nDhfiNUwi8G4BrhrP2hjPsDHzIKRbUhDlcK7oC5kXY4QK1IrT/kuhY4BgK6h2ujDrZ8ocvFrG2X8+b1m/MkQ==
   dependencies:
     motion-dom "^12.4.5"
     motion-utils "^12.0.0"
@@ -4653,10 +4653,10 @@ sovendus-integration-types@3.3.22:
   resolved "https://registry.yarnpkg.com/sovendus-integration-types/-/sovendus-integration-types-3.3.22.tgz#07aa3d5aab6c0bc132c3318074e2c1e0eae4dd87"
   integrity sha512-TX80WEjZk9A77ByeLb0iES8iTh2FRTiplVsnwgHe5xBCnv2l1WTm+z7hR8mjfxssfJdN/oYiLjrRMyDYoXTJZg==
 
-sovendus-release-tool@1.0.26:
-  version "1.0.26"
-  resolved "https://registry.yarnpkg.com/sovendus-release-tool/-/sovendus-release-tool-1.0.26.tgz#382108e62df86f3606ccd1369af6d898b67ffb14"
-  integrity sha512-v9PlM8C1vZ+JneDTXQlFXGa9cgDPSDwQtN4f/7M0MJw2SeWJbUsJz8nUxiB01bENc5OaZ1MZPCNCe3pXTopKqw==
+sovendus-release-tool@1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/sovendus-release-tool/-/sovendus-release-tool-1.1.1.tgz#a3cc8a28b13febf0978109416bb0b71d17e743a7"
+  integrity sha512-+UN4tH6rHvKIBQLU0RhPr9mGz3ImeN0p+Ini+cgJy6u0dninEA3Mc6EDTiHxrQvVS0M5+2yCLuPgZNDg80anTw==
   dependencies:
     commander "13.1.0"
     inquirer "^12.4.2"
