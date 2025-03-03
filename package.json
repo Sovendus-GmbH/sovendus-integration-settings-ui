@@ -20,7 +20,7 @@
       "require": "./dist/index.cjs"
     },
     "./demo": {
-      "types": "./dist/demo-index.d.ts",
+      "types": "./dist/app/index.d.ts",
       "import": "./dist/demo-index.mjs",
       "require": "./dist/demo-index.cjs"
     },
