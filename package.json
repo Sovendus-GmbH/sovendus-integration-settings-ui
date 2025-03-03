@@ -1,6 +1,6 @@
 {
   "name": "sovendus-integration-settings-ui",
-  "version": "3.5.0",
+  "version": "3.6.0",
   "license": "GPL-3.0-only",
   "private": false,
   "description": "Sovendus Integration Plugin Settings UI - React/tailwind based UI to configure Sovendus Integration Plugins",
@@ -34,7 +34,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "sovendus-builder build",
-    "lint": "eslint src --fix",
+    "lint": "eslint --fix",
     "pub": "sovendus-release-tool"
   },
   "repository": {

@@ -1,11 +1,13 @@
 .github
+.next
 .vscode
+node_modules/
 .gitignore
 components.json
 eslint.config.mjs
 next-env.d.ts
-node_modules/
+postcss.config.mjs
+sov_build.config.ts
+sov_release.config.ts
 tsconfig.json
 yarn.lock
-components.json
-.next
