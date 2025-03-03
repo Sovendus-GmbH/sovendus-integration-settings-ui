@@ -1,10 +1,11 @@
 "use client";
 
-import "sovendus-integration-settings-ui/style.css";
+import "../components/app.css";
 
 import { type JSX, useState } from "react";
-import { SovendusSettings } from "sovendus-integration-settings-ui";
 import { type SovendusAppSettings, Versions } from "sovendus-integration-types";
+
+import { SovendusSettings } from "../sovendus-app-settings";
 
 const initialSettings: SovendusAppSettings = {
   voucherNetwork: {
