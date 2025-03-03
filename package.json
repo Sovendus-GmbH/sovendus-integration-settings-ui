@@ -37,12 +37,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Sovendus-GmbH/sovendus-plugins-core.git"
+    "url": "git+https://github.com/Sovendus-GmbH/sovendus-integration-settings-ui.git"
   },
   "bugs": {
-    "url": "https://github.com/Sovendus-GmbH/sovendus-plugins-core/issues"
+    "url": "https://github.com/Sovendus-GmbH/sovendus-integration-settings-ui/issues"
   },
-  "homepage": "https://github.com/Sovendus-GmbH/sovendus-plugins-core#readme",
+  "homepage": "https://github.com/Sovendus-GmbH/sovendus-integration-settings-ui#readme",
   "keywords": [
     "sovendus",
     "integration",

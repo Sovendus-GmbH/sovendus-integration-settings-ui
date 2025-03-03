@@ -8,6 +8,7 @@ import { type SovendusAppSettings, Versions } from "sovendus-integration-types";
 import { cn } from "../utils/utils";
 import { SovendusCheckoutProducts } from "./checkout-products";
 import { ConfigurationDialog } from "./confirmation-dialog";
+import { Footer } from "./footer";
 import { Notification } from "./notification";
 import { SovendusOptimize } from "./optimize";
 import { EnabledOptimizeCountries } from "./optimize-country-options";
@@ -263,6 +264,8 @@ export function SovendusBackendForm({
             requestDemoHref={DEMO_REQUEST_URL}
           />
         </div>
+        <Footer />
+
         {notificationState && (
           <Notification
             message={notificationState.message}
