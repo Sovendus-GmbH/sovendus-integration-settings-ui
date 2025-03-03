@@ -72,13 +72,24 @@ export function CountryOptions({
 
   const handleCountryChange = (
     countryKey: CountryCodes,
-    newOptimizeId: string,
+    newOptimizeId: string | number,
   ): void => {
+    const newOptimizeIdString = String(newOptimizeId);
     setCurrentSettings((prevState) => {
       if (
         prevState.optimize?.countries?.ids[countryKey]?.optimizeId !==
-        newOptimizeId
+        newOptimizeIdString
       ) {
+        const newCountrySettings = {
+          ...prevState.optimize?.countries?.ids[countryKey],
+          optimizeId: newOptimizeIdString,
+          isEnabled: !!newOptimizeIdString,
+        };
+        newCountrySettings.isEnabled = isOptimizeElementEnabled(
+          newCountrySettings,
+          !!newOptimizeIdString,
+        );
+
         return {
           ...prevState,
           optimize: {
@@ -89,11 +100,7 @@ export function CountryOptions({
               ...prevState.optimize?.countries?.ids,
               ids: {
                 ...prevState.optimize?.countries?.ids,
-                [countryKey]: {
-                  ...prevState.optimize?.countries?.ids[countryKey],
-                  optimizeId: newOptimizeId,
-                  isEnabled: !!newOptimizeId,
-                },
+                [countryKey]: newCountrySettings,
               },
             },
           },
@@ -169,12 +176,8 @@ export function EnabledOptimizeCountries({
   currentSettings: OptimizeSettings;
 }): JSX.Element {
   let statusMessage: string;
-  if (
-    currentSettings.settingsType === "simple" &&
-    currentSettings.simple?.isEnabled &&
-    currentSettings.simple?.optimizeId
-  ) {
-    statusMessage = `Enabled in all Countries (${currentSettings.simple.optimizeId})`;
+  if (isOptimizeSimpleEnabled(currentSettings)) {
+    statusMessage = `Enabled in all Countries (${currentSettings.simple!.optimizeId})`;
   } else if (
     currentSettings.countries?.ids &&
     currentSettings.settingsType === "country"
@@ -212,6 +215,12 @@ export function isOptimizeElementEnabled(
   currentSettings: OptimizeCountry | undefined,
   newEnableState?: boolean,
 ): boolean {
+  if (
+    currentSettings?.optimizeId &&
+    typeof currentSettings.optimizeId !== "string"
+  ) {
+    throw new Error("optimizeId must be a string");
+  }
   return !!(
     (newEnableState !== undefined
       ? newEnableState
@@ -223,12 +232,28 @@ export function isOptimizeElementEnabled(
 
 export function isOptimizeEnabled(currentSettings: OptimizeSettings): boolean {
   return !!(
-    (currentSettings.settingsType === "simple" &&
-      isOptimizeElementEnabled(currentSettings.simple)) ||
-    (currentSettings.settingsType === "country" &&
-      currentSettings.countries?.ids &&
-      Object.values(currentSettings.countries.ids).some((country) =>
-        isOptimizeElementEnabled(country),
-      ))
+    isOptimizeSimpleEnabled(currentSettings) ||
+    isOptimizeCountryEnabled(currentSettings)
+  );
+}
+
+export function isOptimizeCountryEnabled(
+  currentSettings: OptimizeSettings,
+): boolean {
+  return !!(
+    currentSettings.settingsType === "country" &&
+    currentSettings.countries?.ids &&
+    Object.values(currentSettings.countries.ids).some((country) =>
+      isOptimizeElementEnabled(country),
+    )
+  );
+}
+
+export function isOptimizeSimpleEnabled(
+  currentSettings: OptimizeSettings,
+): boolean {
+  return !!(
+    currentSettings.settingsType === "simple" &&
+    isOptimizeElementEnabled(currentSettings.simple)
   );
 }

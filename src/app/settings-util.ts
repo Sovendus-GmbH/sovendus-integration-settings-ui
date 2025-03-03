@@ -1,6 +1,6 @@
 import { type SovendusAppSettings, Versions } from "sovendus-integration-types";
 
-const initialSettings: SovendusAppSettings = {
+export const initialSettings: SovendusAppSettings = {
   voucherNetwork: {
     settingType: undefined,
     cookieTracking: false,
@@ -18,6 +18,9 @@ const initialSettings: SovendusAppSettings = {
 };
 
 export function getSettings(): SovendusAppSettings {
+  if (typeof window === "undefined") {
+    throw new Error("getSettings() should only be called in the browser");
+  }
   const settings = localStorage.getItem("sovendus-settings");
   if (settings) {
     // eslint-disable-next-line no-console

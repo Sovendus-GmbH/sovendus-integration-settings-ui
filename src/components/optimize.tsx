@@ -51,13 +51,14 @@ export function SovendusOptimize({
   setCurrentSettings,
   additionalSteps,
 }: SovendusOptimizeProps): JSX.Element {
-  const handleGlobalChange = (value: string): void => {
+  const handleGlobalChange = (value: string | number): void => {
     setCurrentSettings((prevState) => {
       const newSettings: OptimizeCountry = {
         ...prevState.optimize.simple,
         isEnabled: !!value,
-        optimizeId: value,
+        optimizeId: String(value),
       };
+      newSettings.isEnabled = isOptimizeElementEnabled(newSettings, !!value);
       return {
         ...prevState,
         optimize: {
