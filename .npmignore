@@ -2,6 +2,7 @@
 .next
 .vscode
 node_modules/
+src/
 .gitignore
 components.json
 eslint.config.mjs
