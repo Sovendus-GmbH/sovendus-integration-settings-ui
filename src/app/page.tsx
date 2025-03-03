@@ -3,48 +3,13 @@
 import "../components/app.css";
 
 import { type JSX, useState } from "react";
-import { type SovendusAppSettings, Versions } from "sovendus-integration-types";
+import { type SovendusAppSettings } from "sovendus-integration-types";
 
 import { SovendusSettings } from "../sovendus-app-settings";
-
-const initialSettings: SovendusAppSettings = {
-  voucherNetwork: {
-    settingType: undefined,
-    cookieTracking: false,
-  },
-  optimize: {
-    settingsType: undefined,
-  },
-  checkoutProducts: false,
-  employeeBenefits: {
-    isEnabled: false,
-    addToSidebar: false,
-    showWidgetOnDashboard: false,
-  },
-  version: Versions.THREE,
-};
+import { getSettings, saveSettings } from "./settings-util";
 
 export default function Home(): JSX.Element {
-  const [currentSettings] = useState<SovendusAppSettings>(() => {
-    try {
-      const savedData = localStorage.getItem("sovendus-settings");
-      return savedData
-        ? (JSON.parse(savedData) as SovendusAppSettings)
-        : initialSettings;
-    } catch {
-      return initialSettings;
-    }
-  });
-  const saveSettings = async (
-    newSettings: SovendusAppSettings,
-    // eslint-disable-next-line @typescript-eslint/require-await
-  ): Promise<SovendusAppSettings> => {
-    // eslint-disable-next-line no-console
-    console.log("Saving settings:", newSettings);
-    localStorage.setItem("sovendus-settings", JSON.stringify(newSettings));
-
-    return newSettings;
-  };
+  const [currentSettings] = useState<SovendusAppSettings>(getSettings);
 
   return (
     <main className="min-h-screen p-4">

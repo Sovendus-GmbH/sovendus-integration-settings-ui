@@ -1,3 +1,4 @@
 import SettingsUIDemo from "./page";
+import { getSettings } from "./settings-util";
 
-export { SettingsUIDemo };
+export { getSettings, SettingsUIDemo };
