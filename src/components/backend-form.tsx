@@ -33,6 +33,7 @@ export interface SovendusBackendFormProps {
   saveSettings: (data: SovendusAppSettings) => Promise<SovendusAppSettings>;
   additionalSteps?: AdditionalSteps;
   zoomedVersion?: boolean;
+  callSaveOnLoad: boolean;
 }
 
 export const DEMO_REQUEST_URL =
@@ -70,6 +71,7 @@ export function SovendusBackendForm({
   saveSettings,
   additionalSteps,
   zoomedVersion = false,
+  callSaveOnLoad,
 }: SovendusBackendFormProps): JSX.Element {
   const [currentStoredSettings, setCurrentStoredSettings] =
     useState<SovendusAppSettings>(sanitizeSettings(_currentStoredSettings));
@@ -83,7 +85,7 @@ export function SovendusBackendForm({
     message: string;
     type: "success" | "error" | "loading";
   } | null>(null);
-  useSettingsSaveOnLoad(saveSettings, currentStoredSettings);
+  useSettingsSaveOnLoad(saveSettings, currentStoredSettings, callSaveOnLoad);
   return useMemo(() => {
     const buttonsDisabled = notificationState?.type === "loading";
     const handleSave = async (open: boolean): Promise<void> => {
@@ -333,10 +335,13 @@ export function SovendusBackendForm({
 function useSettingsSaveOnLoad(
   saveSettings: (data: SovendusAppSettings) => Promise<SovendusAppSettings>,
   currentStoredSettings: SovendusAppSettings,
+  callSaveOnLoad: boolean,
 ): void {
   useEffect(() => {
     // Save settings in case there any settings migrations
-    void saveSettings(currentStoredSettings);
+    if (callSaveOnLoad){
+      void saveSettings(currentStoredSettings);
+    }
     // eslint-disable-next-line react-compiler/react-compiler
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
