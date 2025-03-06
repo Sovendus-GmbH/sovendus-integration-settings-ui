@@ -28,7 +28,8 @@
     "./raw-style.css": {
       "import": "./src/app.css",
       "require": "./src/app.css"
-    }
+    },
+    "./src/*": "./src/*"
   },
   "scripts": {
     "dev": "next dev --turbopack",
