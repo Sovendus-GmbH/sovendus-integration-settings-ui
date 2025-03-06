@@ -77,8 +77,8 @@
     "sovendus-integration-types": "3.3.22"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "4.0.10",
-    "@tailwindcss/vite": "4.0.10",
+    "@tailwindcss/postcss": "4.0.11",
+    "@tailwindcss/vite": "4.0.11",
     "@types/eslint": "9.6.1",
     "@types/node": "22.13.9",
     "@types/react": "19.0.10",
@@ -99,10 +99,10 @@
     "prettier": "3.5.3",
     "prettier-eslint": "16.3.0",
     "prettier-plugin-sort-json": "4.1.1",
-    "sovendus-builder": "1.2.2",
+    "sovendus-builder": "1.2.4",
     "sovendus-release-tool": "1.1.1",
     "tailwind-merge": "3.0.2",
-    "tailwindcss": "4.0.10",
+    "tailwindcss": "4.0.11",
     "tailwindcss-animate": "1.0.7",
     "typescript": "5.8.2",
     "typescript-eslint": "8.26.0",
