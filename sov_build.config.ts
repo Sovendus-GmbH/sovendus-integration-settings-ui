@@ -20,6 +20,7 @@ const buildConfig: BuildConfig = {
       },
     },
   ],
+  filesOrFoldersToCopy: [{ input: "src/app/logos", output: "dist/logos" }],
 };
 
 export default buildConfig;
