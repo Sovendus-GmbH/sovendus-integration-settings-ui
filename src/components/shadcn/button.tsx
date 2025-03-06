@@ -19,11 +19,13 @@ const buttonVariants = cva(
           "tw:bg-secondary tw:text-secondary-foreground tw:shadow-sm hover:bg-secondary/80",
         ghost: "tw:hover:bg-accent tw:hover:text-accent-foreground",
         link: "tw:text-primary tw:underline-offset-4 tw:hover:underline",
+        unstyled: "",
       },
       size: {
         default: "tw:px-4 tw:py-2 tw:text-md",
         sm: "tw:h-8 tw:rounded-md tw:px-4 tw:py-3 tw:text-xs tw:text-lg",
         lg: "tw:rounded-md tw:px-8 tw:py-3 tw:text-xl",
+        unstyled: "",
         icon: "tw:h-9 tw:w-9",
       },
     },
@@ -42,8 +44,9 @@ interface ButtonProps extends React.HTMLAttributes<HTMLDivElement> {
     | "secondary"
     | "ghost"
     | "link"
+    | "unstyled"
     | null;
-  size?: "default" | "sm" | "lg" | "icon" | null;
+  size?: "default" | "sm" | "lg" | "icon" | "unstyled" | null;
   asChild?: boolean;
   disabled?: boolean;
 }

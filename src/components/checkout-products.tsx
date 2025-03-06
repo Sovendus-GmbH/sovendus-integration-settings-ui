@@ -48,9 +48,9 @@ export function SovendusCheckoutProducts({
           "tw:bg-gradient-to-r tw:from-purple-600 tw:to-indigo-600 tw:text-white tw:p-8 tw:rounded-lg tw:shadow-lg",
         )}
       >
-        <h2 className={cn("tw:text-3xl tw:font-bold tw:mb-4 tw:text-white")}>
+        <div className={cn("tw:text-3xl tw:font-bold tw:mb-4 tw:text-white")}>
           Checkout Products: Your Gateway to Exponential Growth
-        </h2>
+        </div>
         <p className={cn("tw:text-xl tw:mb-6")}>
           Market your products to a network of over 24 million active online
           shoppers every month and see an increase in new customers and sales.
@@ -119,18 +119,18 @@ export function SovendusCheckoutProducts({
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <h4 className={cn("tw:font-semibold tw:mb-2")}>
+                  <div className={cn("tw:font-semibold tw:mb-2")}>
                     {additionalSteps.title}
-                  </h4>
-                  <ol
+                  </div>
+                  <div
                     className={cn(
                       "tw:list-decimal tw:list-inside tw:space-y-2",
                     )}
                   >
                     {additionalSteps.subSteps.map((step, index) => (
-                      <li key={index}>{step}</li>
+                      <div key={index}>{step}</div>
                     ))}
-                  </ol>
+                  </div>
                 </CardContent>
               </Card>
             )}
@@ -216,11 +216,11 @@ export function SovendusCheckoutProducts({
               "tw:bg-gray-50 tw:p-6 tw:rounded-lg tw:mt-6 tw:space-y-4",
             )}
           >
-            <h3 className={cn("tw:text-2xl tw:font-semibold tw:mb-4")}>
+            <div className={cn("tw:text-2xl tw:font-semibold tw:mb-4")}>
               How Checkout Products Works
-            </h3>
-            <ol className={cn("tw:space-y-4")}>
-              <li className={cn("tw:flex tw:items-start")}>
+            </div>
+            <div className={cn("tw:space-y-4")}>
+              <div className={cn("tw:flex tw:items-start")}>
                 <CheckCircle
                   className={cn(
                     "tw:mr-2 tw:h-5 tw:w-5 tw:text-green-500 tw:mt-1 tw:flex-shrink-0",
@@ -236,8 +236,8 @@ export function SovendusCheckoutProducts({
                     exclusive deals to their customers.
                   </p>
                 </div>
-              </li>
-              <li className={cn("tw:flex tw:items-start")}>
+              </div>
+              <div className={cn("tw:flex tw:items-start")}>
                 <CheckCircle
                   className={cn(
                     "tw:mr-2 tw:h-5 tw:w-5 tw:text-green-500 tw:mt-1 tw:flex-shrink-0",
@@ -251,8 +251,8 @@ export function SovendusCheckoutProducts({
                     shopping behavior and preferences.
                   </p>
                 </div>
-              </li>
-              <li className={cn("tw:flex tw:items-start")}>
+              </div>
+              <div className={cn("tw:flex tw:items-start")}>
                 <CheckCircle
                   className={cn(
                     "tw:mr-2 tw:h-5 tw:w-5 tw:text-green-500 tw:mt-1 tw:flex-shrink-0",
@@ -266,7 +266,7 @@ export function SovendusCheckoutProducts({
                     sales.
                   </p>
                 </div>
-              </li>
+              </div>
               <li className={cn("tw:flex tw:items-start")}>
                 <CheckCircle
                   className={cn(
@@ -283,7 +283,7 @@ export function SovendusCheckoutProducts({
                   </p>
                 </div>
               </li>
-            </ol>
+            </div>
           </div>
         </TabsContent>
       </Tabs>

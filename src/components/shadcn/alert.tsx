@@ -36,7 +36,7 @@ const AlertTitle = React.forwardRef<
   HTMLParagraphElement,
   React.HTMLAttributes<HTMLHeadingElement>
 >(({ className, ...props }, ref) => (
-  <h5
+  <div
     ref={ref}
     className={cn(
       "tw:mb-1 tw:text-lg tw:leading-none tw:tracking-tight",

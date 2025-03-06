@@ -94,9 +94,9 @@ export function ProductCard({
         </div>
         {status.details && (
           <div className={cn("tw:mt-4 tw:p-4 tw:bg-gray-50 tw:rounded-lg")}>
-            <h4 className={cn("tw:text-sm tw:font-semibold tw:mb-2")}>
+            <div className={cn("tw:text-sm tw:font-semibold tw:mb-2")}>
               Current Configuration
-            </h4>
+            </div>
             {status.details}
           </div>
         )}

@@ -3,6 +3,7 @@ import type { JSX } from "react";
 import React from "react";
 
 import { cn } from "../utils/utils";
+import { Button } from "./shadcn/button";
 import {
   Dialog,
   DialogContent,
@@ -39,15 +40,17 @@ export function ConfigurationDialog({
           )}
         >
           <div className={cn("tw:flex tw:items-center tw:gap-2")}>
-            <button
+            <Button
+              variant={"unstyled"}
+              size={"unstyled"}
               onClick={(): void => onOpenChange(false)}
               className={cn(
                 "tw:p-2 tw:rounded-full tw:bg-gray-100 tw:hover:bg-gray-200 tw:transition-colors",
               )}
             >
-              <X className={cn("tw:h-8 tw:w-8")} />
+              <X style={{ width: "unset", height: "unset" }} />
               <span className={cn("tw:sr-only")}>Close</span>
-            </button>
+            </Button>
           </div>
         </div>
         <DialogHeader className={cn("tw:pb-6 tw:mt-[-55px]")}>

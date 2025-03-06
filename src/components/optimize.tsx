@@ -113,9 +113,9 @@ export function SovendusOptimize({
           "tw:bg-gradient-to-r tw:from-green-600 tw:to-teal-600 tw:text-white tw:p-8 tw:rounded-lg tw:shadow-lg",
         )}
       >
-        <h2 className={cn("ttw:ext-3xl tw:font-bold tw:mb-4 tw:text-white")}>
+        <div className={cn("ttw:ext-3xl tw:font-bold tw:mb-4 tw:text-white")}>
           Optimize: Supercharge Your Conversions
-        </h2>
+        </div>
         <p className={cn("tw:text-xl tw:mb-6")}>
           Transform passive visitors into active customers and reduce bounce
           rates with Sovendus Optimize. Boost your conversion rates and build
@@ -200,9 +200,9 @@ export function SovendusOptimize({
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <h4 className={cn("tw:font-semibold tw:mb-2")}>
+                  <div className={cn("tw:font-semibold tw:mb-2")}>
                     {additionalSteps.title}
-                  </h4>
+                  </div>
                   <ol
                     className={cn(
                       "tw:list-decimal tw:list-inside tw:space-y-2",
@@ -388,16 +388,16 @@ export function SovendusOptimize({
           </div>
 
           <div className={cn("tw:bg-gray-100 tw:p-6 tw:rounded-lg tw:mb-8")}>
-            <h3 className={cn("tw:text-2xl tw:font-semibold tw:mb-4")}>
+            <div className={cn("tw:text-2xl tw:font-semibold tw:mb-4")}>
               Key Benefits
-            </h3>
-            <ul className={cn("tw:list-disc tw:list-inside tw:space-y-2")}>
+            </div>
+            <ol className={cn("tw:list-disc tw:list-inside tw:space-y-2")}>
               <li>Increase conversion rates by up to 10%</li>
               <li>Reduce cart abandonment by 5%</li>
               <li>Boost newsletter sign-ups by 15%</li>
               <li>Performance-based pricing with no hidden costs</li>
               <li>No minimum contract duration</li>
-            </ul>
+            </ol>
           </div>
         </TabsContent>
         <TabsContent value="how-it-works">
@@ -406,9 +406,9 @@ export function SovendusOptimize({
               "tw:bg-gray-50 tw:p-6 tw:rounded-lg tw:mt-6 tw:space-y-4",
             )}
           >
-            <h3 className={cn("tw:text-2xl tw:font-semibold tw:mb-4")}>
+            <div className={cn("tw:text-2xl tw:font-semibold tw:mb-4")}>
               How Optimize Works
-            </h3>
+            </div>
             <ol className={cn("tw:space-y-4")}>
               <li className={cn("tw:flex tw:items-start")}>
                 <CheckCircle
@@ -447,7 +447,7 @@ export function SovendusOptimize({
               <li className={cn("tw:flex tw:items-start")}>
                 <CheckCircle
                   className={cn(
-                    "tw:mr-2tw: h-5 tw:w-5 tw:text-green-500 tw:mt-1 tw:flex-shrink-0",
+                    "tw:mr-2 tw:h-5 tw:w-5 tw:text-green-500 tw:mt-1 tw:flex-shrink-0",
                   )}
                 />
                 <div>

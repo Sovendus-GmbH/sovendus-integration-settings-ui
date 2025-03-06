@@ -56,9 +56,9 @@ export function SovendusVoucherNetwork({
           "tw:bg-gradient-to-r tw:from-blue-600 tw:to-indigo-600 tw:text-white tw:p-8 tw:rounded-lg tw:shadow-lg",
         )}
       >
-        <h2 className={cn("tw:text-3xl tw:font-bold tw:mb-4 tw:text-white")}>
+        <div className={cn("tw:text-3xl tw:font-bold tw:mb-4 tw:text-white")}>
           Voucher Network & Checkout Benefits: Dual Revenue Streams
-        </h2>
+        </div>
         <p className={cn("tw:text-xl tw:mb-6")}>
           Boost traffic and sales with our closed voucher network, while
           rewarding customers at checkout and earning extra revenue.
@@ -144,9 +144,9 @@ export function SovendusVoucherNetwork({
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <h4 className={cn("tw:font-semibold tw:mb-2")}>
+                  <div className={cn("tw:font-semibold tw:mb-2")}>
                     {additionalSteps.title}
-                  </h4>
+                  </div>
                   <ol
                     className={cn(
                       "tw:list-decimal tw:list-inside tw:space-y-2",
@@ -244,9 +244,9 @@ export function SovendusVoucherNetwork({
             </Card>
           </div>
           <div className={cn("tw:bg-gray-100 tw:p-6 tw:rounded-lg tw:mb-8")}>
-            <h3 className={cn("tw:text-2xl tw:font-semibold tw:mb-4")}>
+            <div className={cn("tw:text-2xl tw:font-semibold tw:mb-4")}>
               Key Benefits
-            </h3>
+            </div>
             <ul className={cn("tw:list-disc tw:list-inside tw:space-y-2")}>
               <li>
                 <strong>Massive Reach:</strong> Connect with 7 million online
@@ -275,9 +275,9 @@ export function SovendusVoucherNetwork({
               "tw:bg-gray-50 tw:p-6 tw:rounded-lg tw:mt-6 tw:space-y-4",
             )}
           >
-            <h3 className={cn("tw:text-2xl tw:font-semibold tw:mb-4")}>
+            <div className={cn("tw:text-2xl tw:font-semibold tw:mb-4")}>
               How Voucher Network & Checkout Benefits Work
-            </h3>
+            </div>
             <ol className={cn("tw:space-y-4")}>
               <li className={cn("tw:flex tw:items-start")}>
                 <CheckCircle

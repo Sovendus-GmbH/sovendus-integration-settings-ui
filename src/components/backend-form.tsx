@@ -205,7 +205,7 @@ export function SovendusBackendForm({
         })}
       >
         <div className={cn("tw:flex tw:justify-between tw:items-center")}>
-          <h1 className={cn("tw:text-4xl tw:font-bold")}>Sovendus App</h1>
+          <div className={cn("tw:text-4xl tw:font-bold")}>Sovendus App</div>
         </div>
 
         <Alert className={cn("tw:bg-blue-50 tw:border-blue-200")}>
