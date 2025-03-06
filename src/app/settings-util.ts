@@ -1,5 +1,7 @@
 import { type SovendusAppSettings, Versions } from "sovendus-integration-types";
 
+import { loggerInfo } from "../utils/utils";
+
 export const initialSettings: SovendusAppSettings = {
   voucherNetwork: {
     settingType: undefined,
@@ -23,8 +25,7 @@ export function getSettings(): SovendusAppSettings {
   }
   const settings = localStorage.getItem("sovendus-settings");
   if (settings) {
-    // eslint-disable-next-line no-console
-    console.log("Loaded settings from local storage:", JSON.parse(settings));
+    loggerInfo("Loaded settings from local storage:", JSON.parse(settings));
     return JSON.parse(settings) as SovendusAppSettings;
   }
   return initialSettings;
@@ -34,8 +35,7 @@ export function getSettings(): SovendusAppSettings {
 export async function saveSettings(
   newSettings: SovendusAppSettings,
 ): Promise<SovendusAppSettings> {
-  // eslint-disable-next-line no-console
-  console.log("Saving settings:", newSettings);
+  loggerInfo("Saving settings:", newSettings);
   localStorage.setItem("sovendus-settings", JSON.stringify(newSettings));
   return newSettings;
 }

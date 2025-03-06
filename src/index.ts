@@ -6,3 +6,4 @@ export type { SovendusBackendFormProps } from "./components/backend-form";
 export { SovendusBackendForm } from "./components/backend-form";
 export type { SovendusSettingsProps } from "./sovendus-app-settings";
 export { SovendusSettings } from "./sovendus-app-settings";
+export { loggerError, loggerInfo } from "./utils/utils";
