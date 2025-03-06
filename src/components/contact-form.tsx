@@ -11,8 +11,8 @@ export function ContactCTA(): JSX.Element {
       <CardHeader>
         <CardTitle>Want to boost your revenue even further?</CardTitle>
       </CardHeader>
-      <CardContent className={cn("space-y-4")}>
-        <p className={cn("text-gray-600")}>
+      <CardContent className={cn("tw:space-y-4")}>
+        <p className={cn("tw:text-gray-600")}>
           Get in touch with our team to learn more about how Sovendus can help
           grow your business. Our experts will guide you through our products
           and help you maximize your revenue potential.
@@ -24,10 +24,14 @@ export function ContactCTA(): JSX.Element {
               "_blank",
             )
           }
-          className={cn("w-full sm:w-auto bg-blue-50 border-blue-200")}
+          className={cn(
+            "tw:w-full tw:sm:w-auto tw:bg-blue-50 tw:border-blue-200",
+          )}
         >
           Request Demo Tour{" "}
-          <ExternalLink className={cn("ml-2 h-4 w-4 text-blue-700")} />
+          <ExternalLink
+            className={cn("tw:ml-2 tw:h-4 tw:w-4 tw:text-blue-700")}
+          />
         </Button>
       </CardContent>
     </Card>

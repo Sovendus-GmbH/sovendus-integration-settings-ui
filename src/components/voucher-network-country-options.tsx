@@ -156,7 +156,7 @@ export function CountryOptions({
     });
   };
   return (
-    <Accordion type="single" collapsible className={cn("w-full")}>
+    <Accordion type="single" collapsible className={cn("tw:w-full")}>
       {countryCodes.map((countryKey) =>
         Object.entries(LANGUAGES_BY_COUNTRIES[countryKey]).map(
           ([languageKey, countryName]) => (
@@ -221,18 +221,19 @@ function CountrySettings({
   return (
     <AccordionItem value={countryKey} key={countryKey}>
       <AccordionTrigger>
-        <div className={cn("flex items-center justify-between w-full")}>
+        <div
+          className={cn("tw:flex tw:items-center tw:justify-between tw:w-full")}
+        >
           <span>{countryName}</span>
-          <div className={cn("flex items-center space-x-2")}>
-            <span className={cn("text-sm text-muted-foreground")}>
+          <div className={cn("tw:flex tw:items-center tw:space-x-2")}>
+            <span className={cn("tw:text-sm tw:text-muted-foreground")}>
               {getCountryStatus(countryKey, languageKey)}
             </span>
             {isEnabled && (
               <Badge
                 variant={"default"}
                 className={cn(
-                  "ml-2",
-                  "bg-green-100 text-green-800 hover:bg-green-100",
+                  "tw:ml-2 tw:bg-green-100 tw:text-green-800 tw:hover:bg-green-100",
                 )}
               >
                 Enabled
@@ -242,8 +243,8 @@ function CountrySettings({
         </div>
       </AccordionTrigger>
       <AccordionContent>
-        <div className={cn("space-y-4 mx-1")}>
-          <div className={cn("flex items-center space-x-2")}>
+        <div className={cn("tw:space-y-4 tw:mx-1")}>
+          <div className={cn("tw:flex tw:items-center tw:space-x-2")}>
             <Switch
               id={`${countryKey}-enabled`}
               checked={isEnabled}
@@ -255,8 +256,8 @@ function CountrySettings({
               Enable for {countryName}
             </label>
           </div>
-          <div className={cn("grid grid-cols-2 gap-4")}>
-            <div className={cn("space-y-2")}>
+          <div className={cn("tw:grid tw:grid-cols-2 tw:gap-4")}>
+            <div className={cn("tw:space-y-2")}>
               <Label htmlFor={`${countryKey}-source`}>
                 Traffic Source Number
               </Label>
@@ -274,7 +275,7 @@ function CountrySettings({
                 placeholder="Enter Traffic Source Number"
               />
             </div>
-            <div className={cn("space-y-2")}>
+            <div className={cn("tw:space-y-2")}>
               <Label htmlFor={`${countryKey}-medium`}>
                 Traffic Medium Number
               </Label>
@@ -331,8 +332,8 @@ export function EnabledVoucherNetworkCountries({
   return (
     <p
       className={cn(
-        "text-sm",
-        isVnEnabled(currentSettings) ? "text-green-600" : "text-red-600",
+        "tw:text-sm",
+        isVnEnabled(currentSettings) ? "tw:text-green-600" : "tw:text-red-600",
       )}
     >
       {enabledLocales.length > 0 ? (

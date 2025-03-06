@@ -5,26 +5,26 @@ import * as React from "react";
 import { cn } from "../../utils/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-base font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "tw:inline-flex tw:items-center tw:justify-center tw:gap-2 tw:whitespace-nowrap tw:rounded-md tw:text-base tw:font-medium tw:transition-colors tw:focus-visible:outline-none tw:focus-visible:ring-1 tw:focus-visible:ring-ring tw:disabled:pointer-events-none tw:disabled:opacity-50 tw:[&_svg]:pointer-events-none tw:[&_svg]:size-4 tw:[&_svg]:shrink-0",
   {
     variants: {
       variant: {
         default:
-          "bg-primary text-primary-foreground shadow hover:bg-primary/90",
+          "tw:bg-primary tw:text-primary-foreground tw:shadow tw:hover:bg-primary/90",
         destructive:
-          "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
+          "tw:bg-destructive tw:text-destructive-foreground tw:shadow-sm tw:hover:bg-destructive/90",
         outline:
-          "border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground",
+          "tw:border tw:border-input tw:bg-background tw:shadow-sm tw:hover:bg-accent tw:hover:text-accent-foreground",
         secondary:
-          "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
-        ghost: "hover:bg-accent hover:text-accent-foreground",
-        link: "text-primary underline-offset-4 hover:underline",
+          "tw:bg-secondary tw:text-secondary-foreground tw:shadow-sm hover:bg-secondary/80",
+        ghost: "tw:hover:bg-accent tw:hover:text-accent-foreground",
+        link: "tw:text-primary tw:underline-offset-4 tw:hover:underline",
       },
       size: {
-        default: "px-4 py-2 text-md",
-        sm: "h-8 rounded-md px-4 py-3 text-xs text-lg",
-        lg: "rounded-md px-8 py-3 text-xl",
-        icon: "h-9 w-9",
+        default: "tw:px-4 tw:py-2 tw:text-md",
+        sm: "tw:h-8 tw:rounded-md tw:px-4 tw:py-3 tw:text-xs tw:text-lg",
+        lg: "tw:rounded-md tw:px-8 tw:py-3 tw:text-xl",
+        icon: "tw:h-9 tw:w-9",
       },
     },
     defaultVariants: {
@@ -55,8 +55,8 @@ const Button = React.forwardRef<HTMLDivElement, ButtonProps>(
     const computedClassName = cn(
       buttonVariants({ variant, size, className }),
       disabled
-        ? "cursor-not-allowed opacity-50 pointer-events-none"
-        : "cursor-pointer",
+        ? "tw:cursor-not-allowed tw:opacity-50 tw:pointer-events-none"
+        : "tw:cursor-pointer",
     );
 
     return (

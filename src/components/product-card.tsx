@@ -35,62 +35,66 @@ export function ProductCard({
   buttonsDisabled,
 }: ProductCardProps): JSX.Element {
   return (
-    <Card className={cn("w-full")}>
-      <CardHeader className={cn("border-b")}>
-        <div className={cn("flex items-start justify-between")}>
-          <div className={cn("space-y-1")}>
-            <CardTitle className={cn("flex items-center text-2xl")}>
+    <Card className={cn("tw:w-full")}>
+      <CardHeader className={cn("tw:border-b")}>
+        <div className={cn("tw:flex tw:items-start tw:justify-between")}>
+          <div className={cn("tw:space-y-1")}>
+            <CardTitle className={cn("tw:flex tw:items-center tw:text-2xl")}>
               {icon}
-              <span className={cn("ml-2")}>{title}</span>
+              <span className={cn("tw:ml-2")}>{title}</span>
             </CardTitle>
-            <p className={cn("text-sm text-muted-foreground max-w-2xl")}>
+            <p
+              className={cn("tw:text-sm tw:text-muted-foreground tw:max-w-2xl")}
+            >
               {description}
             </p>
           </div>
           <Badge
             variant={status.active ? "default" : "secondary"}
             className={cn(
-              "ml-4",
+              "tw:ml-4",
               status.active
-                ? "bg-green-100 text-green-800 hover:bg-green-100"
-                : "bg-gray-100 text-gray-800 hover:bg-gray-100",
+                ? "tw:bg-green-100 tw:text-green-800 tw:hover:bg-green-100"
+                : "tw:bg-gray-100 tw:text-gray-800 tw:hover:bg-gray-100",
             )}
           >
             {status.active ? "Active" : "Not Active"}
           </Badge>
         </div>
       </CardHeader>
-      <CardContent className={cn("pt-6")}>
+      <CardContent className={cn("tw:pt-6")}>
         <div
-          className={cn("flex flex-wrap items-center justify-between gap-4")}
+          className={cn(
+            "tw:flex tw:flex-wrap tw:items-center tw:justify-between tw:gap-4",
+          )}
         >
-          <div className={cn("flex flex-wrap gap-8")}>
+          <div className={cn("tw:flex tw:flex-wrap tw:gap-8")}>
             {metrics.map((metric, index) => (
-              <div key={index} className={cn("space-y-1")}>
-                <p className={cn("text-sm text-muted-foreground")}>
+              <div key={index} className={cn("tw:space-y-1")}>
+                <p className={cn("tw:text-sm tw:text-muted-foreground")}>
                   {metric.label}
                 </p>
-                <p className={cn("text-2xl font-bold")}>{metric.value}</p>
+                <p className={cn("tw:text-2xl tw:font-bold")}>{metric.value}</p>
               </div>
             ))}
           </div>
-          <div className={cn("flex gap-2")}>
+          <div className={cn("tw:flex tw:gap-2")}>
             <Button
               variant="outline"
               onClick={(): void => void window.open(requestDemoHref, "_blank")}
             >
               Request Demo Tour
-              <ExternalLink className={cn("ml-2 h-4 w-4")} />
+              <ExternalLink className={cn("tw:ml-2 tw:h-4 tw:w-4")} />
             </Button>
             <Button onClick={onConfigure} disabled={buttonsDisabled}>
               Configure
-              <ChevronRight className={cn("ml-2 h-4 w-4")} />
+              <ChevronRight className={cn("tw:ml-2 tw:h-4 tw:w-4")} />
             </Button>
           </div>
         </div>
         {status.details && (
-          <div className={cn("mt-4 p-4 bg-gray-50 rounded-lg")}>
-            <h4 className={cn("text-sm font-semibold mb-2")}>
+          <div className={cn("tw:mt-4 tw:p-4 tw:bg-gray-50 tw:rounded-lg")}>
+            <h4 className={cn("tw:text-sm tw:font-semibold tw:mb-2")}>
               Current Configuration
             </h4>
             {status.details}

@@ -49,44 +49,44 @@ export function SovendusVoucherNetwork({
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className={cn("space-y-6 pb-8")}
+      className={cn("tw:space-y-6 tw:pb-8")}
     >
       <div
         className={cn(
-          "bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-8 rounded-lg shadow-lg",
+          "tw:bg-gradient-to-r tw:from-blue-600 tw:to-indigo-600 tw:text-white tw:p-8 tw:rounded-lg tw:shadow-lg",
         )}
       >
-        <h2 className={cn("text-3xl font-bold mb-4 text-white")}>
+        <h2 className={cn("tw:text-3xl tw:font-bold tw:mb-4 tw:text-white")}>
           Voucher Network & Checkout Benefits: Dual Revenue Streams
         </h2>
-        <p className={cn("text-xl mb-6")}>
+        <p className={cn("tw:text-xl tw:mb-6")}>
           Boost traffic and sales with our closed voucher network, while
           rewarding customers at checkout and earning extra revenue.
         </p>
         <Button
           size="lg"
           onClick={(): void => void window.open(DEMO_REQUEST_URL, "_blank")}
-          className={cn("bg-white text-blue-600 hover:bg-blue-100")}
+          className={cn("tw:bg-white tw:text-blue-600 tw:hover:bg-blue-100")}
         >
           Schedule Your Personalized Demo
-          <ExternalLink className={cn("ml-2 h-4 w-4")} />
+          <ExternalLink className={cn("tw:ml-2 tw:h-4 tw:w-4")} />
         </Button>
       </div>
 
-      <Alert className={cn("mb-4 bg-blue-50 border-blue-200")}>
-        <AlertDescription className={cn("text-blue-700 font-semibold")}>
+      <Alert className={cn("tw:mb-4 tw:bg-blue-50 tw:border-blue-200")}>
+        <AlertDescription className={cn("tw:text-blue-700 tw:font-semibold")}>
           <strong>Important:</strong> To activate Voucher Network and/or
           Checkout Benefits, contact Sovendus for a personalized demo and setup.
           Our team will guide you through the entire process.
         </AlertDescription>
       </Alert>
 
-      <Tabs defaultValue="configure" className={cn("w-full")}>
-        <TabsList className={cn("grid w-full grid-cols-3 mb-8")}>
+      <Tabs defaultValue="configure" className={cn("tw:w-full")}>
+        <TabsList className={cn("tw:grid tw:w-full tw:grid-cols-3 tw:mb-8")}>
           <TabsTrigger
             value="configure"
             className={cn(
-              "text-lg font-semibold py-3 bg-blue-100 data-[state=active]:bg-blue-600 data-[state=active]:text-white",
+              "tw:text-lg tw:font-semibold tw:py-3 tw:bg-blue-100 tw:data-[state=active]:bg-blue-600 tw:data-[state=active]:text-white",
             )}
           >
             Configure
@@ -94,7 +94,7 @@ export function SovendusVoucherNetwork({
           <TabsTrigger
             value="benefits"
             className={cn(
-              "text-lg font-semibold py-3 bg-blue-100 data-[state=active]:bg-blue-600 data-[state=active]:text-white",
+              "tw:text-lg tw:font-semibold tw:py-3 tw:bg-blue-100 tw:data-[state=active]:bg-blue-600 tw:data-[state=active]:text-white",
             )}
           >
             Key Benefits
@@ -102,25 +102,27 @@ export function SovendusVoucherNetwork({
           <TabsTrigger
             value="how-it-works"
             className={cn(
-              "text-lg font-semibold py-3 bg-blue-100 data-[state=active]:bg-blue-600 data-[state=active]:text-white",
+              "tw:text-lg tw:font-semibold tw:py-3 tw:bg-blue-100 tw:data-[state=active]:bg-blue-600 tw:data-[state=active]:text-white",
             )}
           >
             How It Works
           </TabsTrigger>
         </TabsList>
         <TabsContent value="configure">
-          <div className={cn("space-y-6")}>
+          <div className={cn("tw:space-y-6")}>
             <Alert
               className={cn(
                 `${
                   vnEnabled
-                    ? "bg-green-50 border-green-200"
-                    : "bg-red-50 border-red-200"
-                } mt-2`,
+                    ? "tw:bg-green-50 tw:border-green-200"
+                    : "tw:bg-red-50 tw:border-red-200"
+                } tw:mt-2`,
               )}
             >
               <AlertDescription
-                className={cn(vnEnabled ? "text-green-700" : "text-red-700")}
+                className={cn(
+                  vnEnabled ? "tw:text-green-700" : "tw:text-red-700",
+                )}
               >
                 <EnabledVoucherNetworkCountries
                   currentSettings={currentSettings}
@@ -128,20 +130,28 @@ export function SovendusVoucherNetwork({
               </AlertDescription>
             </Alert>
             {additionalSteps && (
-              <Card className={cn("border-2 border-blue-500")}>
+              <Card className={cn("tw:border-2 tw:border-blue-500")}>
                 <CardHeader>
                   <CardTitle
-                    className={cn("text-xl font-semibold flex items-center")}
+                    className={cn(
+                      "tw:text-xl tw:font-semibold tw:flex tw:items-center",
+                    )}
                   >
-                    <CheckCircle className={cn("w-6 h-6 mr-2 text-blue-500")} />
+                    <CheckCircle
+                      className={cn("tw:w-6 tw:h-6 tw:mr-2 tw:text-blue-500")}
+                    />
                     Additional Setup Steps
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <h4 className={cn("font-semibold mb-2")}>
+                  <h4 className={cn("tw:font-semibold tw:mb-2")}>
                     {additionalSteps.title}
                   </h4>
-                  <ol className={cn("list-decimal list-inside space-y-2")}>
+                  <ol
+                    className={cn(
+                      "tw:list-decimal tw:list-inside tw:space-y-2",
+                    )}
+                  >
                     {additionalSteps.subSteps.map((step, index) => (
                       <li key={index}>{step}</li>
                     ))}
@@ -154,24 +164,28 @@ export function SovendusVoucherNetwork({
               type="single"
               defaultValue="step1"
               collapsible
-              className={cn("w-full mt-8")}
+              className={cn("tw:w-full tw:mt-8")}
             >
               <AccordionItem
                 value="step1"
                 className={cn(
-                  "border-2 border-blue-500 rounded-lg overflow-hidden",
+                  "tw:border-2 tw:border-blue-500 tw:rounded-lg tw:overflow-hidden",
                 )}
               >
                 <AccordionTrigger
-                  className={cn("bg-blue-50 p-4 text-xl font-semibold")}
+                  className={cn(
+                    "tw:bg-blue-50 tw:p-4 tw:text-xl tw:font-semibold",
+                  )}
                 >
-                  <div className={cn("flex items-center")}>
-                    <Cog className={cn("w-6 h-6 mr-2 text-blue-500")} />
+                  <div className={cn("tw:flex tw:items-center")}>
+                    <Cog
+                      className={cn("tw:w-6 tw:h-6 tw:mr-2 tw:text-blue-500")}
+                    />
                     Configure Voucher Network & Checkout Benefits
                   </div>
                 </AccordionTrigger>
-                <AccordionContent className={cn("p-4 bg-white")}>
-                  <p className={cn("mb-4 text-lg")}>
+                <AccordionContent className={cn("tw:p-4 tw:bg-white")}>
+                  <p className={cn("tw:mb-4 tw:text-lg")}>
                     Maximize your revenue potential by setting up Voucher
                     Network and Checkout Benefits for multiple countries and
                     languages. This configuration applies to both products,
@@ -190,11 +204,17 @@ export function SovendusVoucherNetwork({
           </div>
         </TabsContent>
         <TabsContent value="benefits">
-          <div className={cn("grid grid-cols-1 md:grid-cols-2 gap-6 mb-8")}>
+          <div
+            className={cn(
+              "tw:grid tw:grid-cols-1 tw:md:grid-cols-2 tw:gap-6 tw:mb-8",
+            )}
+          >
             <Card>
               <CardHeader>
-                <CardTitle className={cn("flex items-center")}>
-                  <Gift className={cn("mr-2 h-5 w-5 text-blue-500")} />
+                <CardTitle className={cn("tw:flex tw:items-center")}>
+                  <Gift
+                    className={cn("tw:mr-2 tw:h-5 tw:w-5 tw:text-blue-500")}
+                  />
                   Voucher Network
                 </CardTitle>
               </CardHeader>
@@ -207,8 +227,10 @@ export function SovendusVoucherNetwork({
             </Card>
             <Card>
               <CardHeader>
-                <CardTitle className={cn("flex items-center")}>
-                  <ShoppingBag className={cn("mr-2 h-5 w-5 text-green-500")} />
+                <CardTitle className={cn("tw:flex tw:items-center")}>
+                  <ShoppingBag
+                    className={cn("tw:mr-2 tw:h-5 tw:w-5 tw:text-green-500")}
+                  />
                   Checkout Benefits
                 </CardTitle>
               </CardHeader>
@@ -221,9 +243,11 @@ export function SovendusVoucherNetwork({
               </CardContent>
             </Card>
           </div>
-          <div className={cn("bg-gray-100 p-6 rounded-lg mb-8")}>
-            <h3 className={cn("text-2xl font-semibold mb-4")}>Key Benefits</h3>
-            <ul className={cn("list-disc list-inside space-y-2")}>
+          <div className={cn("tw:bg-gray-100 tw:p-6 tw:rounded-lg tw:mb-8")}>
+            <h3 className={cn("tw:text-2xl tw:font-semibold tw:mb-4")}>
+              Key Benefits
+            </h3>
+            <ul className={cn("tw:list-disc tw:list-inside tw:space-y-2")}>
               <li>
                 <strong>Massive Reach:</strong> Connect with 7 million online
                 shoppers monthly through our network of 2,300+ European
@@ -246,19 +270,23 @@ export function SovendusVoucherNetwork({
           </div>
         </TabsContent>
         <TabsContent value="how-it-works">
-          <div className={cn("bg-gray-50 p-6 rounded-lg mt-6 space-y-4")}>
-            <h3 className={cn("text-2xl font-semibold mb-4")}>
+          <div
+            className={cn(
+              "tw:bg-gray-50 tw:p-6 tw:rounded-lg tw:mt-6 tw:space-y-4",
+            )}
+          >
+            <h3 className={cn("tw:text-2xl tw:font-semibold tw:mb-4")}>
               How Voucher Network & Checkout Benefits Work
             </h3>
-            <ol className={cn("space-y-4")}>
-              <li className={cn("flex items-start")}>
+            <ol className={cn("tw:space-y-4")}>
+              <li className={cn("tw:flex tw:items-start")}>
                 <CheckCircle
                   className={cn(
-                    "mr-2 h-5 w-5 text-green-500 mt-1 flex-shrink-0",
+                    "tw:mr-2 tw:h-5 tw:w-5 tw:text-green-500 tw:mt-1 tw:flex-shrink-0",
                   )}
                 />
                 <div>
-                  <strong className={cn("text-lg")}>
+                  <strong className={cn("tw:text-lg")}>
                     Voucher Network Integration:
                   </strong>
                   <p>
@@ -267,14 +295,14 @@ export function SovendusVoucherNetwork({
                   </p>
                 </div>
               </li>
-              <li className={cn("flex items-start")}>
+              <li className={cn("tw:flex tw:items-start")}>
                 <CheckCircle
                   className={cn(
-                    "mr-2 h-5 w-5 text-green-500 mt-1 flex-shrink-0",
+                    "tw:mr-2 tw:h-5 tw:w-5 tw:text-green-500 tw:mt-1 tw:flex-shrink-0",
                   )}
                 />
                 <div>
-                  <strong className={cn("text-lg")}>
+                  <strong className={cn("tw:text-lg")}>
                     Checkout Benefits Display:
                   </strong>
                   <p>
@@ -284,14 +312,14 @@ export function SovendusVoucherNetwork({
                   </p>
                 </div>
               </li>
-              <li className={cn("flex items-start")}>
+              <li className={cn("tw:flex tw:items-start")}>
                 <CheckCircle
                   className={cn(
-                    "mr-2 h-5 w-5 text-green-500 mt-1 flex-shrink-0",
+                    "tw:mr-2 tw:h-5 tw:w-5 tw:text-green-500 tw:mt-1 tw:flex-shrink-0",
                   )}
                 />
                 <div>
-                  <strong className={cn("text-lg")}>
+                  <strong className={cn("tw:text-lg")}>
                     Dual Revenue Generation:
                   </strong>
                   <p>
@@ -300,14 +328,14 @@ export function SovendusVoucherNetwork({
                   </p>
                 </div>
               </li>
-              <li className={cn("flex items-start")}>
+              <li className={cn("tw:flex tw:items-start")}>
                 <CheckCircle
                   className={cn(
-                    "mr-2 h-5 w-5 text-green-500 mt-1 flex-shrink-0",
+                    "tw:mr-2 tw:h-5 tw:w-5 tw:text-green-500 tw:mt-1 tw:flex-shrink-0",
                   )}
                 />
                 <div>
-                  <strong className={cn("text-lg")}>
+                  <strong className={cn("tw:text-lg")}>
                     Continuous Optimization:
                   </strong>
                   <p>

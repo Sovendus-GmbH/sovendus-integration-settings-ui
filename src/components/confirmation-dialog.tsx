@@ -28,26 +28,30 @@ export function ConfigurationDialog({
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent
-        className={cn("max-w-[1200px] max-h-[90vh] overflow-y-auto", {
+        className={cn("tw:max-w-[1200px] tw:max-h-[90vh] tw:overflow-y-auto", {
           zoomed: zoomedVersion,
         })}
         withClose={false}
       >
-        <div className={cn("sticky top-0 z-50 flex justify-end h-[55px]")}>
-          <div className={cn("flex items-center gap-2")}>
+        <div
+          className={cn(
+            "tw:sticky tw:top-0 z-50 tw:flex tw:justify-end tw:h-[55px]",
+          )}
+        >
+          <div className={cn("tw:flex tw:items-center tw:gap-2")}>
             <button
               onClick={(): void => onOpenChange(false)}
               className={cn(
-                "p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors",
+                "tw:p-2 tw:rounded-full tw:bg-gray-100 tw:hover:bg-gray-200 tw:transition-colors",
               )}
             >
-              <X className={cn("h-8 w-8")} />
-              <span className={cn("sr-only")}>Close</span>
+              <X className={cn("tw:h-8 tw:w-8")} />
+              <span className={cn("tw:sr-only")}>Close</span>
             </button>
           </div>
         </div>
-        <DialogHeader className={cn("pb-6")} style={{ marginTop: "-55px" }}>
-          <DialogTitle className={cn("text-2xl")}>{title}</DialogTitle>
+        <DialogHeader className={cn("tw:pb-6 tw:mt-[-55px]")}>
+          <DialogTitle className={cn("tw:text-2xl")}>{title}</DialogTitle>
         </DialogHeader>
         {children}
       </DialogContent>

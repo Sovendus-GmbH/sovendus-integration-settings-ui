@@ -111,20 +111,24 @@ export function CountryOptions({
   };
 
   return (
-    <Accordion type="single" collapsible className={cn("w-full")}>
+    <Accordion type="single" collapsible className={cn("tw:w-full")}>
       {countryCodes.map((countryKey) => (
         <AccordionItem value={countryKey} key={countryKey}>
           <AccordionTrigger>
-            <div className={cn("flex items-center justify-between w-full")}>
+            <div
+              className={cn(
+                "tw:flex tw:items-center tw:justify-between tw:w-full",
+              )}
+            >
               <span>{COUNTRIES[countryKey]}</span>
-              <div className={cn("flex items-center space-x-2")}>
-                <span className={cn("text-sm text-muted-foreground")}>
+              <div className={cn("tw:flex tw:items-center tw:space-x-2")}>
+                <span className={cn("tw:text-sm tw:text-muted-foreground")}>
                   {getCountryStatus(countryKey)}
                 </span>
                 {isOptimizeElementEnabled(
                   currentSettings?.countries?.ids[countryKey],
                 ) && (
-                  <Badge variant="outline" className={cn("ml-2")}>
+                  <Badge variant="outline" className={cn("tw:ml-2")}>
                     Enabled
                   </Badge>
                 )}
@@ -132,8 +136,8 @@ export function CountryOptions({
             </div>
           </AccordionTrigger>
           <AccordionContent>
-            <div className={cn("space-y-4 mx-1")}>
-              <div className={cn("flex items-center space-x-2")}>
+            <div className={cn("tw:space-y-4 tw:mx-1")}>
+              <div className={cn("tw:flex tw:items-center tw:space-x-2")}>
                 <Switch
                   id={`${countryKey}-enabled`}
                   checked={
@@ -148,7 +152,7 @@ export function CountryOptions({
                   Enable for {COUNTRIES[countryKey]}
                 </label>
               </div>
-              <div className={cn("space-y-2")}>
+              <div className={cn("tw:space-y-2")}>
                 <Label htmlFor={`${countryKey}-id`}>Optimize ID</Label>
                 <Input
                   id={`${countryKey}-id`}
@@ -202,8 +206,10 @@ export function EnabledOptimizeCountries({
   return (
     <p
       className={cn(
-        "text-sm",
-        isOptimizeEnabled(currentSettings) ? "text-green-600" : "text-red-600",
+        "tw:text-sm",
+        isOptimizeEnabled(currentSettings)
+          ? "tw:text-green-600"
+          : "tw:text-red-600",
       )}
     >
       {statusMessage}

@@ -184,10 +184,10 @@ export function SovendusBackendForm({
         details: (
           <p
             className={cn(
-              "text-sm",
+              "tw:text-sm",
               currentSettings.checkoutProducts
-                ? "text-green-600"
-                : "text-red-600",
+                ? "tw:text-green-600"
+                : "tw:text-red-600",
             )}
           >
             {currentSettings.checkoutProducts
@@ -200,29 +200,29 @@ export function SovendusBackendForm({
 
     return (
       <div
-        className={cn("container mx-auto p-6 space-y-8", {
+        className={cn("tw:container tw:mx-auto tw:p-6 tw:space-y-8", {
           zoomed: zoomedVersion,
         })}
       >
-        <div className={cn("flex justify-between items-center")}>
-          <h1 className={cn("text-4xl font-bold")}>Sovendus App</h1>
+        <div className={cn("tw:flex tw:justify-between tw:items-center")}>
+          <h1 className={cn("tw:text-4xl tw:font-bold")}>Sovendus App</h1>
         </div>
 
-        <Alert className={cn("bg-blue-50 border-blue-200")}>
-          <AlertTitle className={cn("text-blue-700 font-semibold")}>
+        <Alert className={cn("tw:bg-blue-50 tw:border-blue-200")}>
+          <AlertTitle className={cn("tw:text-blue-700 tw:font-semibold")}>
             <strong>Welcome to your Sovendus configuration dashboard.</strong>
           </AlertTitle>
-          <AlertDescription className={cn("text-blue-700 font-semibold")}>
+          <AlertDescription className={cn("tw:text-blue-700 tw:font-semibold")}>
             To get started or make changes to your setup, please contact
             Sovendus for a personalized demo and configuration process.
           </AlertDescription>
         </Alert>
 
-        <div className={cn("grid gap-6")}>
+        <div className={cn("tw:grid tw:gap-6")}>
           <ProductCard
             title="Voucher Network & Checkout Benefits"
             description="Drive sales with post-purchase vouchers and earn revenue from partner offers"
-            icon={<Gift className={cn("h-6 w-6 text-blue-500")} />}
+            icon={<Gift className={cn("tw:h-6 tw:w-6 tw:text-blue-500")} />}
             status={getVoucherNetworkStatus()}
             buttonsDisabled={buttonsDisabled}
             metrics={[
@@ -237,7 +237,9 @@ export function SovendusBackendForm({
           <ProductCard
             title="Optimize"
             description="Boost conversions with intelligent on-site optimization"
-            icon={<BarChart2 className={cn("h-6 w-6 text-green-500")} />}
+            icon={
+              <BarChart2 className={cn("tw:h-6 tw:w-6 tw:text-green-500")} />
+            }
             status={getOptimizeStatus()}
             buttonsDisabled={buttonsDisabled}
             metrics={[
@@ -252,7 +254,11 @@ export function SovendusBackendForm({
           <ProductCard
             title="Checkout Products"
             description="Reach 24 million potential customers a month with your product"
-            icon={<ShoppingBagIcon className={cn("h-6 w-6 text-purple-500")} />}
+            icon={
+              <ShoppingBagIcon
+                className={cn("tw:h-6 tw:w-6 tw:text-purple-500")}
+              />
+            }
             status={getCheckoutProductsStatus()}
             buttonsDisabled={buttonsDisabled}
             metrics={[
