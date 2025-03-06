@@ -339,7 +339,7 @@ function useSettingsSaveOnLoad(
 ): void {
   useEffect(() => {
     // Save settings in case there any settings migrations
-    if (callSaveOnLoad){
+    if (callSaveOnLoad) {
       void saveSettings(currentStoredSettings);
     }
     // eslint-disable-next-line react-compiler/react-compiler
