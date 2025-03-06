@@ -4744,10 +4744,10 @@ sovendus-integration-types@3.3.22:
   resolved "https://registry.yarnpkg.com/sovendus-integration-types/-/sovendus-integration-types-3.3.22.tgz#07aa3d5aab6c0bc132c3318074e2c1e0eae4dd87"
   integrity sha512-TX80WEjZk9A77ByeLb0iES8iTh2FRTiplVsnwgHe5xBCnv2l1WTm+z7hR8mjfxssfJdN/oYiLjrRMyDYoXTJZg==
 
-sovendus-release-tool@1.1.2:
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/sovendus-release-tool/-/sovendus-release-tool-1.1.2.tgz#f913c1f4082ac81b0c675d7de93aecdb94053721"
-  integrity sha512-VuRuBhCMGKkz19x+Jj+YnDxg52z0x9fP3mGJcYs9HOqB1yIzS9YfleIqw3kWqzSMWHSa82HtwmzQIbG+SJxv6g==
+sovendus-release-tool@1.1.3:
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/sovendus-release-tool/-/sovendus-release-tool-1.1.3.tgz#de05bcbc6652a9a80fad619b1a02742c9113ec0a"
+  integrity sha512-Cn1ccuUnGgsqaJ7Np4VMzwJY7CuXdy9eiLTsb/3TyAsbYSPbusmi303FZULpl61KiohimVxc1WBFOAgPh/tSRw==
   dependencies:
     commander "13.1.0"
     inquirer "^12.4.2"
