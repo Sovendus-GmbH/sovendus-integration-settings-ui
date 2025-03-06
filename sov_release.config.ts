@@ -5,7 +5,7 @@ const releaseConfig: ReleaseConfig = {
     {
       directory: "./",
       updateDeps: true,
-      version: "3.7.4",
+      version: "3.7.5",
       release: true,
       test: false,
       lintAndBuild: true,
