@@ -5,7 +5,7 @@ import "../components/app.css";
 import { type JSX, useEffect, useState } from "react";
 import { type SovendusAppSettings } from "sovendus-integration-types";
 
-import { SovendusSettings } from "../sovendus-app-settings";
+import { SovendusBackendForm } from "../components/backend-form";
 import { getSettings, saveSettings } from "./settings-util";
 
 export default function Home(): JSX.Element {
@@ -21,9 +21,10 @@ export default function Home(): JSX.Element {
 
   return (
     <main className="min-h-screen p-4">
-      <SovendusSettings
+      <SovendusBackendForm
         currentStoredSettings={currentSettings}
         saveSettings={saveSettings}
+        callSaveOnLoad={true}
       />
     </main>
   );
