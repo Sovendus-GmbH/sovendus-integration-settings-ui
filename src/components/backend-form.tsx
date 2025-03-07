@@ -5,7 +5,7 @@ import type { JSX } from "react";
 import React, { useEffect, useMemo, useState } from "react";
 import { type SovendusAppSettings, Versions } from "sovendus-integration-types";
 
-import { cn } from "../utils/utils";
+import { cn, loggerInfo } from "../utils/utils";
 import { SovendusCheckoutProducts } from "./checkout-products";
 import { ConfigurationDialog } from "./confirmation-dialog";
 import { Footer } from "./footer";
@@ -34,6 +34,7 @@ export interface SovendusBackendFormProps {
   additionalSteps?: AdditionalSteps;
   zoomedVersion?: boolean;
   callSaveOnLoad: boolean;
+  debug?: boolean;
 }
 
 export const DEMO_REQUEST_URL =
@@ -72,12 +73,17 @@ export function SovendusBackendForm({
   additionalSteps,
   zoomedVersion = false,
   callSaveOnLoad,
+  debug = false,
 }: SovendusBackendFormProps): JSX.Element {
   const [currentStoredSettings, setCurrentStoredSettings] =
     useState<SovendusAppSettings>(sanitizeSettings(_currentStoredSettings));
   const [currentSettings, setCurrentSettings] = useState<SovendusAppSettings>(
-    currentStoredSettings,
+    _currentStoredSettings,
   );
+  if (debug) {
+    loggerInfo("Current settings:", currentSettings);
+    loggerInfo("Current stored settings:", currentStoredSettings);
+  }
   const [activeConfig, setActiveConfig] = useState<
     "voucherNetwork" | "optimize" | "checkoutProducts" | null
   >(null);
