@@ -8,7 +8,11 @@ const buildConfig: BuildConfig = {
       output: "dist/index",
       options: {
         type: "react-tailwind",
-        isPackage: true,
+        packageConfig: {
+          dtsEntryRoot: "src",
+          dtsInclude: ["src/**/*"],
+          isPackage: true,
+        },
       },
     },
     {
@@ -16,7 +20,11 @@ const buildConfig: BuildConfig = {
       output: "dist/demo-index",
       options: {
         type: "react-tailwind",
-        isPackage: true,
+        packageConfig: {
+          dtsEntryRoot: "src",
+          dtsInclude: ["src/**/*"],
+          isPackage: true,
+        },
       },
     },
   ],
