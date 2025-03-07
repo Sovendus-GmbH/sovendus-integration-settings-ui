@@ -20,7 +20,7 @@ export const initialSettings: SovendusAppSettings = {
 };
 
 export function getSettings(
-  _initialSettings: SovendusAppSettings,
+  _initialSettings?: SovendusAppSettings,
 ): SovendusAppSettings {
   if (typeof window === "undefined") {
     throw new Error("getSettings() should only be called in the browser");
@@ -30,7 +30,7 @@ export function getSettings(
     loggerInfo("Loaded settings from local storage:", JSON.parse(settings));
     return JSON.parse(settings) as SovendusAppSettings;
   }
-  return _initialSettings;
+  return _initialSettings || initialSettings;
 }
 
 // eslint-disable-next-line @typescript-eslint/require-await
