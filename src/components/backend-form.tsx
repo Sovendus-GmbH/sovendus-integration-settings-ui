@@ -3,9 +3,9 @@ import "./app.css";
 import { BarChart2, Gift, ShoppingBagIcon } from "lucide-react";
 import type { JSX } from "react";
 import React, { useEffect, useMemo, useState } from "react";
-import { type SovendusAppSettings, Versions } from "sovendus-integration-types";
+import { type SovendusAppSettings } from "sovendus-integration-types";
 
-import { cn, loggerInfo } from "../utils/utils";
+import { cleanConfig, cn, loggerInfo } from "../utils/utils";
 import { SovendusCheckoutProducts } from "./checkout-products";
 import { ConfigurationDialog } from "./confirmation-dialog";
 import { Footer } from "./footer";
@@ -40,33 +40,6 @@ export interface SovendusBackendFormProps {
 export const DEMO_REQUEST_URL =
   "https://online.sovendus.com/kontakt/demo-tour-kontaktformular/#";
 
-export function sanitizeSettings(
-  settings: SovendusAppSettings,
-): SovendusAppSettings {
-  const sanitizedSettings: SovendusAppSettings = {
-    checkoutProducts: settings.checkoutProducts || false,
-    version: Versions.THREE,
-    voucherNetwork: { cookieTracking: false, settingType: undefined },
-    optimize: settings.optimize || { settingsType: undefined },
-    employeeBenefits: {
-      isEnabled: settings.employeeBenefits?.isEnabled || false,
-      showWidgetOnDashboard:
-        settings.employeeBenefits?.showWidgetOnDashboard || false,
-      addToSidebar: settings.employeeBenefits?.addToSidebar || false,
-    },
-  };
-
-  if (settings.voucherNetwork) {
-    sanitizedSettings.voucherNetwork = {
-      ...sanitizedSettings.voucherNetwork,
-      ...settings.voucherNetwork,
-      settingType: "country",
-    };
-  }
-
-  return sanitizedSettings;
-}
-
 export function SovendusBackendForm({
   currentStoredSettings: _currentStoredSettings,
   saveSettings,
@@ -76,9 +49,9 @@ export function SovendusBackendForm({
   debug = false,
 }: SovendusBackendFormProps): JSX.Element {
   const [currentStoredSettings, setCurrentStoredSettings] =
-    useState<SovendusAppSettings>(sanitizeSettings(_currentStoredSettings));
+    useState<SovendusAppSettings>(() => cleanConfig(_currentStoredSettings));
   const [currentSettings, setCurrentSettings] = useState<SovendusAppSettings>(
-    _currentStoredSettings,
+    currentStoredSettings,
   );
   if (debug) {
     loggerInfo("Current settings:", currentSettings);
