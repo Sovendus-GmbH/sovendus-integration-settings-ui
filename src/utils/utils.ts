@@ -21,8 +21,12 @@ export function loggerInfo(message: string, ...other: unknown[]): void {
 }
 
 export function cleanConfig(
-  config: Partial<SovendusAppSettings>,
+  unParsedConfig: Partial<SovendusAppSettings> | string,
 ): SovendusAppSettings {
+  const config: SovendusAppSettings =
+    typeof unParsedConfig === "string"
+      ? JSON.parse(unParsedConfig)
+      : unParsedConfig;
   const cleanedConfig: SovendusAppSettings = {
     checkoutProducts:
       config.checkoutProducts || defaultSovendusAppSettings.checkoutProducts,
