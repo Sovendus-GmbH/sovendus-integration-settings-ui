@@ -76,4 +76,27 @@ const Button = React.forwardRef<HTMLDivElement, ButtonProps>(
 
 Button.displayName = "Button";
 
-export { Button, buttonVariants };
+const SubmitButton = React.forwardRef<HTMLInputElement, ButtonProps>(
+  ({ className, variant, size, disabled, ...props }, ref) => {
+    const computedClassName = cn(
+      buttonVariants({ variant, size, className }),
+      disabled
+        ? "tw:cursor-not-allowed tw:opacity-50 tw:pointer-events-none"
+        : "tw:cursor-pointer",
+    );
+
+    return (
+      <input
+        className={computedClassName}
+        ref={ref}
+        aria-disabled={disabled}
+        {...props}
+        type="submit"
+      />
+    );
+  },
+);
+
+SubmitButton.displayName = "SubmitButton";
+
+export { Button, buttonVariants, SubmitButton };

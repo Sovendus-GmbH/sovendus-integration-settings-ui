@@ -5,19 +5,17 @@ const releaseConfig: ReleaseConfig = {
     {
       directory: "./",
       updateDeps: true,
-      version: "3.7.16",
-      release: true,
       test: false,
-      lintAndBuild: true,
-      versionBumper: {
-        jsVars: [
+      lint: true,
+      build: true,
+      release: {
+        version: "3.7.16",
+        versionBumper: [
           {
             filePath: "src/utils/constants.ts",
             varName: "version",
           },
         ],
-      },
-      releaseOptions: {
         foldersToScanAndBumpThisPackage: [
           // scan whole dev env
           { folder: "../../../../" },

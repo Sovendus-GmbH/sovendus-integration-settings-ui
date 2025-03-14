@@ -1,4 +1,4 @@
-import { ChevronRight, ExternalLink } from "lucide-react";
+import { ChevronRight, Presentation } from "lucide-react";
 import type { JSX } from "react";
 import React from "react";
 
@@ -20,7 +20,6 @@ interface ProductCardProps {
     value: string;
   }[];
   onConfigure: () => void;
-  requestDemoHref: string;
   buttonsDisabled: boolean;
 }
 
@@ -31,7 +30,6 @@ export function ProductCard({
   status,
   metrics,
   onConfigure,
-  requestDemoHref,
   buttonsDisabled,
 }: ProductCardProps): JSX.Element {
   return (
@@ -79,12 +77,9 @@ export function ProductCard({
             ))}
           </div>
           <div className={cn("tw:flex tw:gap-2")}>
-            <Button
-              variant="outline"
-              onClick={(): void => void window.open(requestDemoHref, "_blank")}
-            >
-              Request Demo Tour
-              <ExternalLink className={cn("tw:ml-2 tw:h-4 tw:w-4")} />
+            <Button variant="outline" onClick={onConfigure}>
+              Learn more
+              <Presentation className={cn("tw:ml-2 tw:h-4 tw:w-4")} />
             </Button>
             <Button onClick={onConfigure} disabled={buttonsDisabled}>
               Configure
