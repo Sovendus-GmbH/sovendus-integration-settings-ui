@@ -18,7 +18,7 @@ import type {
 import { COUNTRIES } from "sovendus-integration-types";
 
 import { cn } from "../utils/utils";
-import { type AdditionalSteps, DEMO_REQUEST_URL } from "./backend-form";
+import { type AdditionalSteps } from "./backend-form";
 import {
   CountryOptions,
   EnabledOptimizeCountries,
@@ -44,12 +44,16 @@ interface SovendusOptimizeProps {
   savedOptimizeSettings: OptimizeSettings;
   setCurrentSettings: Dispatch<SetStateAction<SovendusAppSettings>>;
   additionalSteps?: AdditionalSteps["optimize"];
+  openContactForm: () => void;
+  openSetupGuide: () => void;
 }
 
 export function SovendusOptimize({
   currentOptimizeSettings,
   setCurrentSettings,
   additionalSteps,
+  openContactForm,
+  openSetupGuide,
 }: SovendusOptimizeProps): JSX.Element {
   const handleGlobalChange = (value: string | number): void => {
     setCurrentSettings((prevState) => {
@@ -123,7 +127,7 @@ export function SovendusOptimize({
         </p>
         <Button
           size="lg"
-          onClick={(): void => void window.open(DEMO_REQUEST_URL, "_blank")}
+          onClick={openContactForm}
           className={cn("tw:w-full tw:sm:w-auto tw:mt-4")}
         >
           Schedule Your Personalized Demo

@@ -10,7 +10,7 @@ import { type Dispatch, type JSX, type SetStateAction } from "react";
 import type { SovendusAppSettings } from "sovendus-integration-types";
 
 import { cn } from "../utils/utils";
-import { type AdditionalSteps, DEMO_REQUEST_URL } from "./backend-form";
+import { type AdditionalSteps } from "./backend-form";
 import { Alert, AlertDescription } from "./shadcn/alert";
 import { Button } from "./shadcn/button";
 import { Card, CardContent, CardHeader, CardTitle } from "./shadcn/card";
@@ -22,12 +22,16 @@ interface SovendusCheckoutProductsProps {
   enabled: boolean;
   setCurrentSettings: Dispatch<SetStateAction<SovendusAppSettings>>;
   additionalSteps?: AdditionalSteps["checkoutProducts"];
+  openContactForm: () => void;
+  openSetupGuide: () => void;
 }
 
 export function SovendusCheckoutProducts({
   enabled,
   setCurrentSettings,
   additionalSteps,
+  openContactForm,
+  openSetupGuide,
 }: SovendusCheckoutProductsProps): JSX.Element {
   const onStateChange = (checked: boolean): void => {
     setCurrentSettings((prevState) => ({
@@ -57,7 +61,7 @@ export function SovendusCheckoutProducts({
         </p>
         <Button
           size="lg"
-          onClick={(): void => void window.open(DEMO_REQUEST_URL, "_blank")}
+          onClick={openContactForm}
           className={cn(
             "tw:bg-white tw:text-purple-600 tw:hover:bg-purple-100",
           )}
