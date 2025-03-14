@@ -212,7 +212,6 @@ export function SovendusBackendForm({
               { label: "Available Countries", value: "14" },
             ]}
             onConfigure={(): void => setActiveConfig("voucherNetwork")}
-            requestDemoHref={DEMO_REQUEST_URL}
           />
 
           <ProductCard
@@ -229,7 +228,6 @@ export function SovendusBackendForm({
               { label: "Newsletter Sign-up Boost ", value: "15%" },
             ]}
             onConfigure={(): void => setActiveConfig("optimize")}
-            requestDemoHref={DEMO_REQUEST_URL}
           />
 
           <ProductCard
@@ -248,7 +246,6 @@ export function SovendusBackendForm({
               { label: "Ad Impressions", value: "185M+" },
             ]}
             onConfigure={(): void => setActiveConfig("checkoutProducts")}
-            requestDemoHref={DEMO_REQUEST_URL}
           />
         </div>
         <Footer />
