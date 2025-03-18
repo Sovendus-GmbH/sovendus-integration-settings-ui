@@ -1,11 +1,24 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-import type { SovendusAppSettings } from "sovendus-integration-types";
+import type {
+  SettingsUiWindow,
+  SovendusAppSettings,
+} from "sovendus-integration-types";
 
 import { SovendusBackendForm } from "./components/backend-form";
 import { loggerError, loggerInfo } from "./utils/utils";
 
-export function loadSettingsUi(
+declare const window: SettingsUiWindow;
+
+export function loadSettingsUi(): void {
+  _loadSettingsUi(
+    window.sovSettingsUi.currentSettings,
+    window.sovSettingsUi.saveSettings,
+    window.sovSettingsUi.settingsContainerId,
+  );
+}
+
+export function _loadSettingsUi(
   currentSettings: SovendusAppSettings,
   saveSettings: (
     saveSettings: SovendusAppSettings,
