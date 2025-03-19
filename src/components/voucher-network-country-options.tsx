@@ -115,7 +115,7 @@ export function CountryOptions({
         ];
       if (element?.[field] !== cleanedValue) {
         const newElement: VoucherNetworkLanguage = {
-          iframeContainerQuerySelector: "",
+          iframeContainerQuerySelector: undefined,
           trafficMediumNumber: "",
           trafficSourceNumber: "",
           isEnabled: false,
