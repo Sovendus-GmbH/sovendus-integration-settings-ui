@@ -12,9 +12,10 @@ import type {
   CountryCodes,
   OptimizeCountry,
   OptimizeSettings,
-  SettingsType,
+  OptimizeSettingsSimple,
   SovendusAppSettings,
 } from "sovendus-integration-types";
+import { SettingsType } from "sovendus-integration-types";
 import { COUNTRIES } from "sovendus-integration-types";
 
 import { cn } from "../utils/utils";
@@ -40,8 +41,8 @@ import { Switch } from "./shadcn/switch";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./shadcn/tabs";
 
 interface SovendusOptimizeProps {
-  currentOptimizeSettings: OptimizeSettings;
-  savedOptimizeSettings: OptimizeSettings;
+  currentOptimizeSettings: OptimizeSettings | undefined;
+  savedOptimizeSettings: OptimizeSettings | undefined;
   setCurrentSettings: Dispatch<SetStateAction<SovendusAppSettings>>;
   additionalSteps?: AdditionalSteps["optimize"];
 }
@@ -54,7 +55,7 @@ export function SovendusOptimize({
   const handleGlobalChange = (value: string | number): void => {
     setCurrentSettings((prevState) => {
       const newSettings: OptimizeCountry = {
-        ...prevState.optimize.simple,
+        ...prevState.optimize?.simple,
         isEnabled: !!value,
         optimizeId: String(value),
       };
@@ -63,9 +64,9 @@ export function SovendusOptimize({
         ...prevState,
         optimize: {
           ...prevState.optimize,
-          settingsType: "simple",
+          settingsType: SettingsType.SIMPLE,
           simple: newSettings,
-        },
+        } as OptimizeSettingsSimple,
       } satisfies SovendusAppSettings;
     });
   };
@@ -74,17 +75,17 @@ export function SovendusOptimize({
     setCurrentSettings((prevState) => {
       const newSettings: OptimizeCountry = {
         optimizeId: "",
-        ...prevState.optimize.simple,
-        isEnabled: value && !!prevState.optimize.simple?.optimizeId,
+        ...prevState.optimize?.simple,
+        isEnabled: value && !!prevState.optimize?.simple?.optimizeId,
       };
       newSettings.isEnabled = isOptimizeElementEnabled(newSettings, !!value);
       return {
         ...prevState,
         optimize: {
           ...prevState.optimize,
-          settingsType: "simple",
+          settingsType: SettingsType.SIMPLE,
           simple: newSettings,
-        },
+        } as OptimizeSettingsSimple,
       } satisfies SovendusAppSettings;
     });
   };
@@ -96,7 +97,7 @@ export function SovendusOptimize({
         optimize: {
           ...prevState.optimize,
           settingsType: value,
-        },
+        } as OptimizeSettings,
       }),
     );
   };
@@ -243,7 +244,7 @@ export function SovendusOptimize({
                 <AccordionContent className={cn("tw:p-4 tw:bg-white")}>
                   <Tabs
                     defaultValue={
-                      currentOptimizeSettings.settingsType || "simple"
+                      currentOptimizeSettings?.settingsType || "simple"
                     }
                     onValueChange={(value): void =>
                       handleGlobalOptimizeIdChange(value as SettingsType)
@@ -283,7 +284,8 @@ export function SovendusOptimize({
                           <Switch
                             id="simple-id-enabled"
                             checked={
-                              currentOptimizeSettings.simple?.isEnabled || false
+                              currentOptimizeSettings?.simple?.isEnabled ||
+                              false
                             }
                             onCheckedChange={(checked): void =>
                               handleGlobalToggle(checked)
@@ -298,7 +300,7 @@ export function SovendusOptimize({
                           <Input
                             id="simple-id"
                             value={
-                              currentOptimizeSettings.simple?.optimizeId || ""
+                              currentOptimizeSettings?.simple?.optimizeId || ""
                             }
                             onChange={(e): void =>
                               handleGlobalChange(e.target.value)

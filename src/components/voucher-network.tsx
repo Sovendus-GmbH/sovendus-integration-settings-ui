@@ -33,7 +33,7 @@ import {
 } from "./voucher-network-country-options";
 
 interface SovendusVoucherNetworkProps {
-  currentSettings: VoucherNetworkSettings;
+  currentSettings: VoucherNetworkSettings | undefined;
   setCurrentSettings: Dispatch<SetStateAction<SovendusAppSettings>>;
   additionalSteps?: AdditionalSteps["voucherNetwork"];
 }

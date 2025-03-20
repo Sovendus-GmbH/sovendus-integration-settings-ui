@@ -136,8 +136,8 @@ export function SovendusBackendForm({
         currentSettings.optimize?.simple?.optimizeId &&
         currentSettings.optimize?.simple?.isEnabled;
       const enabledCountries =
-        currentSettings.optimize.countries &&
-        Object.entries(currentSettings.optimize.countries.ids)
+        currentSettings.optimize?.countries &&
+        Object.entries(currentSettings.optimize?.countries.ids)
           .filter(([_, data]) => data.isEnabled)
           .map(([code]) => code);
 
@@ -161,7 +161,7 @@ export function SovendusBackendForm({
       details: React.JSX.Element;
     } => {
       return {
-        active: currentSettings.checkoutProducts,
+        active: currentSettings.checkoutProducts || false,
         details: (
           <p
             className={cn(
@@ -290,7 +290,7 @@ export function SovendusBackendForm({
           zoomedVersion={zoomedVersion}
         >
           <SovendusCheckoutProducts
-            enabled={currentSettings.checkoutProducts}
+            enabled={currentSettings.checkoutProducts || false}
             setCurrentSettings={setCurrentSettings}
             additionalSteps={additionalSteps?.checkoutProducts}
           />

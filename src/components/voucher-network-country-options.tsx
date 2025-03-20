@@ -5,8 +5,12 @@ import type {
   SovendusAppSettings,
   VoucherNetworkLanguage,
   VoucherNetworkSettings,
+  VoucherNetworkSettingsCountries,
 } from "sovendus-integration-types";
-import { LANGUAGES_BY_COUNTRIES } from "sovendus-integration-types";
+import {
+  LANGUAGES_BY_COUNTRIES,
+  SettingsType,
+} from "sovendus-integration-types";
 
 import { cn } from "../utils/utils";
 import {
@@ -21,7 +25,7 @@ import { Label } from "./shadcn/label";
 import { Switch } from "./shadcn/switch";
 
 type CountryOptionsProps = {
-  currentSettings: VoucherNetworkSettings;
+  currentSettings: VoucherNetworkSettings | undefined;
   setCurrentSettings: Dispatch<SetStateAction<SovendusAppSettings>>;
   countryCodes: CountryCodes[];
 };
@@ -36,7 +40,7 @@ export function CountryOptions({
     languageKey: LanguageCodes,
   ): string => {
     const country =
-      currentSettings.countries?.ids?.[countryKey]?.languages[languageKey];
+      currentSettings?.countries?.ids?.[countryKey]?.languages[languageKey];
     if (!country?.trafficMediumNumber || !country?.trafficSourceNumber) {
       return "Not configured";
     }
@@ -64,7 +68,7 @@ export function CountryOptions({
   ): void => {
     setCurrentSettings((prevState) => {
       const element =
-        prevState.voucherNetwork.countries?.ids?.[countryKey]?.languages?.[
+        prevState.voucherNetwork?.countries?.ids?.[countryKey]?.languages?.[
           languageKey
         ];
       if (element) {
@@ -75,13 +79,13 @@ export function CountryOptions({
             countries: {
               fallBackIds: undefined,
               iframeContainerQuerySelector: undefined,
-              ...prevState.voucherNetwork.countries,
+              ...prevState.voucherNetwork?.countries,
               ids: {
-                ...prevState.voucherNetwork.countries?.ids,
+                ...prevState.voucherNetwork?.countries?.ids,
                 [countryKey]: {
-                  ...prevState.voucherNetwork.countries?.ids?.[countryKey],
+                  ...prevState.voucherNetwork?.countries?.ids?.[countryKey],
                   languages: {
-                    ...prevState.voucherNetwork.countries?.ids?.[countryKey]
+                    ...prevState.voucherNetwork?.countries?.ids?.[countryKey]
                       ?.languages,
                     [languageKey]: {
                       ...element,
@@ -91,7 +95,7 @@ export function CountryOptions({
                 },
               },
             },
-          },
+          } as VoucherNetworkSettingsCountries,
         };
         return newState;
       }
@@ -110,7 +114,7 @@ export function CountryOptions({
         ? ""
         : String(newValue);
       const element =
-        prevState.voucherNetwork.countries?.ids?.[countryKey]?.languages?.[
+        prevState.voucherNetwork?.countries?.ids?.[countryKey]?.languages?.[
           languageKey
         ];
       if (element?.[field] !== cleanedValue) {
@@ -127,18 +131,18 @@ export function CountryOptions({
           ...prevState,
           voucherNetwork: {
             ...prevState.voucherNetwork,
-            settingType: "country",
+            settingType: SettingsType.COUNTRY,
             cookieTracking: true,
             countries: {
-              ...prevState.voucherNetwork.countries,
+              ...prevState.voucherNetwork?.countries,
               fallBackIds: undefined,
               iframeContainerQuerySelector: undefined,
               ids: {
-                ...prevState.voucherNetwork.countries?.ids,
+                ...prevState.voucherNetwork?.countries?.ids,
                 [countryKey]: {
-                  ...prevState.voucherNetwork.countries?.ids?.[countryKey],
+                  ...prevState.voucherNetwork?.countries?.ids?.[countryKey],
                   languages: {
-                    ...prevState.voucherNetwork.countries?.ids?.[countryKey]
+                    ...prevState.voucherNetwork?.countries?.ids?.[countryKey]
                       ?.languages,
                     [languageKey]: {
                       ...newElement,
@@ -148,7 +152,7 @@ export function CountryOptions({
                 },
               },
             },
-          },
+          } as VoucherNetworkSettingsCountries,
         };
         return newState;
       }
@@ -191,7 +195,7 @@ function CountrySettings({
   countryKey: CountryCodes;
   languageKey: LanguageCodes;
   countryName: string;
-  currentSettings: VoucherNetworkSettings;
+  currentSettings: VoucherNetworkSettings | undefined;
   getCountryStatus: (
     countryKey: CountryCodes,
     languageKey: LanguageCodes,
@@ -210,7 +214,7 @@ function CountrySettings({
   ) => void;
 }): JSX.Element {
   const currentElement =
-    currentSettings.countries?.ids?.[countryKey]?.languages?.[languageKey];
+    currentSettings?.countries?.ids?.[countryKey]?.languages?.[languageKey];
   const isEnabled = isCountryEnabled(currentElement);
   const trafficSourceNumber = parseInt(
     currentElement?.trafficSourceNumber || "",
@@ -303,10 +307,10 @@ function CountrySettings({
 export function EnabledVoucherNetworkCountries({
   currentSettings,
 }: {
-  currentSettings: VoucherNetworkSettings;
+  currentSettings: VoucherNetworkSettings | undefined;
 }): JSX.Element {
   const enabledLocales: string[] = [];
-  if (currentSettings.countries?.ids) {
+  if (currentSettings?.countries?.ids) {
     for (const [countryCode, country] of Object.entries(
       currentSettings.countries.ids,
     )) {
@@ -349,10 +353,10 @@ export function EnabledVoucherNetworkCountries({
 }
 
 export function isVnEnabled(
-  currentSettings: VoucherNetworkSettings,
+  currentSettings: VoucherNetworkSettings | undefined,
   isEnabled?: boolean,
 ): boolean {
-  return currentSettings.countries?.ids
+  return currentSettings?.countries?.ids
     ? Object.values(currentSettings.countries?.ids).some((country) =>
         Object.values(country.languages)?.some(
           (lang) =>
