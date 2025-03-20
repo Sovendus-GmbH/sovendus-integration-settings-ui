@@ -1,9 +1,15 @@
 import { type ClassValue, clsx } from "clsx";
-import type { SovendusAppSettings } from "sovendus-integration-types";
-import {
-  defaultSovendusAppSettings,
-  Versions,
+import type {
+  OptimizeCountry,
+  OptimizeSettings,
+  OptimizeSettingsCountries,
+  SettingsType,
+  SovendusAppSettings,
+  VoucherNetworkLanguage,
+  VoucherNetworkSettings,
+  VoucherNetworkSettingsCountries,
 } from "sovendus-integration-types";
+import { Versions } from "sovendus-integration-types";
 import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]): string {
@@ -28,43 +34,68 @@ export function cleanConfig(
       ? JSON.parse(unParsedConfig)
       : unParsedConfig;
   const cleanedConfig: SovendusAppSettings = {
-    checkoutProducts:
-      config.checkoutProducts || defaultSovendusAppSettings.checkoutProducts,
-    optimize: {
-      settingsType:
-        config.optimize?.settingsType ||
-        defaultSovendusAppSettings.optimize.settingsType,
-    },
-    voucherNetwork: {
-      cookieTracking:
-        config.voucherNetwork?.cookieTracking ||
-        defaultSovendusAppSettings.voucherNetwork.cookieTracking,
-      settingType:
-        config.voucherNetwork?.settingType ||
-        defaultSovendusAppSettings.voucherNetwork.settingType,
-    },
-    employeeBenefits:
-      config.employeeBenefits || defaultSovendusAppSettings.employeeBenefits,
     version: Versions.THREE,
   };
-
+  if (config.checkoutProducts) {
+    cleanedConfig.checkoutProducts = config.checkoutProducts;
+  }
+  if (config.employeeBenefits) {
+    cleanedConfig.employeeBenefits = config.employeeBenefits;
+  }
+  const optimize: {
+    settingsType?: SettingsType | undefined;
+    simple?: OptimizeCountry;
+    countries?: OptimizeSettingsCountries["countries"];
+  } = {};
+  let hasOptimizeConfig = false;
+  const settingsType = config.optimize?.settingsType;
+  if (settingsType) {
+    optimize.settingsType = settingsType;
+    hasOptimizeConfig = true;
+  }
   const optimizeCountries = config.optimize?.countries;
   if (optimizeCountries) {
-    cleanedConfig.optimize.countries = optimizeCountries;
+    optimize.countries = optimizeCountries;
+    hasOptimizeConfig = true;
   }
   const optimizeSimple = config.optimize?.simple;
   if (optimizeSimple) {
-    cleanedConfig.optimize.simple = optimizeSimple;
+    optimize.simple = optimizeSimple;
+    hasOptimizeConfig = true;
+  }
+  if (hasOptimizeConfig) {
+    cleanedConfig.optimize = optimize as OptimizeSettings;
   }
 
-  const voucherNetworkCountries = config.voucherNetwork?.countries;
-  if (voucherNetworkCountries) {
-    cleanedConfig.voucherNetwork.countries = voucherNetworkCountries;
+  const voucherNetwork: {
+    settingType?: SettingsType;
+    simple?: VoucherNetworkLanguage;
+    cookieTracking?: boolean;
+    countries?: VoucherNetworkSettingsCountries["countries"];
+  } = {};
+  let hasVoucherNetworkConfig = false;
+  const voucherNetworkSettingType = config.voucherNetwork?.settingType;
+  if (voucherNetworkSettingType) {
+    voucherNetwork.settingType = voucherNetworkSettingType;
+    hasVoucherNetworkConfig = true;
   }
   const voucherNetworkSimple = config.voucherNetwork?.simple;
   if (voucherNetworkSimple) {
-    cleanedConfig.voucherNetwork.simple = voucherNetworkSimple;
+    voucherNetwork.simple = voucherNetworkSimple;
+    hasVoucherNetworkConfig = true;
   }
-
+  const voucherNetworkCookieTracking = config.voucherNetwork?.cookieTracking;
+  if (voucherNetworkCookieTracking) {
+    voucherNetwork.cookieTracking = voucherNetworkCookieTracking;
+    hasVoucherNetworkConfig = true;
+  }
+  const voucherNetworkCountries = config.voucherNetwork?.countries;
+  if (voucherNetworkCountries) {
+    voucherNetwork.countries = voucherNetworkCountries;
+    hasVoucherNetworkConfig = true;
+  }
+  if (hasVoucherNetworkConfig) {
+    cleanedConfig.voucherNetwork = voucherNetwork as VoucherNetworkSettings;
+  }
   return cleanedConfig;
 }
