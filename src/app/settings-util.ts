@@ -3,19 +3,6 @@ import { type SovendusAppSettings, Versions } from "sovendus-integration-types";
 import { loggerInfo } from "../utils/utils";
 
 export const initialSettings: SovendusAppSettings = {
-  voucherNetwork: {
-    settingType: undefined,
-    cookieTracking: false,
-  },
-  optimize: {
-    settingsType: undefined,
-  },
-  checkoutProducts: false,
-  employeeBenefits: {
-    isEnabled: false,
-    addToSidebar: false,
-    showWidgetOnDashboard: false,
-  },
   version: Versions.THREE,
 };
 
