@@ -31,9 +31,9 @@
       "require": "./dist/demo/index.cjs"
     },
     "./demo-style-less": {
-      "types": "./dist/demo/index-style-less.d.ts",
-      "import": "./dist/demo/index.mjs",
-      "require": "./dist/demo/index.cjs"
+      "types": "./dist/demo-style-less/index-style-less.d.ts",
+      "import": "./dist/demo-style-less/index.mjs",
+      "require": "./dist/demo-style-less/index.cjs"
     },
     "./raw-style.css": {
       "import": "./src/app.css",
