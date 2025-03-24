@@ -4865,10 +4865,10 @@ source-map@~0.6.1:
   resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.6.1.tgz#74722af32e9614e9c287a8d0bbde48b5e2f1a263"
   integrity sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==
 
-sovendus-builder@1.3.5:
-  version "1.3.5"
-  resolved "https://registry.yarnpkg.com/sovendus-builder/-/sovendus-builder-1.3.5.tgz#d0b8f4f520cc009ffcfb4e1df86c5dd5f0fd5bdb"
-  integrity sha512-uWvEIagVUzk7DB9T8SMpF2ZS5HY63b0Vu+oUK2LN4i1rgjtu/M4OzkIDkdyv9zseDqd8LpKVaTY3fcZivdSDHg==
+sovendus-builder@1.3.6:
+  version "1.3.6"
+  resolved "https://registry.yarnpkg.com/sovendus-builder/-/sovendus-builder-1.3.6.tgz#544af2dddc1c39337befb906735fcd65943cf699"
+  integrity sha512-pA3wL9UlRhOK+K46DRrRDCRcjMEe/KLD1QKe15vxoIDs8eC2ogQtZvaIwQH3Lw7YKBEH48wJdmhK/LoQzQO+aA==
   dependencies:
     archiver "^7.0.1"
     commander "^13.1.0"
