@@ -12,7 +12,7 @@ const releaseConfig: ReleaseConfig = {
         version: "4.0.14",
         versionBumper: [
           {
-            filePath: "src/utils/constants.ts",
+            filePath: "src/package/utils/constants.ts",
             varName: "version",
           },
         ],
