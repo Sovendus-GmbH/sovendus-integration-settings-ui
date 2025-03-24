@@ -21,12 +21,12 @@
       "require": "./dist/package/index.cjs"
     },
     "./demo": {
-      "types": "./dist/demo/index.d.ts",
+      "types": "./dist/demo/app/index.d.ts",
       "import": "./dist/demo/index.mjs",
       "require": "./dist/demo/index.cjs"
     },
     "./demo-utils": {
-      "types": "./dist/demo-utils/index.d.ts",
+      "types": "./dist/demo-utils/utils-index.d.ts",
       "import": "./dist/demo-utils/index.mjs",
       "require": "./dist/demo-utils/index.cjs"
     },
