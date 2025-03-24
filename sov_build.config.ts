@@ -4,8 +4,8 @@ const buildConfig: BuildConfig = {
   foldersToClean: ["dist"],
   filesToCompile: [
     {
-      input: "src/index.ts",
-      output: "dist/index",
+      input: "src/package/index.ts",
+      output: "dist/package/index",
       options: {
         type: "react-tailwind",
         packageConfig: {
@@ -17,7 +17,19 @@ const buildConfig: BuildConfig = {
     },
     {
       input: "src/app/index.ts",
-      output: "dist/demo-index",
+      output: "dist/demo/index",
+      options: {
+        type: "react-tailwind",
+        packageConfig: {
+          dtsEntryRoot: "src",
+          dtsInclude: ["src/**/*"],
+          isPackage: true,
+        },
+      },
+    },
+    {
+      input: "src/app/utils-index.ts",
+      output: "dist/demo-utils/index",
       options: {
         type: "react-tailwind",
         packageConfig: {

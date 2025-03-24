@@ -1,11 +1,11 @@
 "use client";
 
-import "../components/app.css";
+import "../package/components/app.css";
 
 import { type JSX, useEffect, useState } from "react";
 import { type SovendusAppSettings } from "sovendus-integration-types";
 
-import { SovendusBackendForm } from "../components/backend-form";
+import { SovendusBackendForm } from "../package/components/backend-form";
 import { getSettings, initialSettings, saveSettings } from "./settings-util";
 
 export default function Home({

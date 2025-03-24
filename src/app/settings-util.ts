@@ -1,6 +1,6 @@
 import { type SovendusAppSettings, Versions } from "sovendus-integration-types";
 
-import { loggerInfo } from "../utils/utils";
+import { loggerInfo } from "../package/utils/utils";
 
 export const initialSettings: SovendusAppSettings = {
   version: Versions.THREE,
