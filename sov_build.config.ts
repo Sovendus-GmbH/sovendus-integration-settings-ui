@@ -17,11 +17,15 @@ const buildConfig: BuildConfig = {
       },
     },
     {
-      input: "src/package/index-style-less.ts",
+      input: "src/package/index.ts",
       output: "dist/package-style-less/index",
       options: {
         type: "react-tailwind",
         inlineCss: false,
+        buildOptions: {
+          cssCodeSplit: false,
+          cssMinify: false,
+        },
         packageConfig: {
           dtsEntryRoot: "src/package",
           dtsInclude: ["src/package/**/*"],
@@ -43,11 +47,15 @@ const buildConfig: BuildConfig = {
       },
     },
     {
-      input: "src/app/index-style-less.ts",
+      input: "src/app/index.ts",
       output: "dist/demo-style-less/index",
       options: {
         type: "react-tailwind",
         inlineCss: false,
+        buildOptions: {
+          cssCodeSplit: false,
+          cssMinify: false,
+        },
         packageConfig: {
           dtsEntryRoot: "src/app",
           dtsInclude: ["src/app/**/*"],

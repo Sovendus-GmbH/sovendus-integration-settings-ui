@@ -21,7 +21,7 @@
       "require": "./dist/package/index.cjs"
     },
     "./style-less": {
-      "types": "./dist/package-style-less/index-style-less.d.ts",
+      "types": "./dist/package-style-less/index.d.ts",
       "import": "./dist/package-style-less/index.mjs",
       "require": "./dist/package-style-less/index.cjs"
     },
@@ -31,7 +31,7 @@
       "require": "./dist/demo/index.cjs"
     },
     "./demo-style-less": {
-      "types": "./dist/demo-style-less/index-style-less.d.ts",
+      "types": "./dist/demo-style-less/index.d.ts",
       "import": "./dist/demo-style-less/index.mjs",
       "require": "./dist/demo-style-less/index.cjs"
     },
