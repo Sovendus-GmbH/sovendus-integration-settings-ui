@@ -10,7 +10,10 @@ import { type Dispatch, type JSX, type SetStateAction } from "react";
 import type { SovendusAppSettings } from "sovendus-integration-types";
 
 import { cn } from "../utils/utils";
-import { type AdditionalSteps, DEMO_REQUEST_URL } from "./backend-form";
+import {
+  type AdditionalSteps,
+  DEMO_REQUEST_URL,
+} from "./backend-form-style-less";
 import { Alert, AlertDescription } from "./shadcn/alert";
 import { Button } from "./shadcn/button";
 import { Card, CardContent, CardHeader, CardTitle } from "./shadcn/card";

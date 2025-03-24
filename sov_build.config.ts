@@ -8,6 +8,20 @@ const buildConfig: BuildConfig = {
       output: "dist/package/index",
       options: {
         type: "react-tailwind",
+        inlineCss: true,
+        packageConfig: {
+          dtsEntryRoot: "src/package",
+          dtsInclude: ["src/package/**/*"],
+          isPackage: true,
+        },
+      },
+    },
+    {
+      input: "src/package/index-style-less.ts",
+      output: "dist/package-style-less/index",
+      options: {
+        type: "react-tailwind",
+        inlineCss: false,
         packageConfig: {
           dtsEntryRoot: "src/package",
           dtsInclude: ["src/package/**/*"],
@@ -20,6 +34,7 @@ const buildConfig: BuildConfig = {
       output: "dist/demo/index",
       options: {
         type: "react-tailwind",
+        inlineCss: true,
         packageConfig: {
           dtsEntryRoot: "src/app",
           dtsInclude: ["src/app/**/*"],
@@ -28,10 +43,11 @@ const buildConfig: BuildConfig = {
       },
     },
     {
-      input: "src/app/utils-index.ts",
-      output: "dist/demo-utils/index",
+      input: "src/app/index-style-less.ts",
+      output: "dist/demo-style-less/index",
       options: {
         type: "react-tailwind",
+        inlineCss: false,
         packageConfig: {
           dtsEntryRoot: "src/app",
           dtsInclude: ["src/app/**/*"],

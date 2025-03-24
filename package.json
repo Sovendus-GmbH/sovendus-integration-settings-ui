@@ -20,15 +20,20 @@
       "import": "./dist/package/index.mjs",
       "require": "./dist/package/index.cjs"
     },
+    "./style-less": {
+      "types": "./dist/package-style-less/index-style-less.d.ts",
+      "import": "./dist/package-style-less/index.mjs",
+      "require": "./dist/package-style-less/index.cjs"
+    },
     "./demo": {
       "types": "./dist/demo/index.d.ts",
       "import": "./dist/demo/index.mjs",
       "require": "./dist/demo/index.cjs"
     },
-    "./demo-utils": {
-      "types": "./dist/demo-utils/utils-index.d.ts",
-      "import": "./dist/demo-utils/index.mjs",
-      "require": "./dist/demo-utils/index.cjs"
+    "./demo-style-less": {
+      "types": "./dist/demo/index-style-less.d.ts",
+      "import": "./dist/demo/index.mjs",
+      "require": "./dist/demo/index.cjs"
     },
     "./raw-style.css": {
       "import": "./src/app.css",
@@ -116,7 +121,7 @@
     "prettier-plugin-sort-json": "4.1.1",
     "eslint-import-resolver-typescript": "^4.2.2",
     "eslint-plugin-node": "^11.1.0",
-    "sovendus-builder": "1.3.4",
+    "sovendus-builder": "1.3.5",
     "sovendus-release-tool": "1.4.1",
     "typescript": "5.8.2",
     "typescript-eslint": "8.27.0",
