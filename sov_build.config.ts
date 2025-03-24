@@ -9,8 +9,8 @@ const buildConfig: BuildConfig = {
       options: {
         type: "react-tailwind",
         packageConfig: {
-          dtsEntryRoot: "src",
-          dtsInclude: ["src/**/*"],
+          dtsEntryRoot: "src/package",
+          dtsInclude: ["src/package/**/*"],
           isPackage: true,
         },
       },
