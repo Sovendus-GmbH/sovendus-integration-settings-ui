@@ -21,7 +21,7 @@
       "require": "./dist/package/index.cjs"
     },
     "./demo": {
-      "types": "./dist/demo/app/index.d.ts",
+      "types": "./dist/demo/index.d.ts",
       "import": "./dist/demo/index.mjs",
       "require": "./dist/demo/index.cjs"
     },
