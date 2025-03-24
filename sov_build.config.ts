@@ -22,6 +22,9 @@ const buildConfig: BuildConfig = {
       options: {
         type: "react-tailwind",
         inlineCss: false,
+        buildOptions: {
+          cssCodeSplit: false,
+        },
         packageConfig: {
           dtsEntryRoot: "src/package",
           dtsInclude: ["src/package/**/*"],
@@ -48,6 +51,9 @@ const buildConfig: BuildConfig = {
       options: {
         type: "react-tailwind",
         inlineCss: false,
+        buildOptions: {
+          cssCodeSplit: false,
+        },
         packageConfig: {
           dtsEntryRoot: "src/app",
           dtsInclude: ["src/app/**/*"],
