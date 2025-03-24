@@ -39,7 +39,8 @@
       "import": "./src/app.css",
       "require": "./src/app.css"
     },
-    "./src/*": "./src/*"
+    "./src/*": "./src/*",
+    "./dist/*": "./dist/*"
   },
   "scripts": {
     "dev": "next dev --turbopack",
