@@ -9,7 +9,7 @@ const releaseConfig: ReleaseConfig = {
       lint: true,
       build: true,
       release: {
-        version: "4.2.6",
+        version: "4.2.7",
         versionBumper: [
           {
             filePath: "src/package/utils/constants.ts",
