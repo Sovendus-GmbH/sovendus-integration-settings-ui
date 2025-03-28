@@ -5,13 +5,15 @@ import { type SovendusAppSettings } from "sovendus-integration-types";
 
 import { cleanConfig, cn, loggerInfo } from "../utils/utils";
 import { SovendusCheckoutProducts } from "./checkout-products";
-import { ConfigurationDialog } from "./confirmation-dialog";
+import { ConfigurationDialog } from "./configuration-dialog";
+import { ContactFormDialog } from "./contact-form-dialog";
 import { Footer } from "./footer";
 import { Notification } from "./notification";
 import { SovendusOptimize } from "./optimize";
 import { EnabledOptimizeCountries } from "./optimize-country-options";
 import { ProductCard } from "./product-card";
 import { Alert, AlertDescription, AlertTitle } from "./shadcn/alert";
+import { TestingStepsDialog } from "./testing-steps";
 import { SovendusVoucherNetwork } from "./voucher-network";
 import { EnabledVoucherNetworkCountries } from "./voucher-network-country-options";
 
@@ -35,9 +37,6 @@ export interface SovendusBackendFormProps {
   debug?: boolean;
 }
 
-export const DEMO_REQUEST_URL =
-  "https://online.sovendus.com/kontakt/demo-tour-kontaktformular/#";
-
 export function SovendusBackendForm({
   currentStoredSettings: _currentStoredSettings,
   saveSettings,
@@ -55,24 +54,38 @@ export function SovendusBackendForm({
     loggerInfo("Current settings:", currentSettings);
     loggerInfo("Current stored settings:", currentStoredSettings);
   }
-  const [activeConfig, setActiveConfig] = useState<
-    "voucherNetwork" | "optimize" | "checkoutProducts" | null
+  const [activeDialog, setActiveDialog] = useState<
+    | "voucherNetwork"
+    | "optimize"
+    | "checkoutProducts"
+    | "TestingSteps"
+    | "contactForm"
+    | null
   >(null);
   const [notificationState, setNotificationState] = useState<{
     message: string;
     type: "success" | "error" | "loading";
   } | null>(null);
+
   useSettingsSaveOnLoad(saveSettings, currentStoredSettings, callSaveOnLoad);
+
   return useMemo(() => {
+    const openContactForm = (): void => {
+      setActiveDialog("contactForm");
+    };
+    const openSetupGuide = (): void => {
+      setActiveDialog("TestingSteps");
+    };
+
     const buttonsDisabled = notificationState?.type === "loading";
     const handleSave = async (open: boolean): Promise<void> => {
       if (!open) {
         const hasUnsavedChanges =
           JSON.stringify(currentSettings) !==
           JSON.stringify(currentStoredSettings);
-        const prevActiveConfig = activeConfig;
+        const prevActiveConfig = activeDialog;
         try {
-          setActiveConfig(null);
+          setActiveDialog(null);
           if (hasUnsavedChanges) {
             setNotificationState({
               message: "Saving settings...",
@@ -87,7 +100,7 @@ export function SovendusBackendForm({
             });
           }
         } catch (error) {
-          setActiveConfig(prevActiveConfig);
+          setActiveDialog(prevActiveConfig);
           setNotificationState({
             message: `Failed to save settings, error: ${
               (error as Error)?.message || JSON.stringify(error)
@@ -209,7 +222,7 @@ export function SovendusBackendForm({
               { label: "Partner Shops", value: "2,300+" },
               { label: "Available Countries", value: "14" },
             ]}
-            onConfigure={(): void => setActiveConfig("voucherNetwork")}
+            onConfigure={(): void => setActiveDialog("voucherNetwork")}
           />
 
           <ProductCard
@@ -225,7 +238,7 @@ export function SovendusBackendForm({
               { label: "Bounce Rate Reduction", value: "5%" },
               { label: "Newsletter Sign-up Boost ", value: "15%" },
             ]}
-            onConfigure={(): void => setActiveConfig("optimize")}
+            onConfigure={(): void => setActiveDialog("optimize")}
           />
 
           <ProductCard
@@ -243,7 +256,7 @@ export function SovendusBackendForm({
               { label: "Conversion Rate", value: "1-3%" },
               { label: "Ad Impressions", value: "185M+" },
             ]}
-            onConfigure={(): void => setActiveConfig("checkoutProducts")}
+            onConfigure={(): void => setActiveDialog("checkoutProducts")}
           />
         </div>
         <Footer />
@@ -255,7 +268,7 @@ export function SovendusBackendForm({
           />
         )}
         <ConfigurationDialog
-          open={activeConfig === "voucherNetwork"}
+          open={activeDialog === "voucherNetwork"}
           onOpenChange={(open): void => void handleSave(open)}
           title="Configure Voucher Network & Checkout Benefits"
           zoomedVersion={zoomedVersion}
@@ -264,11 +277,13 @@ export function SovendusBackendForm({
             currentSettings={currentSettings.voucherNetwork}
             setCurrentSettings={setCurrentSettings}
             additionalSteps={additionalSteps?.voucherNetwork}
+            openContactForm={openContactForm}
+            openSetupGuide={openSetupGuide}
           />
         </ConfigurationDialog>
 
         <ConfigurationDialog
-          open={activeConfig === "optimize"}
+          open={activeDialog === "optimize"}
           onOpenChange={(open): void => void handleSave(open)}
           title="Configure Optimize"
           zoomedVersion={zoomedVersion}
@@ -278,11 +293,13 @@ export function SovendusBackendForm({
             savedOptimizeSettings={currentStoredSettings.optimize}
             setCurrentSettings={setCurrentSettings}
             additionalSteps={additionalSteps?.optimize}
+            openContactForm={openContactForm}
+            openSetupGuide={openSetupGuide}
           />
         </ConfigurationDialog>
 
         <ConfigurationDialog
-          open={activeConfig === "checkoutProducts"}
+          open={activeDialog === "checkoutProducts"}
           onOpenChange={(open): void => void handleSave(open)}
           title="Configure Checkout Products"
           zoomedVersion={zoomedVersion}
@@ -291,19 +308,24 @@ export function SovendusBackendForm({
             enabled={currentSettings.checkoutProducts || false}
             setCurrentSettings={setCurrentSettings}
             additionalSteps={additionalSteps?.checkoutProducts}
+            openContactForm={openContactForm}
+            openSetupGuide={openSetupGuide}
           />
         </ConfigurationDialog>
+        <ContactFormDialog
+          open={activeDialog === "contactForm"}
+          setActiveDialog={setActiveDialog}
+        />
+        <TestingStepsDialog
+          type={String(activeDialog)}
+          open={activeDialog === "TestingSteps"}
+          setActiveDialog={setActiveDialog}
+        />
       </div>
     );
-  }, [
-    notificationState,
-    zoomedVersion,
-    activeConfig,
-    currentSettings,
-    additionalSteps,
-    currentStoredSettings,
-    saveSettings,
-  ]);
+    // eslint-disable-next-line react-compiler/react-compiler
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [notificationState, activeDialog, currentSettings, currentStoredSettings]);
 }
 
 function useSettingsSaveOnLoad(

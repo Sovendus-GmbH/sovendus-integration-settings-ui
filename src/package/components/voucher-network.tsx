@@ -1,5 +1,8 @@
+"use client";
+
 import { motion } from "framer-motion";
 import {
+  BookOpen,
   CheckCircle,
   Cog,
   ExternalLink,
@@ -15,10 +18,7 @@ import type {
 import { LANGUAGES_BY_COUNTRIES } from "sovendus-integration-types";
 
 import { cn } from "../utils/utils";
-import {
-  type AdditionalSteps,
-  DEMO_REQUEST_URL,
-} from "./backend-form-style-less";
+import type { AdditionalSteps } from "./backend-form-style-less";
 import {
   Accordion,
   AccordionContent,
@@ -39,14 +39,19 @@ interface SovendusVoucherNetworkProps {
   currentSettings: VoucherNetworkSettings | undefined;
   setCurrentSettings: Dispatch<SetStateAction<SovendusAppSettings>>;
   additionalSteps?: AdditionalSteps["voucherNetwork"];
+  openContactForm: () => void;
+  openSetupGuide: () => void;
 }
 
 export function SovendusVoucherNetwork({
   currentSettings,
   setCurrentSettings,
   additionalSteps,
+  openContactForm,
+  openSetupGuide,
 }: SovendusVoucherNetworkProps): JSX.Element {
   const vnEnabled = isVnEnabled(currentSettings);
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -68,11 +73,23 @@ export function SovendusVoucherNetwork({
         </p>
         <Button
           size="lg"
-          onClick={(): void => void window.open(DEMO_REQUEST_URL, "_blank")}
+          onClick={openContactForm}
           className={cn("tw:bg-white tw:text-blue-600 tw:hover:bg-blue-100")}
         >
           Schedule Your Personalized Demo
           <ExternalLink className={cn("tw:ml-2 tw:h-4 tw:w-4")} />
+        </Button>
+      </div>
+      <div className={cn("tw:flex tw:justify-between tw:items-center tw:mb-4")}>
+        <Button
+          onClick={openSetupGuide}
+          variant="outline"
+          className={cn(
+            "tw:flex tw:items-center tw:gap-2 tw:bg-blue-50 tw:border-blue-200 tw:text-blue-700 tw:hover:bg-blue-100",
+          )}
+        >
+          <BookOpen className={cn("tw:h-4 tw:w-4")} />
+          Restart Setup Guide
         </Button>
       </div>
 
