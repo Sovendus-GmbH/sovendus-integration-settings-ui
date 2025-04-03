@@ -4,9 +4,9 @@ const buildConfig: BuildConfig = {
   foldersToClean: ["dist"],
   filesToCompile: [
     {
-      input: "src/package/index.ts",
-      output: "dist/package/index",
-      options: {
+      sovOptions: {
+        input: "src/package/index.ts",
+        output: "dist/package/index",
         type: "react-tailwind",
         inlineCss: true,
         packageConfig: {
@@ -15,27 +15,34 @@ const buildConfig: BuildConfig = {
           isPackage: true,
         },
       },
-    },
-    {
-      input: "src/package/index.ts",
-      output: "dist/package-style-less/index",
-      options: {
-        type: "react-tailwind",
-        inlineCss: false,
-        buildOptions: {
+      viteOptions: {
+        build: {
           cssCodeSplit: false,
         },
+      },
+    },
+    {
+      sovOptions: {
+        input: "src/package/index.ts",
+        output: "dist/package-style-less/index",
+        type: "react-tailwind",
+        inlineCss: false,
         packageConfig: {
           dtsEntryRoot: "src/package",
           dtsInclude: ["src/package/**/*"],
           isPackage: true,
         },
       },
+      viteOptions: {
+        build: {
+          cssCodeSplit: false,
+        },
+      },
     },
     {
-      input: "src/app/index.ts",
-      output: "dist/demo/index",
-      options: {
+      sovOptions: {
+        input: "src/app/index.ts",
+        output: "dist/demo/index",
         type: "react-tailwind",
         inlineCss: true,
         packageConfig: {
@@ -46,18 +53,20 @@ const buildConfig: BuildConfig = {
       },
     },
     {
-      input: "src/app/index.ts",
-      output: "dist/demo-style-less/index",
-      options: {
+      sovOptions: {
+        input: "src/app/index.ts",
+        output: "dist/demo-style-less/index",
         type: "react-tailwind",
         inlineCss: false,
-        buildOptions: {
-          cssCodeSplit: false,
-        },
         packageConfig: {
           dtsEntryRoot: "src/app",
           dtsInclude: ["src/app/**/*"],
           isPackage: true,
+        },
+      },
+      viteOptions: {
+        build: {
+          cssCodeSplit: false,
         },
       },
     },
