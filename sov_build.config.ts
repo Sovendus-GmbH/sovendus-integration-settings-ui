@@ -71,7 +71,7 @@ const buildConfig: BuildConfig = {
       },
     },
   ],
-  filesOrFoldersToCopy: [{ input: "src/app/logos", output: "dist/logos" }],
+  filesOrFoldersToCopy: [{ input: "src/logos", output: "dist/logos" }],
 };
 
 export default buildConfig;
