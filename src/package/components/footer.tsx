@@ -1,5 +1,4 @@
 import type { JSX } from "react";
-import React from "react";
 
 import { version } from "../utils/constants";
 import { cn } from "../utils/utils";
