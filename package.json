@@ -39,6 +39,10 @@
       "import": "./src/app.css",
       "require": "./src/app.css"
     },
+    "./style.css": {
+      "import": "./dist/package-style-less/sovendus-integration-settings-ui.css",
+      "require": "./dist/package-style-less/sovendus-integration-settings-ui.css"
+    },
     "./src/*": "./src/*",
     "./dist/*": "./dist/*"
   },

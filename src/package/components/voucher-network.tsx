@@ -15,10 +15,7 @@ import type {
 import { LANGUAGES_BY_COUNTRIES } from "sovendus-integration-types";
 
 import { cn } from "../utils/utils";
-import {
-  type AdditionalSteps,
-  DEMO_REQUEST_URL,
-} from "./backend-form-style-less";
+import { type AdditionalSteps, DEMO_REQUEST_URL } from "./backend-form";
 import {
   Accordion,
   AccordionContent,

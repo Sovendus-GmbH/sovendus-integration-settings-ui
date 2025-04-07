@@ -19,10 +19,7 @@ import { SettingsType } from "sovendus-integration-types";
 import { COUNTRIES } from "sovendus-integration-types";
 
 import { cn } from "../utils/utils";
-import {
-  type AdditionalSteps,
-  DEMO_REQUEST_URL,
-} from "./backend-form-style-less";
+import { type AdditionalSteps, DEMO_REQUEST_URL } from "./backend-form";
 import {
   CountryOptions,
   EnabledOptimizeCountries,
