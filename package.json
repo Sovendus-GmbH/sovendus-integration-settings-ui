@@ -47,7 +47,7 @@
     "./dist/*": "./dist/*"
   },
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev",
     "build": "sovendus-builder build",
     "lint": "eslint --fix",
     "pub": "sovendus-release-tool"
@@ -74,8 +74,8 @@
     }
   ],
   "peerDependencies": {
-    "react": "^18",
-    "react-dom": "^18"
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
   },
   "dependencies": {
     "sovendus-integration-types": "3.8.8"
