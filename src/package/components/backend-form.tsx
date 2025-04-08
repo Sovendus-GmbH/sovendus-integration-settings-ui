@@ -1,6 +1,6 @@
 import "./app.css";
 
-import { BarChart2, Gift, ShoppingBagIcon } from "lucide-react";
+import { Award, BarChart2, Gift, ShoppingBagIcon } from "lucide-react";
 import type { JSX } from "react";
 import React, { useEffect, useMemo, useState } from "react";
 import { type SovendusAppSettings } from "sovendus-integration-types";
@@ -8,11 +8,14 @@ import { type SovendusAppSettings } from "sovendus-integration-types";
 import { cleanConfig, cn, loggerInfo } from "../utils/utils";
 import { SovendusCheckoutProducts } from "./checkout-products";
 import { ConfigurationDialog } from "./confirmation-dialog";
+import type { SovendusEmployeeBenefitsFeatureFlags } from "./employee-benefits";
+import { SovendusEmployeeBenefits } from "./employee-benefits";
 import { Footer } from "./footer";
 import { Notification } from "./notification";
 import { SovendusOptimize } from "./optimize";
 import { EnabledOptimizeCountries } from "./optimize-country-options";
 import { ProductCard } from "./product-card";
+import { SovendusRewards } from "./rewards";
 import { Alert, AlertDescription, AlertTitle } from "./shadcn/alert";
 import { SovendusVoucherNetwork } from "./voucher-network";
 import { EnabledVoucherNetworkCountries } from "./voucher-network-country-options";
@@ -26,6 +29,7 @@ export interface AdditionalSteps {
   checkoutProducts?: AdditionalStep;
   optimize?: AdditionalStep;
   voucherNetwork?: AdditionalStep;
+  rewards?: AdditionalStep;
 }
 
 export interface SovendusBackendFormProps {
@@ -35,6 +39,9 @@ export interface SovendusBackendFormProps {
   zoomedVersion?: boolean;
   callSaveOnLoad: boolean;
   debug?: boolean;
+  featureFlags?: {
+    employeeBenefits?: SovendusEmployeeBenefitsFeatureFlags;
+  };
 }
 
 export const DEMO_REQUEST_URL =
@@ -47,6 +54,7 @@ export function SovendusBackendForm({
   zoomedVersion = false,
   callSaveOnLoad,
   debug = false,
+  featureFlags,
 }: SovendusBackendFormProps): JSX.Element {
   const [currentStoredSettings, setCurrentStoredSettings] =
     useState<SovendusAppSettings>(() => cleanConfig(_currentStoredSettings));
@@ -58,7 +66,7 @@ export function SovendusBackendForm({
     loggerInfo("Current stored settings:", currentStoredSettings);
   }
   const [activeConfig, setActiveConfig] = useState<
-    "voucherNetwork" | "optimize" | "checkoutProducts" | null
+    "voucherNetwork" | "optimize" | "checkoutProducts" | "rewards" | null
   >(null);
   const [notificationState, setNotificationState] = useState<{
     message: string;
@@ -179,6 +187,34 @@ export function SovendusBackendForm({
       };
     };
 
+    const getRewardsStatus = (): {
+      active: boolean;
+      details: JSX.Element;
+    } => {
+      const enabledCountries =
+        currentSettings.rewards?.countries?.ids &&
+        Object.entries(currentSettings.rewards.countries.ids)
+          .filter(
+            ([_, country]) =>
+              country.languages &&
+              Object.values(country.languages).some((lang) => lang.isEnabled),
+          )
+          .map(([code]) => code);
+
+      const isActive = enabledCountries?.length
+        ? enabledCountries.length > 0
+        : false;
+
+      return {
+        active: isActive,
+        details: (
+          <EnabledVoucherNetworkCountries
+            currentSettings={currentSettings.rewards}
+          />
+        ),
+      };
+    };
+
     return (
       <div
         className={cn("tw:container tw:mx-auto tw:p-6 tw:space-y-8", {
@@ -200,6 +236,12 @@ export function SovendusBackendForm({
         </Alert>
 
         <div className={cn("tw:grid tw:gap-6")}>
+          <SovendusEmployeeBenefits
+            setCurrentSettings={setCurrentSettings}
+            currentSettings={currentSettings.employeeBenefits}
+            featureFlags={featureFlags?.employeeBenefits}
+          />
+
           <ProductCard
             title="Voucher Network & Checkout Benefits"
             description="Drive sales with post-purchase vouchers and earn revenue from partner offers"
@@ -212,6 +254,20 @@ export function SovendusBackendForm({
               { label: "Available Countries", value: "14" },
             ]}
             onConfigure={(): void => setActiveConfig("voucherNetwork")}
+          />
+
+          <ProductCard
+            title="Sovendus Rewards"
+            description="Enhance customer loyalty with personalized rewards in the account area"
+            icon={<Award className={cn("tw:h-6 tw:w-6 tw:text-teal-500")} />}
+            status={getRewardsStatus()}
+            buttonsDisabled={buttonsDisabled}
+            metrics={[
+              { label: "Customer Engagement", value: "+20%" },
+              { label: "Repeat Purchases", value: "+15%" },
+              { label: "Account Logins", value: "+30%" },
+            ]}
+            onConfigure={(): void => setActiveConfig("rewards")}
           />
 
           <ProductCard
@@ -270,6 +326,19 @@ export function SovendusBackendForm({
         </ConfigurationDialog>
 
         <ConfigurationDialog
+          open={activeConfig === "rewards"}
+          onOpenChange={(open): void => void handleSave(open)}
+          title="Configure Sovendus Rewards"
+          zoomedVersion={zoomedVersion}
+        >
+          <SovendusRewards
+            currentRewardsSettings={currentStoredSettings.rewards}
+            setCurrentSettings={setCurrentSettings}
+            additionalSteps={additionalSteps?.rewards}
+          />
+        </ConfigurationDialog>
+
+        <ConfigurationDialog
           open={activeConfig === "optimize"}
           onOpenChange={(open): void => void handleSave(open)}
           title="Configure Optimize"
@@ -300,9 +369,13 @@ export function SovendusBackendForm({
   }, [
     notificationState,
     zoomedVersion,
-    activeConfig,
     currentSettings,
-    additionalSteps,
+    featureFlags?.employeeBenefits,
+    activeConfig,
+    additionalSteps?.voucherNetwork,
+    additionalSteps?.rewards,
+    additionalSteps?.optimize,
+    additionalSteps?.checkoutProducts,
     currentStoredSettings,
     saveSettings,
   ]);

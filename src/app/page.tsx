@@ -31,6 +31,12 @@ export default function SettingsUIDemo({
         currentStoredSettings={currentSettings}
         saveSettings={saveSettings}
         callSaveOnLoad={true}
+        featureFlags={{
+          employeeBenefits: {
+            addToSidebar: false,
+            showWidgetOnDashboard: false,
+          },
+        }}
       />
     </main>
   );
