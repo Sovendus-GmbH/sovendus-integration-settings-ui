@@ -38,6 +38,7 @@ interface SovendusEmployeeBenefitsProps {
 }
 
 export interface SovendusEmployeeBenefitsFeatureFlags {
+  isEnabled: boolean;
   showWidgetOnDashboard: boolean;
   addToSidebar: boolean;
 }
@@ -317,7 +318,10 @@ export function SovendusEmployeeBenefits({
             </h4>
             <div
               className={cn(
-                "tw:grid tw:grid-cols-1 tw:md:grid-cols-2 tw:gap-4",
+                featureFlags?.addToSidebar ||
+                  featureFlags?.showWidgetOnDashboard
+                  ? "tw:grid tw:grid-cols-1 tw:md:grid-cols-2 tw:gap-4"
+                  : "",
               )}
             >
               {featureFlags?.addToSidebar ||

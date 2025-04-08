@@ -35,6 +35,10 @@ export default function SettingsUIDemo({
           employeeBenefits: {
             addToSidebar: false,
             showWidgetOnDashboard: false,
+            isEnabled: true,
+          },
+          rewards: {
+            rewardsEnabled: true,
           },
         }}
       />

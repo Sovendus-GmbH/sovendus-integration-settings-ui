@@ -15,6 +15,7 @@ import { Notification } from "./notification";
 import { SovendusOptimize } from "./optimize";
 import { EnabledOptimizeCountries } from "./optimize-country-options";
 import { ProductCard } from "./product-card";
+import type { SovendusRewardsFeatureFlags } from "./rewards";
 import { SovendusRewards } from "./rewards";
 import { Alert, AlertDescription, AlertTitle } from "./shadcn/alert";
 import { SovendusVoucherNetwork } from "./voucher-network";
@@ -40,6 +41,7 @@ export interface SovendusBackendFormProps {
   callSaveOnLoad: boolean;
   debug?: boolean;
   featureFlags?: {
+    rewards?: SovendusRewardsFeatureFlags;
     employeeBenefits?: SovendusEmployeeBenefitsFeatureFlags;
   };
 }
@@ -236,11 +238,15 @@ export function SovendusBackendForm({
         </Alert>
 
         <div className={cn("tw:grid tw:gap-6")}>
-          <SovendusEmployeeBenefits
-            setCurrentSettings={setCurrentSettings}
-            currentSettings={currentSettings.employeeBenefits}
-            featureFlags={featureFlags?.employeeBenefits}
-          />
+          {featureFlags?.employeeBenefits?.isEnabled ? (
+            <SovendusEmployeeBenefits
+              setCurrentSettings={setCurrentSettings}
+              currentSettings={currentSettings.employeeBenefits}
+              featureFlags={featureFlags?.employeeBenefits}
+            />
+          ) : (
+            <></>
+          )}
 
           <ProductCard
             title="Voucher Network & Checkout Benefits"
@@ -256,19 +262,23 @@ export function SovendusBackendForm({
             onConfigure={(): void => setActiveConfig("voucherNetwork")}
           />
 
-          <ProductCard
-            title="Sovendus Rewards"
-            description="Enhance customer loyalty with personalized rewards in the account area"
-            icon={<Award className={cn("tw:h-6 tw:w-6 tw:text-teal-500")} />}
-            status={getRewardsStatus()}
-            buttonsDisabled={buttonsDisabled}
-            metrics={[
-              { label: "Customer Engagement", value: "+20%" },
-              { label: "Repeat Purchases", value: "+15%" },
-              { label: "Account Logins", value: "+30%" },
-            ]}
-            onConfigure={(): void => setActiveConfig("rewards")}
-          />
+          {featureFlags?.rewards?.rewardsEnabled ? (
+            <ProductCard
+              title="Sovendus Rewards"
+              description="Enhance customer loyalty with personalized rewards in the account area"
+              icon={<Award className={cn("tw:h-6 tw:w-6 tw:text-teal-500")} />}
+              status={getRewardsStatus()}
+              buttonsDisabled={buttonsDisabled}
+              metrics={[
+                { label: "Customer Engagement", value: "+20%" },
+                { label: "Repeat Purchases", value: "+15%" },
+                { label: "Account Logins", value: "+30%" },
+              ]}
+              onConfigure={(): void => setActiveConfig("rewards")}
+            />
+          ) : (
+            <></>
+          )}
 
           <ProductCard
             title="Optimize"
@@ -325,18 +335,23 @@ export function SovendusBackendForm({
           />
         </ConfigurationDialog>
 
-        <ConfigurationDialog
-          open={activeConfig === "rewards"}
-          onOpenChange={(open): void => void handleSave(open)}
-          title="Configure Sovendus Rewards"
-          zoomedVersion={zoomedVersion}
-        >
-          <SovendusRewards
-            currentRewardsSettings={currentStoredSettings.rewards}
-            setCurrentSettings={setCurrentSettings}
-            additionalSteps={additionalSteps?.rewards}
-          />
-        </ConfigurationDialog>
+        {featureFlags?.rewards?.rewardsEnabled ? (
+          <ConfigurationDialog
+            open={activeConfig === "rewards"}
+            onOpenChange={(open): void => void handleSave(open)}
+            title="Configure Sovendus Rewards"
+            zoomedVersion={zoomedVersion}
+          >
+            <SovendusRewards
+              currentRewardsSettings={currentStoredSettings.rewards}
+              setCurrentSettings={setCurrentSettings}
+              additionalSteps={additionalSteps?.rewards}
+              featureFlags={featureFlags?.rewards}
+            />
+          </ConfigurationDialog>
+        ) : (
+          <></>
+        )}
 
         <ConfigurationDialog
           open={activeConfig === "optimize"}
@@ -369,8 +384,9 @@ export function SovendusBackendForm({
   }, [
     notificationState,
     zoomedVersion,
-    currentSettings,
     featureFlags?.employeeBenefits,
+    featureFlags?.rewards,
+    currentSettings,
     activeConfig,
     additionalSteps?.voucherNetwork,
     additionalSteps?.rewards,
