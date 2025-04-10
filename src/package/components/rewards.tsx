@@ -50,10 +50,10 @@ interface SovendusRewardsProps {
 export interface SovendusRewardsFeatureFlags {
   rewardsEnabled: boolean;
   triggers: {
-    dashboard;
-    account;
-    orders;
-    custom;
+    dashboard: boolean;
+    account: boolean;
+    orders: boolean;
+    custom: boolean;
   };
 }
 

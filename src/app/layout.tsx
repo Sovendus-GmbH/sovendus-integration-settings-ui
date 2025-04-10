@@ -1,3 +1,5 @@
+import "../package/components/app.css";
+
 import type { JSX, ReactNode } from "react";
 
 export const metadata = {

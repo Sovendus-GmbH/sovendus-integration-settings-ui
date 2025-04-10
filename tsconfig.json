@@ -7,7 +7,7 @@
       "DOM.Iterable",
       "ESNext"
     ],
-    "jsx": "react-jsx",
+    "jsx": "preserve",
     "moduleResolution": "bundler",
     "declarationDir": "dist",
     "outDir": "dist",

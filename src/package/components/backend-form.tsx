@@ -8,8 +8,8 @@ import { type SovendusAppSettings } from "sovendus-integration-types";
 import { cleanConfig, cn, loggerInfo } from "../utils/utils";
 import { SovendusCheckoutProducts } from "./checkout-products";
 import { ConfigurationDialog } from "./confirmation-dialog";
-import type { SovendusEmployeeBenefitsFeatureFlags } from "./employee-benefits";
-import { SovendusEmployeeBenefits } from "./employee-benefits";
+import type { SovendusEmployeeBenefitsFeatureFlags } from "./employee-benefits/employee-benefits-settings";
+import { SovendusEmployeeBenefitsSettings } from "./employee-benefits/employee-benefits-settings";
 import { Footer } from "./footer";
 import { Notification } from "./notification";
 import { SovendusOptimize } from "./optimize";
@@ -239,7 +239,7 @@ export function SovendusBackendForm({
 
         <div className={cn("tw:grid tw:gap-6")}>
           {featureFlags?.employeeBenefits?.isEnabled ? (
-            <SovendusEmployeeBenefits
+            <SovendusEmployeeBenefitsSettings
               setCurrentSettings={setCurrentSettings}
               currentSettings={currentSettings.employeeBenefits}
               featureFlags={featureFlags?.employeeBenefits}
