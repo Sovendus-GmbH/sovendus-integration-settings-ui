@@ -17,6 +17,7 @@ import { EnabledOptimizeCountries } from "./optimize-country-options";
 import { ProductCard } from "./product-card";
 import type { SovendusRewardsFeatureFlags } from "./rewards";
 import { SovendusRewards } from "./rewards";
+import { EnabledRewardsCountries, isRewardsEnabled } from "./rewards-options";
 import { Alert, AlertDescription, AlertTitle } from "./shadcn/alert";
 import { SovendusVoucherNetwork } from "./voucher-network";
 import { EnabledVoucherNetworkCountries } from "./voucher-network-country-options";
@@ -193,26 +194,12 @@ export function SovendusBackendForm({
       active: boolean;
       details: JSX.Element;
     } => {
-      const enabledCountries =
-        currentSettings.rewards?.countries?.ids &&
-        Object.entries(currentSettings.rewards.countries.ids)
-          .filter(
-            ([_, country]) =>
-              country.languages &&
-              Object.values(country.languages).some((lang) => lang.isEnabled),
-          )
-          .map(([code]) => code);
-
-      const isActive = enabledCountries?.length
-        ? enabledCountries.length > 0
-        : false;
+      const { enabled } = isRewardsEnabled(currentSettings.rewards);
 
       return {
-        active: isActive,
+        active: enabled,
         details: (
-          <EnabledVoucherNetworkCountries
-            currentSettings={currentSettings.rewards}
-          />
+          <EnabledRewardsCountries currentSettings={currentSettings.rewards} />
         ),
       };
     };

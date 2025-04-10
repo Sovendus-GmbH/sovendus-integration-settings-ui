@@ -11,16 +11,28 @@ import {
   Monitor,
   PlusCircle,
 } from "lucide-react";
-import { type Dispatch, type JSX, type SetStateAction, useState } from "react";
+import {
+  type Dispatch,
+  type JSX,
+  type SetStateAction,
+  useEffect,
+  useState,
+} from "react";
 import type {
   CountryCodes,
+  RewardsSettings,
   SovendusAppSettings,
-  VoucherNetworkSettings,
 } from "sovendus-integration-types";
+import { TriggerPages } from "sovendus-integration-types";
 import { LANGUAGES_BY_COUNTRIES } from "sovendus-integration-types";
 
 import { cn } from "../utils/utils";
 import { type AdditionalSteps, DEMO_REQUEST_URL } from "./backend-form";
+import {
+  EnabledRewardsCountries,
+  getAvailableTriggerPages,
+  isRewardsEnabled,
+} from "./rewards-options";
 import { Alert, AlertDescription } from "./shadcn/alert";
 import { Button } from "./shadcn/button";
 import { Card, CardContent, CardHeader, CardTitle } from "./shadcn/card";
@@ -34,14 +46,10 @@ import {
   SelectValue,
 } from "./shadcn/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./shadcn/tabs";
-import {
-  CountryOptions,
-  EnabledVoucherNetworkCountries,
-  isVnEnabled,
-} from "./voucher-network-country-options";
+import { CountryOptions } from "./voucher-network-country-options";
 
 interface SovendusRewardsProps {
-  currentRewardsSettings: VoucherNetworkSettings | undefined;
+  currentRewardsSettings: RewardsSettings | undefined;
   setCurrentSettings: Dispatch<SetStateAction<SovendusAppSettings>>;
   additionalSteps?: AdditionalSteps["rewards"];
   featureFlags?: SovendusRewardsFeatureFlags;
@@ -50,10 +58,10 @@ interface SovendusRewardsProps {
 export interface SovendusRewardsFeatureFlags {
   rewardsEnabled: boolean;
   triggers: {
-    dashboard: boolean;
-    account: boolean;
-    orders: boolean;
-    custom: boolean;
+    [TriggerPages.MY_ACCOUNT_DASHBOARD]: boolean;
+    [TriggerPages.MY_ORDERS]: boolean;
+    [TriggerPages.MY_ORDERS_DETAIL]: boolean;
+    [TriggerPages.CUSTOM]: boolean;
   };
 }
 
@@ -63,15 +71,25 @@ export function SovendusRewards({
   additionalSteps,
   featureFlags,
 }: SovendusRewardsProps): JSX.Element {
-  const rewardsEnabled = isVnEnabled(currentRewardsSettings);
-  const [selectedTriggerPages, setSelectedTriggerPages] = useState<string[]>(
-    currentRewardsSettings?.triggerPages
-      ? Object.keys(currentRewardsSettings.triggerPages)
+  const { enabled: rewardsEnabled } = isRewardsEnabled(currentRewardsSettings);
+  const [selectedTriggerPages, setSelectedTriggerPages] = useState<
+    TriggerPages[]
+  >(
+    currentRewardsSettings?.pages
+      ? (Object.keys(currentRewardsSettings.pages) as TriggerPages[])
       : [],
   );
-  const [activeTriggerPageTab, setActiveTriggerPageTab] = useState<string>(
-    selectedTriggerPages.length > 0 ? selectedTriggerPages[0] : "",
-  );
+  const [activeTriggerPageTab, setActiveTriggerPageTab] = useState<
+    TriggerPages | undefined
+  >(selectedTriggerPages?.[0]);
+
+  useEffect(() => {
+    if (!activeTriggerPageTab && selectedTriggerPages?.length) {
+      setActiveTriggerPageTab(selectedTriggerPages?.[0]);
+    }
+    // eslint-disable-next-line react-compiler/react-compiler
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedTriggerPages]);
 
   const handleTriggerPageSelection = (
     triggerPage: string,
@@ -231,7 +249,7 @@ export function SovendusRewards({
                   rewardsEnabled ? "tw:text-green-700" : "tw:text-red-700",
                 )}
               >
-                <EnabledVoucherNetworkCountries
+                <EnabledRewardsCountries
                   currentSettings={currentRewardsSettings}
                 />
               </AlertDescription>
@@ -315,16 +333,7 @@ export function SovendusRewards({
                       "tw:grid tw:grid-cols-1 md:tw:grid-cols-2 tw:gap-4",
                     )}
                   >
-                    {[
-                      { id: "dashboard", label: "Dashboard", icon: Layout },
-                      {
-                        id: "account",
-                        label: "Account Page",
-                        icon: CheckCircle,
-                      },
-                      { id: "orders", label: "Orders Page", icon: Gift },
-                      { id: "custom", label: "Custom Page", icon: PlusCircle },
-                    ].map((page) => (
+                    {getAvailableTriggerPages(featureFlags).map((page) => (
                       <div
                         key={page.id}
                         className={cn(
@@ -421,28 +430,28 @@ export function SovendusRewards({
                                 : "tw:border-transparent tw:text-gray-500 hover:tw:text-gray-700 hover:tw:bg-gray-50",
                             )}
                           >
-                            {page === "dashboard" && (
+                            {page === TriggerPages.MY_ACCOUNT_DASHBOARD && (
                               <Layout
                                 className={cn(
                                   "tw:inline tw:mr-2 tw:h-4 tw:w-4",
                                 )}
                               />
                             )}
-                            {page === "account" && (
-                              <CheckCircle
-                                className={cn(
-                                  "tw:inline tw:mr-2 tw:h-4 tw:w-4",
-                                )}
-                              />
-                            )}
-                            {page === "orders" && (
+                            {page === TriggerPages.MY_ORDERS && (
                               <Gift
                                 className={cn(
                                   "tw:inline tw:mr-2 tw:h-4 tw:w-4",
                                 )}
                               />
                             )}
-                            {page === "custom" && (
+                            {page === TriggerPages.MY_ORDERS_DETAIL && (
+                              <CheckCircle
+                                className={cn(
+                                  "tw:inline tw:mr-2 tw:h-4 tw:w-4",
+                                )}
+                              />
+                            )}
+                            {page === TriggerPages.CUSTOM && (
                               <PlusCircle
                                 className={cn(
                                   "tw:inline tw:mr-2 tw:h-4 tw:w-4",
@@ -499,9 +508,8 @@ export function SovendusRewards({
                                       handleRenderLocationChange(page, value)
                                     }
                                     value={
-                                      currentRewardsSettings?.triggerPages?.[
-                                        page
-                                      ]?.renderLocation || ""
+                                      currentRewardsSettings?.pages?.[page]
+                                        ?.renderLocation || ""
                                     }
                                   >
                                     <SelectTrigger
@@ -527,7 +535,7 @@ export function SovendusRewards({
                                   </Select>
                                 </div>
 
-                                {currentRewardsSettings?.triggerPages?.[page]
+                                {currentRewardsSettings?.pages?.[page]
                                   ?.renderLocation === "custom" && (
                                   <div>
                                     <Label
@@ -542,9 +550,8 @@ export function SovendusRewards({
                                       id={`custom-selector-${page}`}
                                       placeholder="#rewards-container"
                                       value={
-                                        currentRewardsSettings?.triggerPages?.[
-                                          page
-                                        ]?.customSelector || ""
+                                        currentRewardsSettings?.pages?.[page]
+                                          ?.customSelector || ""
                                       }
                                       onChange={(e): void => {
                                         handleCustomSelectorChange(
@@ -579,7 +586,7 @@ export function SovendusRewards({
 
                               <CountryOptions
                                 currentSettings={
-                                  currentRewardsSettings?.triggerPages?.[page]
+                                  currentRewardsSettings?.pages?.[page]
                                 }
                                 setCurrentSettings={(newSettings) => {
                                   setCurrentSettings((prevState) => ({

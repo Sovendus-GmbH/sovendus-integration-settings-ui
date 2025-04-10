@@ -31,7 +31,7 @@ export default function SettingsUIDemo({
             isEnabled: true,
           },
           rewards: {
-            rewardsEnabled: false,
+            rewardsEnabled: true,
             triggers: {
               account: true,
               custom: true,

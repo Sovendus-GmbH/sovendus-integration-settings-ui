@@ -79,7 +79,7 @@
   },
   "dependencies": {
     "@radix-ui/react-scroll-area": "^1.2.4",
-    "sovendus-integration-types": "3.8.9"
+    "sovendus-integration-types": "3.8.14"
   },
   "devDependencies": {
     "@hookform/resolvers": "^5.0.1",

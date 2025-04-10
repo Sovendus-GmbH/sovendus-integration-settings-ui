@@ -22,12 +22,10 @@ import { SovendusAppLogo } from "../../package/components/sovendus-app-logo";
 
 export function AdminSidebar({
   page,
-  dashboardUrl = "/",
-  websiteUrl = "#",
+  urlPrefix = "",
 }: {
   page: "settings" | "eBenefits" | "dashboard";
-  dashboardUrl?: string;
-  websiteUrl?: string;
+  urlPrefix?: string;
 }): JSX.Element {
   const [collapsed, setCollapsed] = useState(false);
 
@@ -79,14 +77,14 @@ export function AdminSidebar({
           <SidebarItem
             icon={<LayoutDashboard />}
             label="Dashboard"
-            href={dashboardUrl}
+            href={`${urlPrefix}/`}
             collapsed={collapsed}
             active={page === "dashboard"}
           />
           <SidebarItem
             icon={<Home />}
             label="Website"
-            href={websiteUrl}
+            href={urlPrefix ? `${urlPrefix}/` : "#"}
             collapsed={collapsed}
           />
           <SidebarItem
@@ -122,7 +120,7 @@ export function AdminSidebar({
           <SidebarItem
             icon={<SovendusAppLogo />}
             label="Employee Benefits"
-            href="/employee-benefits"
+            href={`${urlPrefix}/employee-benefits`}
             collapsed={collapsed}
             active={page === "eBenefits"}
           />
@@ -144,7 +142,7 @@ export function AdminSidebar({
             <SidebarItem
               icon={<SovendusAppLogo />}
               label="Sovendus App"
-              href="/settings"
+              href={`${urlPrefix}/settings`}
               collapsed={collapsed}
               active={page === "settings"}
             />
