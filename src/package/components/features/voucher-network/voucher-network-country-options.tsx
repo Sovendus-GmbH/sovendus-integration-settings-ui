@@ -12,17 +12,17 @@ import {
   SettingsType,
 } from "sovendus-integration-types";
 
-import { cn } from "../utils/utils";
+import { cn } from "../../../utils";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "./shadcn/accordion";
-import { Badge } from "./shadcn/badge";
-import { Input } from "./shadcn/input";
-import { Label } from "./shadcn/label";
-import { Switch } from "./shadcn/switch";
+} from "../../shadcn/accordion";
+import { Badge } from "../../shadcn/badge";
+import { Input } from "../../shadcn/input";
+import { Label } from "../../shadcn/label";
+import { Switch } from "../../shadcn/switch";
 
 type CountryOptionsProps = {
   currentSettings: VoucherNetworkSettings | undefined;

@@ -3,7 +3,7 @@ import { CheckCircle, XCircle } from "lucide-react";
 import type { JSX } from "react";
 import { useEffect, useState } from "react";
 
-import { cn } from "../utils/utils";
+import { cn } from "../../utils";
 
 interface NotificationProps {
   message: string;
