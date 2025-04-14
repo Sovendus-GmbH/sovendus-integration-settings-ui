@@ -28,6 +28,7 @@ import type { AvailableProducts } from "../../ui/backend-form";
 import { CountryLanguageSelector } from "./country-language-selector";
 
 interface SovendusEmployeeBenefitsProps {
+  // TODO display state of current integration
   currentSettings: EmployeeBenefitsSettings | undefined;
   setCurrentSettings: Dispatch<SetStateAction<SovendusAppSettings>>;
   setActiveConfig: Dispatch<SetStateAction<AvailableProducts | undefined>>;
@@ -38,7 +39,6 @@ interface SovendusEmployeeBenefitsProps {
 }
 
 export function SovendusEmployeeBenefitsProductCard({
-  currentSettings,
   buttonsDisabled,
   setActiveConfig,
   setActiveTab,
@@ -150,6 +150,7 @@ export function SovendusEmployeeBenefitsProductCard({
         <Button
           variant="outline"
           className={cn("tw:text-blue-600 tw:font-medium")}
+          disabled={buttonsDisabled}
           onClick={(): void => {
             if (setActiveTab) {
               setActiveTab("benefits");
@@ -162,6 +163,7 @@ export function SovendusEmployeeBenefitsProductCard({
         </Button>
         <Button
           className={cn("tw:bg-blue-600 tw:text-white")}
+          disabled={buttonsDisabled}
           onClick={(): void => {
             if (setActiveTab) {
               setActiveTab("configure");

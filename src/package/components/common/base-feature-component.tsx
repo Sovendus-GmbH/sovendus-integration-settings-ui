@@ -23,8 +23,18 @@ interface BaseFeatureComponentProps {
   defaultTab?: "configure" | "benefits" | "how-it-works";
 }
 
+// Define valid color types
+type ColorKey = "green" | "blue" | "purple" | "teal" | "default";
+
+// Define color class structure
+interface ColorClass {
+  text: string;
+  hoverBg: string;
+  activeBg: string;
+}
+
 // Utility function to map mainColor to Tailwind classes
-const colorClasses = {
+const colorClasses: Record<ColorKey, ColorClass> = {
   green: {
     text: "tw:text-green-700",
     hoverBg: "hover:tw:bg-green-50",
@@ -52,6 +62,11 @@ const colorClasses = {
   },
 };
 
+// Helper function to get color classes safely
+const getColorClass = (color: string): ColorClass => {
+  return colorClasses[color as ColorKey] || colorClasses.default;
+};
+
 export function BaseFeatureComponent({
   title,
   description,
@@ -65,6 +80,9 @@ export function BaseFeatureComponent({
   buttonLabel = "Schedule Your Personalized Demo",
   defaultTab = "configure",
 }: BaseFeatureComponentProps): JSX.Element {
+  // Get the color classes safely
+  const colorClass = getColorClass(mainColor);
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -99,14 +117,12 @@ export function BaseFeatureComponent({
           size="lg"
           onClick={(): void => void window.open(DEMO_REQUEST_URL, "_blank")}
           className={cn(
-            `tw:bg-white ${colorClasses[mainColor]?.text || colorClasses.default.text} hover:tw:bg-${mainColor}-50 tw:font-bold tw:border-2 tw:border-white tw:shadow-md tw:transition-all tw:duration-300`,
+            `tw:bg-white ${colorClass.text} hover:tw:bg-${mainColor}-50 tw:font-bold tw:border-2 tw:border-white tw:shadow-md tw:transition-all tw:duration-300`,
           )}
         >
           {buttonLabel}
           <ExternalLink
-            className={cn(
-              `tw:ml-2 tw:h-4 tw:w-4 ${colorClasses[mainColor]?.text || colorClasses.default.text}`,
-            )}
+            className={cn(`tw:ml-2 tw:h-4 tw:w-4 ${colorClass.text}`)}
           />
         </Button>
       </div>
@@ -138,10 +154,9 @@ export function BaseFeatureComponent({
             className={cn(
               "tw:text-lg tw:font-semibold tw:py-3 tw:rounded-md tw:transition-all tw:duration-200",
               "tw:bg-white",
-              colorClasses[mainColor]?.text || colorClasses.default.text,
-              colorClasses[mainColor]?.hoverBg || colorClasses.default.hoverBg,
-              colorClasses[mainColor]?.activeBg ||
-                colorClasses.default.activeBg,
+              colorClass.text,
+              colorClass.hoverBg,
+              colorClass.activeBg,
               "tw:data-[state=active]:text-white tw:data-[state=active]:shadow-md",
             )}
           >
@@ -152,10 +167,9 @@ export function BaseFeatureComponent({
             className={cn(
               "tw:text-lg tw:font-semibold tw:py-3 tw:rounded-md tw:transition-all tw:duration-200",
               "tw:bg-white",
-              colorClasses[mainColor]?.text || colorClasses.default.text,
-              colorClasses[mainColor]?.hoverBg || colorClasses.default.hoverBg,
-              colorClasses[mainColor]?.activeBg ||
-                colorClasses.default.activeBg,
+              colorClass.text,
+              colorClass.hoverBg,
+              colorClass.activeBg,
               "tw:data-[state=active]:text-white tw:data-[state=active]:shadow-md",
             )}
           >
@@ -166,10 +180,9 @@ export function BaseFeatureComponent({
             className={cn(
               "tw:text-lg tw:font-semibold tw:py-3 tw:rounded-md tw:transition-all tw:duration-200",
               "tw:bg-white",
-              colorClasses[mainColor]?.text || colorClasses.default.text,
-              colorClasses[mainColor]?.hoverBg || colorClasses.default.hoverBg,
-              colorClasses[mainColor]?.activeBg ||
-                colorClasses.default.activeBg,
+              colorClass.text,
+              colorClass.hoverBg,
+              colorClass.activeBg,
               "tw:data-[state=active]:text-white tw:data-[state=active]:shadow-md",
             )}
           >

@@ -1,7 +1,6 @@
 "use client";
 
-import { useState, type JSX } from "react";
-import { type SovendusAppSettings } from "sovendus-integration-types";
+import { type JSX, useState } from "react";
 
 import { SovendusCheckoutProducts } from "../../package/components/features/checkout-products";
 import { SovendusEmployeeBenefitsSettings } from "../../package/components/features/employee-benefits/employee-benefits-settings";
@@ -9,14 +8,21 @@ import { SovendusOptimize } from "../../package/components/features/optimize";
 import { SovendusRewards } from "../../package/components/features/rewards/rewards";
 import { SovendusVoucherNetwork } from "../../package/components/features/voucher-network";
 import { Button } from "../../package/components/shadcn/button";
-import { Card, CardContent, CardHeader, CardTitle } from "../../package/components/shadcn/card";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "../../package/components/shadcn/card";
 import { Dialog, DialogContent } from "../../package/components/shadcn/dialog";
 import { initialSettings, useSettings } from "../settings-util";
 
 export default function TestTabs(): JSX.Element {
   const { currentSettings, setCurrentSettings } = useSettings(initialSettings);
   const [activeModal, setActiveModal] = useState<string | null>(null);
-  const [defaultTab, setDefaultTab] = useState<"configure" | "benefits" | "how-it-works">("configure");
+  const [defaultTab, setDefaultTab] = useState<
+    "configure" | "benefits" | "how-it-works"
+  >("configure");
 
   if (!currentSettings) {
     return <div>Loading...</div>;
@@ -24,24 +30,26 @@ export default function TestTabs(): JSX.Element {
 
   return (
     <div className="tw:p-8 tw:max-w-6xl tw:mx-auto">
-      <h1 className="tw:text-3xl tw:font-bold tw:mb-8">Test Different Default Tabs</h1>
-      
+      <h1 className="tw:text-3xl tw:font-bold tw:mb-8">
+        Test Different Default Tabs
+      </h1>
+
       <div className="tw:mb-8 tw:p-4 tw:bg-gray-100 tw:rounded-lg">
         <h2 className="tw:text-xl tw:font-bold tw:mb-4">Select Default Tab</h2>
         <div className="tw:flex tw:gap-4">
-          <Button 
+          <Button
             onClick={() => setDefaultTab("configure")}
             variant={defaultTab === "configure" ? "default" : "outline"}
           >
             Configure
           </Button>
-          <Button 
+          <Button
             onClick={() => setDefaultTab("benefits")}
             variant={defaultTab === "benefits" ? "default" : "outline"}
           >
             Key Benefits
           </Button>
-          <Button 
+          <Button
             onClick={() => setDefaultTab("how-it-works")}
             variant={defaultTab === "how-it-works" ? "default" : "outline"}
           >
@@ -52,103 +60,123 @@ export default function TestTabs(): JSX.Element {
           Current default tab: <strong>{defaultTab}</strong>
         </p>
       </div>
-      
+
       <div className="tw:grid tw:grid-cols-1 md:tw:grid-cols-2 lg:tw:grid-cols-3 tw:gap-6">
         <Card>
           <CardHeader>
             <CardTitle>Checkout Products</CardTitle>
           </CardHeader>
           <CardContent className="tw:flex tw:flex-col tw:gap-2">
-            <Button onClick={() => {
-              setActiveModal("checkoutProducts-configure");
-              setDefaultTab("configure");
-            }}>
+            <Button
+              onClick={() => {
+                setActiveModal("checkoutProducts-configure");
+                setDefaultTab("configure");
+              }}
+            >
               Configure
             </Button>
-            <Button onClick={() => {
-              setActiveModal("checkoutProducts-benefits");
-              setDefaultTab("benefits");
-            }}>
+            <Button
+              onClick={() => {
+                setActiveModal("checkoutProducts-benefits");
+                setDefaultTab("benefits");
+              }}
+            >
               Learn More
             </Button>
           </CardContent>
         </Card>
-        
+
         <Card>
           <CardHeader>
             <CardTitle>Optimize</CardTitle>
           </CardHeader>
           <CardContent className="tw:flex tw:flex-col tw:gap-2">
-            <Button onClick={() => {
-              setActiveModal("optimize-configure");
-              setDefaultTab("configure");
-            }}>
+            <Button
+              onClick={() => {
+                setActiveModal("optimize-configure");
+                setDefaultTab("configure");
+              }}
+            >
               Configure
             </Button>
-            <Button onClick={() => {
-              setActiveModal("optimize-benefits");
-              setDefaultTab("benefits");
-            }}>
+            <Button
+              onClick={() => {
+                setActiveModal("optimize-benefits");
+                setDefaultTab("benefits");
+              }}
+            >
               Learn More
             </Button>
           </CardContent>
         </Card>
-        
+
         <Card>
           <CardHeader>
             <CardTitle>Employee Benefits</CardTitle>
           </CardHeader>
           <CardContent className="tw:flex tw:flex-col tw:gap-2">
-            <Button onClick={() => {
-              setActiveModal("employeeBenefits-configure");
-              setDefaultTab("configure");
-            }}>
+            <Button
+              onClick={() => {
+                setActiveModal("employeeBenefits-configure");
+                setDefaultTab("configure");
+              }}
+            >
               Configure
             </Button>
-            <Button onClick={() => {
-              setActiveModal("employeeBenefits-benefits");
-              setDefaultTab("benefits");
-            }}>
+            <Button
+              onClick={() => {
+                setActiveModal("employeeBenefits-benefits");
+                setDefaultTab("benefits");
+              }}
+            >
               Learn More
             </Button>
           </CardContent>
         </Card>
-        
+
         <Card>
           <CardHeader>
             <CardTitle>Rewards</CardTitle>
           </CardHeader>
           <CardContent className="tw:flex tw:flex-col tw:gap-2">
-            <Button onClick={() => {
-              setActiveModal("rewards-configure");
-              setDefaultTab("configure");
-            }}>
+            <Button
+              onClick={() => {
+                setActiveModal("rewards-configure");
+                setDefaultTab("configure");
+              }}
+            >
               Configure
             </Button>
-            <Button onClick={() => {
-              setActiveModal("rewards-benefits");
-              setDefaultTab("benefits");
-            }}>
+            <Button
+              onClick={() => {
+                setActiveModal("rewards-benefits");
+                setDefaultTab("benefits");
+              }}
+            >
               Learn More
             </Button>
           </CardContent>
         </Card>
-        
+
         <Card>
           <CardHeader>
             <CardTitle>Voucher Network</CardTitle>
           </CardHeader>
           <CardContent className="tw:flex tw:flex-col tw:gap-2">
-            <Button onClick={() => {
-              setActiveModal("voucherNetwork-configure");
-              setDefaultTab("configure");
-            }}>
+            <Button
+              onClick={() => {
+                setActiveModal("voucherNetwork-configure");
+                setDefaultTab("configure");
+              }}
+            >
               Configure
             </Button>
-            <Button onClick={() => {
-              setActiveModal("voucherNetwork-benefits");
-              setDefaultTab("benefits");
-            }}>
+            <Button
+              onClick={() => {
+                setActiveModal("voucherNetwork-benefits");
+                setDefaultTab("benefits");
+              }}
+            >
               Learn More
             </Button>
           </CardContent>
@@ -156,8 +184,8 @@ export default function TestTabs(): JSX.Element {
       </div>
 
       {/* Checkout Products Modal */}
-      <Dialog 
-        open={activeModal?.startsWith("checkoutProducts")} 
+      <Dialog
+        open={activeModal?.startsWith("checkoutProducts")}
         onOpenChange={() => setActiveModal(null)}
       >
         <DialogContent className="tw:max-w-[1200px] tw:max-h-[90vh] tw:overflow-y-auto">
@@ -170,8 +198,8 @@ export default function TestTabs(): JSX.Element {
       </Dialog>
 
       {/* Optimize Modal */}
-      <Dialog 
-        open={activeModal?.startsWith("optimize")} 
+      <Dialog
+        open={activeModal?.startsWith("optimize")}
         onOpenChange={() => setActiveModal(null)}
       >
         <DialogContent className="tw:max-w-[1200px] tw:max-h-[90vh] tw:overflow-y-auto">
@@ -185,8 +213,8 @@ export default function TestTabs(): JSX.Element {
       </Dialog>
 
       {/* Employee Benefits Modal */}
-      <Dialog 
-        open={activeModal?.startsWith("employeeBenefits")} 
+      <Dialog
+        open={activeModal?.startsWith("employeeBenefits")}
         onOpenChange={() => setActiveModal(null)}
       >
         <DialogContent className="tw:max-w-[1200px] tw:max-h-[90vh] tw:overflow-y-auto">
@@ -204,8 +232,8 @@ export default function TestTabs(): JSX.Element {
       </Dialog>
 
       {/* Rewards Modal */}
-      <Dialog 
-        open={activeModal?.startsWith("rewards")} 
+      <Dialog
+        open={activeModal?.startsWith("rewards")}
         onOpenChange={() => setActiveModal(null)}
       >
         <DialogContent className="tw:max-w-[1200px] tw:max-h-[90vh] tw:overflow-y-auto">
@@ -219,7 +247,7 @@ export default function TestTabs(): JSX.Element {
                 myOrders: true,
                 myOrdersDetail: true,
                 custom: true,
-              }
+              },
             }}
             defaultTab={defaultTab}
           />
@@ -227,8 +255,8 @@ export default function TestTabs(): JSX.Element {
       </Dialog>
 
       {/* Voucher Network Modal */}
-      <Dialog 
-        open={activeModal?.startsWith("voucherNetwork")} 
+      <Dialog
+        open={activeModal?.startsWith("voucherNetwork")}
         onOpenChange={() => setActiveModal(null)}
       >
         <DialogContent className="tw:max-w-[1200px] tw:max-h-[90vh] tw:overflow-y-auto">
