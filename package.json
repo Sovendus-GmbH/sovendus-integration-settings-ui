@@ -30,6 +30,11 @@
       "import": "./dist/demo/index.mjs",
       "require": "./dist/demo/index.cjs"
     },
+    "./ui": {
+      "types": "./dist/ui/index.d.ts",
+      "import": "./dist/ui/index.mjs",
+      "require": "./dist/ui/index.cjs"
+    },
     "./demo-style-less": {
       "types": "./dist/demo-style-less/index.d.ts",
       "import": "./dist/demo-style-less/index.mjs",

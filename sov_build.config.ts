@@ -23,6 +23,24 @@ const buildConfig: BuildConfig = {
     },
     {
       sovOptions: {
+        input: "src/package/components/shadcn/index.ts",
+        output: "dist/ui/index",
+        type: "react-tailwind",
+        inlineCss: true,
+        packageConfig: {
+          dtsEntryRoot: "src/package/components/shadcn",
+          dtsInclude: ["src/package/components/shadcn/**/*"],
+          isPackage: true,
+        },
+      },
+      viteOptions: {
+        build: {
+          cssCodeSplit: true,
+        },
+      },
+    },
+    {
+      sovOptions: {
         input: "src/package/index.ts",
         output: "dist/package-style-less/index",
         type: "react-tailwind",
