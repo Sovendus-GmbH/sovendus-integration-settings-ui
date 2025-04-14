@@ -1,6 +1,6 @@
 {
   "name": "sovendus-integration-settings-ui",
-  "version": "4.3.4",
+  "version": "4.3.5",
   "license": "GPL-3.0-only",
   "private": false,
   "description": "Sovendus Integration Plugin Settings UI - React/tailwind based UI to configure Sovendus Integration Plugins",
