@@ -45,7 +45,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../../shadcn/select";
-import type { AdditionalSteps } from "../../ui/backend-form";
+import type { AdditionalStep, AdditionalSteps } from "../../ui/backend-form";
 import { CountryOptions } from "../voucher-network";
 import {
   EnabledRewardsCountries,
@@ -191,7 +191,7 @@ function RewardsStatusAlert({
 function AdditionalSetupSteps({
   additionalSteps,
 }: {
-  additionalSteps: AdditionalSteps["rewards"];
+  additionalSteps: AdditionalStep;
 }): JSX.Element {
   return (
     <Card className={cn("tw:border-2 tw:border-teal-500")}>
