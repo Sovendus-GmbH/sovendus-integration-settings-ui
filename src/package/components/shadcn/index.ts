@@ -14,6 +14,7 @@ export * from "./popover";
 export * from "./progress";
 export * from "./scroll-area";
 export * from "./select";
+export * from "./sheet";
 export * from "./switch";
 export * from "./tabs";
 export * from "./textarea";
