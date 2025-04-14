@@ -29,9 +29,11 @@ export default function SettingsUIDemo({
       },
     },
   },
+  urlPrefix = "",
 }: {
   initialSettings?: SovendusAppSettings;
   featureFlags?: SovendusBackendFormFeatureFlags;
+  urlPrefix?: string;
 }): JSX.Element {
   const { currentSettings } = useSettings(_initialSettings || initialSettings);
 
@@ -40,7 +42,7 @@ export default function SettingsUIDemo({
   }
 
   return (
-    <AdminDashboard page="settings">
+    <AdminDashboard page="settings" urlPrefix={urlPrefix}>
       <SovendusBackendForm
         currentStoredSettings={currentSettings}
         saveSettings={saveSettings}

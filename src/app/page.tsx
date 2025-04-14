@@ -9,8 +9,10 @@ import { initialSettings, useSettings } from "./settings-util";
 
 export default function MockDashboard({
   initialSettings: _initialSettings,
+  urlPrefix = "",
 }: {
   initialSettings?: SovendusAppSettings;
+  urlPrefix?: string;
 }): JSX.Element {
   const { currentSettings } = useSettings(_initialSettings || initialSettings);
 
@@ -18,7 +20,7 @@ export default function MockDashboard({
     return <></>;
   }
   return (
-    <AdminDashboard page="dashboard">
+    <AdminDashboard page="dashboard" urlPrefix={urlPrefix}>
       <div>
         <h1 className="tw:text-3xl tw:font-bold tw:tracking-tight">
           Dashboard

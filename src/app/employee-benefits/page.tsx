@@ -9,8 +9,10 @@ import { initialSettings, useSettings } from "../settings-util";
 
 export default function EmployeeBenefitsDemo({
   initialSettings: _initialSettings,
+  urlPrefix = "",
 }: {
   initialSettings?: SovendusAppSettings;
+  urlPrefix?: string;
 }): JSX.Element {
   const { currentSettings } = useSettings(_initialSettings || initialSettings);
 
@@ -18,7 +20,7 @@ export default function EmployeeBenefitsDemo({
     return <></>;
   }
   return (
-    <AdminDashboard page="eBenefits">
+    <AdminDashboard page="eBenefits" urlPrefix={urlPrefix}>
       <SovendusEmployeeBenefitsFullPage
         currentSettings={currentSettings.employeeBenefits}
       />
