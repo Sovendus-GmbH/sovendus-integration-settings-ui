@@ -7,7 +7,7 @@ import {
   type RewardsSettings,
 } from "sovendus-integration-types";
 
-import { cn } from "../utils/utils";
+import { cn } from "../../../utils";
 import type { SovendusRewardsFeatureFlags } from "./rewards";
 
 export function EnabledRewardsCountries({
@@ -74,11 +74,13 @@ export function isRewardsEnabled(
 
                 if (!enabledLocales[pageType as TriggerPages]) {
                   enabledLocales[pageType as TriggerPages] = {
-                    description: pageType,
+                    description: getPageTypeDescription(
+                      pageType as TriggerPages,
+                    ),
                     enabledLocales: [],
                   };
                 }
-                enabledLocales[pageType as TriggerPages]!.enabledLocales.push(
+                enabledLocales[pageType as TriggerPages]?.enabledLocales.push(
                   countryName,
                 );
               }
@@ -88,38 +90,60 @@ export function isRewardsEnabled(
       }
     }
   }
-
   return {
-    enabled: Object.values(enabledLocales).some(
-      (page) => page.enabledLocales.length > 0,
-    ),
+    enabled: Object.keys(enabledLocales).length > 0,
     enabledLocales,
   };
 }
 
 export function getAvailableTriggerPages(
-  featureFlags: SovendusRewardsFeatureFlags | undefined,
+  featureFlags?: SovendusRewardsFeatureFlags,
 ): {
-  id: TriggerPages;
+  value: TriggerPages;
   label: string;
   icon: ElementType;
 }[] {
-  return [
-    ...(featureFlags?.triggers?.myAccountDashboard
-      ? [
-          {
-            id: TriggerPages.MY_ACCOUNT_DASHBOARD,
-            label: "My Account Dashboard",
-            icon: Layout,
-          },
-        ]
-      : []),
-    { id: TriggerPages.MY_ORDERS, label: "My Orders Page", icon: Gift },
+  const pages = [
     {
-      id: TriggerPages.MY_ORDERS_DETAIL,
-      label: "My Order Detail Page",
-      icon: Gift,
+      value: TriggerPages.MY_ACCOUNT_DASHBOARD,
+      label: "My Account Dashboard",
+      icon: Layout,
+      enabled: featureFlags?.triggers?.[TriggerPages.MY_ACCOUNT_DASHBOARD],
     },
-    { id: TriggerPages.CUSTOM, label: "Custom Page", icon: PlusCircle },
+    {
+      value: TriggerPages.MY_ORDERS,
+      label: "My Orders",
+      icon: Gift,
+      enabled: featureFlags?.triggers?.[TriggerPages.MY_ORDERS],
+    },
+    {
+      value: TriggerPages.MY_ORDERS_DETAIL,
+      label: "Order Detail",
+      icon: Gift,
+      enabled: featureFlags?.triggers?.[TriggerPages.MY_ORDERS_DETAIL],
+    },
+    {
+      value: TriggerPages.CUSTOM,
+      label: "Custom Page",
+      icon: PlusCircle,
+      enabled: featureFlags?.triggers?.[TriggerPages.CUSTOM],
+    },
   ];
+
+  return pages.filter((page) => page.enabled !== false);
+}
+
+function getPageTypeDescription(pageType: TriggerPages): string {
+  switch (pageType) {
+    case TriggerPages.MY_ACCOUNT_DASHBOARD:
+      return "My Account Dashboard";
+    case TriggerPages.MY_ORDERS:
+      return "My Orders";
+    case TriggerPages.MY_ORDERS_DETAIL:
+      return "Order Detail";
+    case TriggerPages.CUSTOM:
+      return "Custom Page";
+    default:
+      return pageType;
+  }
 }

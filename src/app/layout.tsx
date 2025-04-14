@@ -1,4 +1,4 @@
-import "../package/components/app.css";
+import "../package/components/ui/app.css";
 
 import type { JSX, ReactNode } from "react";
 

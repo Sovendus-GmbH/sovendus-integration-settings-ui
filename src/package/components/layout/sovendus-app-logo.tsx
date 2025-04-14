@@ -1,6 +1,6 @@
 import type { JSX } from "react";
 
-import logo from "../../logos/sovendus-logo.png";
+import logo from "../../../logos/sovendus-logo.png";
 
 export function SovendusAppLogo(): JSX.Element {
   return (

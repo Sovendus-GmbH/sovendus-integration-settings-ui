@@ -2,10 +2,10 @@ import { ChevronRight, Presentation } from "lucide-react";
 import type { JSX } from "react";
 import React from "react";
 
-import { cn } from "../utils/utils";
-import { Badge } from "./shadcn/badge";
-import { Button } from "./shadcn/button";
-import { Card, CardContent, CardHeader, CardTitle } from "./shadcn/card";
+import { cn } from "../../utils";
+import { Badge } from "../shadcn/badge";
+import { Button } from "../shadcn/button";
+import { Card, CardContent, CardHeader, CardTitle } from "../shadcn/card";
 
 interface ProductCardProps {
   title: string;
@@ -14,13 +14,16 @@ interface ProductCardProps {
   status: {
     active: boolean;
     details: React.ReactNode;
+    noTitle?: boolean;
   };
   metrics: {
     label: string;
     value: string;
   }[];
   onConfigure: () => void;
+  onLearnMore?: () => void;
   buttonsDisabled: boolean;
+  notActiveText?: string;
 }
 
 export function ProductCard({
@@ -30,7 +33,9 @@ export function ProductCard({
   status,
   metrics,
   onConfigure,
+  onLearnMore,
   buttonsDisabled,
+  notActiveText = "Not Active",
 }: ProductCardProps): JSX.Element {
   return (
     <Card className={cn("tw:w-full")}>
@@ -56,7 +61,7 @@ export function ProductCard({
                 : "tw:bg-gray-100 tw:text-gray-800 tw:hover:bg-gray-100",
             )}
           >
-            {status.active ? "Active" : "Not Active"}
+            {status.active ? "Active" : notActiveText}
           </Badge>
         </div>
       </CardHeader>
@@ -77,7 +82,7 @@ export function ProductCard({
             ))}
           </div>
           <div className={cn("tw:flex tw:gap-2")}>
-            <Button variant="outline" onClick={onConfigure}>
+            <Button variant="outline" onClick={onLearnMore || onConfigure}>
               Learn more
               <Presentation className={cn("tw:ml-2 tw:h-4 tw:w-4")} />
             </Button>
@@ -87,14 +92,17 @@ export function ProductCard({
             </Button>
           </div>
         </div>
-        {status.details && (
-          <div className={cn("tw:mt-4 tw:p-4 tw:bg-gray-50 tw:rounded-lg")}>
-            <div className={cn("tw:text-sm tw:font-semibold tw:mb-2")}>
-              Current Configuration
+        {status.details &&
+          (status.noTitle ? (
+            status.details
+          ) : (
+            <div className={cn("tw:mt-4 tw:p-4 tw:bg-gray-50 tw:rounded-lg")}>
+              <div className={cn("tw:text-sm tw:font-semibold tw:mb-2")}>
+                Current Configuration
+              </div>
+              {status.details}
             </div>
-            {status.details}
-          </div>
-        )}
+          ))}
       </CardContent>
     </Card>
   );

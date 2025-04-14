@@ -5,8 +5,8 @@ import type {
   SovendusAppSettings,
 } from "sovendus-integration-types";
 
-import { SovendusBackendForm } from "./components/backend-form";
-import { loggerError, loggerInfo } from "./utils/utils";
+import { SovendusBackendForm } from "./components/ui/backend-form";
+import { loggerError, loggerInfo } from "./utils";
 
 declare const window: SettingsUiWindow;
 

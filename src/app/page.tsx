@@ -1,11 +1,9 @@
 "use client";
 
-import "../package/components/app.css";
-
 import { type JSX } from "react";
 import { type SovendusAppSettings } from "sovendus-integration-types";
 
-import { SovendusEmployeeBenefitsSelector } from "../package/components/employee-benefits/employee-benefits";
+import { SovendusEmployeeBenefitsSelector } from "../package/components/features/employee-benefits/employee-benefits";
 import { AdminDashboard } from "./components/mock-admin-dashboard";
 import { initialSettings, useSettings } from "./settings-util";
 

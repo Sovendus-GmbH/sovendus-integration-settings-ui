@@ -1,8 +1,8 @@
 import type { JSX } from "react";
 
-import { version } from "../utils/constants";
-import { cn } from "../utils/utils";
-import { Card, CardHeader } from "./shadcn/card";
+import { version } from "../../utils";
+import { cn } from "../../utils";
+import { Card, CardHeader } from "../shadcn/card";
 
 export function Footer(): JSX.Element {
   return (

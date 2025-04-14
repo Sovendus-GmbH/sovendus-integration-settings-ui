@@ -9,7 +9,7 @@ import type {
 } from "react";
 import { forwardRef, type JSX } from "react";
 
-import { cn } from "../../utils/utils";
+import { cn } from "../../utils";
 
 const DropdownMenu = DropdownMenuPrimitive.Root;
 

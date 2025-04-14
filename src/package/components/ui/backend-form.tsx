@@ -5,22 +5,31 @@ import type { JSX } from "react";
 import React, { useEffect, useMemo, useState } from "react";
 import { type SovendusAppSettings } from "sovendus-integration-types";
 
-import { cleanConfig, cn, loggerInfo } from "../utils/utils";
-import { SovendusCheckoutProducts } from "./checkout-products";
+import { cleanConfig, cn, loggerInfo } from "../../utils";
+import { SovendusCheckoutProducts } from "../features/checkout-products";
+import { SovendusEmployeeBenefitsProductCard } from "../features/employee-benefits";
+import {
+  type SovendusEmployeeBenefitsFeatureFlags,
+  SovendusEmployeeBenefitsSettings,
+} from "../features/employee-benefits/employee-benefits-settings";
+import {
+  EnabledOptimizeCountries,
+  SovendusOptimize,
+} from "../features/optimize";
+import { EnabledRewardsCountries, isRewardsEnabled } from "../features/rewards";
+import {
+  SovendusRewards,
+  type SovendusRewardsFeatureFlags,
+} from "../features/rewards/rewards";
+import {
+  EnabledVoucherNetworkCountries,
+  SovendusVoucherNetwork,
+} from "../features/voucher-network";
+import { Footer } from "../layout";
+import { Alert, AlertDescription, AlertTitle } from "../shadcn/alert";
 import { ConfigurationDialog } from "./confirmation-dialog";
-import type { SovendusEmployeeBenefitsFeatureFlags } from "./employee-benefits/employee-benefits-settings";
-import { SovendusEmployeeBenefitsSettings } from "./employee-benefits/employee-benefits-settings";
-import { Footer } from "./footer";
 import { Notification } from "./notification";
-import { SovendusOptimize } from "./optimize";
-import { EnabledOptimizeCountries } from "./optimize-country-options";
 import { ProductCard } from "./product-card";
-import type { SovendusRewardsFeatureFlags } from "./rewards";
-import { SovendusRewards } from "./rewards";
-import { EnabledRewardsCountries, isRewardsEnabled } from "./rewards-options";
-import { Alert, AlertDescription, AlertTitle } from "./shadcn/alert";
-import { SovendusVoucherNetwork } from "./voucher-network";
-import { EnabledVoucherNetworkCountries } from "./voucher-network-country-options";
 
 export interface AdditionalStep {
   title: string;
@@ -34,6 +43,11 @@ export interface AdditionalSteps {
   rewards?: AdditionalStep;
 }
 
+export interface SovendusBackendFormFeatureFlags {
+  rewards?: SovendusRewardsFeatureFlags;
+  employeeBenefits?: SovendusEmployeeBenefitsFeatureFlags;
+}
+
 export interface SovendusBackendFormProps {
   currentStoredSettings: SovendusAppSettings;
   saveSettings: (data: SovendusAppSettings) => Promise<SovendusAppSettings>;
@@ -41,11 +55,15 @@ export interface SovendusBackendFormProps {
   zoomedVersion?: boolean;
   callSaveOnLoad: boolean;
   debug?: boolean;
-  featureFlags?: {
-    rewards?: SovendusRewardsFeatureFlags;
-    employeeBenefits?: SovendusEmployeeBenefitsFeatureFlags;
-  };
+  featureFlags?: SovendusBackendFormFeatureFlags;
 }
+
+export type AvailableProducts =
+  | "voucherNetwork"
+  | "optimize"
+  | "checkoutProducts"
+  | "employeeBenefits"
+  | "rewards";
 
 export const DEMO_REQUEST_URL =
   "https://online.sovendus.com/kontakt/demo-tour-kontaktformular/#";
@@ -69,8 +87,11 @@ export function SovendusBackendForm({
     loggerInfo("Current stored settings:", currentStoredSettings);
   }
   const [activeConfig, setActiveConfig] = useState<
-    "voucherNetwork" | "optimize" | "checkoutProducts" | "rewards" | null
-  >(null);
+    AvailableProducts | undefined
+  >(undefined);
+  const [activeTab, setActiveTab] = useState<
+    "configure" | "benefits" | "how-it-works"
+  >("configure");
   const [notificationState, setNotificationState] = useState<{
     message: string;
     type: "success" | "error" | "loading";
@@ -85,7 +106,7 @@ export function SovendusBackendForm({
           JSON.stringify(currentStoredSettings);
         const prevActiveConfig = activeConfig;
         try {
-          setActiveConfig(null);
+          setActiveConfig(undefined);
           if (hasUnsavedChanges) {
             setNotificationState({
               message: "Saving settings...",
@@ -226,10 +247,12 @@ export function SovendusBackendForm({
 
         <div className={cn("tw:grid tw:gap-6")}>
           {featureFlags?.employeeBenefits?.isEnabled ? (
-            <SovendusEmployeeBenefitsSettings
+            <SovendusEmployeeBenefitsProductCard
               setCurrentSettings={setCurrentSettings}
               currentSettings={currentSettings.employeeBenefits}
-              featureFlags={featureFlags?.employeeBenefits}
+              buttonsDisabled={buttonsDisabled}
+              setActiveConfig={setActiveConfig}
+              setActiveTab={setActiveTab}
             />
           ) : (
             <></>
@@ -246,7 +269,14 @@ export function SovendusBackendForm({
               { label: "Partner Shops", value: "2,300+" },
               { label: "Available Countries", value: "14" },
             ]}
-            onConfigure={(): void => setActiveConfig("voucherNetwork")}
+            onConfigure={(): void => {
+              setActiveTab("configure");
+              setActiveConfig("voucherNetwork");
+            }}
+            onLearnMore={(): void => {
+              setActiveTab("benefits");
+              setActiveConfig("voucherNetwork");
+            }}
           />
 
           {featureFlags?.rewards?.rewardsEnabled ? (
@@ -261,7 +291,14 @@ export function SovendusBackendForm({
                 { label: "Repeat Purchases", value: "+15%" },
                 { label: "Account Logins", value: "+30%" },
               ]}
-              onConfigure={(): void => setActiveConfig("rewards")}
+              onConfigure={(): void => {
+                setActiveTab("configure");
+                setActiveConfig("rewards");
+              }}
+              onLearnMore={(): void => {
+                setActiveTab("benefits");
+                setActiveConfig("rewards");
+              }}
             />
           ) : (
             <></>
@@ -280,7 +317,14 @@ export function SovendusBackendForm({
               { label: "Bounce Rate Reduction", value: "5%" },
               { label: "Newsletter Sign-up Boost ", value: "15%" },
             ]}
-            onConfigure={(): void => setActiveConfig("optimize")}
+            onConfigure={(): void => {
+              setActiveTab("configure");
+              setActiveConfig("optimize");
+            }}
+            onLearnMore={(): void => {
+              setActiveTab("benefits");
+              setActiveConfig("optimize");
+            }}
           />
 
           <ProductCard
@@ -298,7 +342,14 @@ export function SovendusBackendForm({
               { label: "Conversion Rate", value: "1-3%" },
               { label: "Ad Impressions", value: "185M+" },
             ]}
-            onConfigure={(): void => setActiveConfig("checkoutProducts")}
+            onConfigure={(): void => {
+              setActiveTab("configure");
+              setActiveConfig("checkoutProducts");
+            }}
+            onLearnMore={(): void => {
+              setActiveTab("benefits");
+              setActiveConfig("checkoutProducts");
+            }}
           />
         </div>
         <Footer />
@@ -312,13 +363,13 @@ export function SovendusBackendForm({
         <ConfigurationDialog
           open={activeConfig === "voucherNetwork"}
           onOpenChange={(open): void => void handleSave(open)}
-          title="Configure Voucher Network & Checkout Benefits"
           zoomedVersion={zoomedVersion}
         >
           <SovendusVoucherNetwork
             currentSettings={currentSettings.voucherNetwork}
             setCurrentSettings={setCurrentSettings}
             additionalSteps={additionalSteps?.voucherNetwork}
+            defaultTab={activeTab}
           />
         </ConfigurationDialog>
 
@@ -326,7 +377,6 @@ export function SovendusBackendForm({
           <ConfigurationDialog
             open={activeConfig === "rewards"}
             onOpenChange={(open): void => void handleSave(open)}
-            title="Configure Sovendus Rewards"
             zoomedVersion={zoomedVersion}
           >
             <SovendusRewards
@@ -334,6 +384,24 @@ export function SovendusBackendForm({
               setCurrentSettings={setCurrentSettings}
               additionalSteps={additionalSteps?.rewards}
               featureFlags={featureFlags?.rewards}
+              defaultTab={activeTab}
+            />
+          </ConfigurationDialog>
+        ) : (
+          <></>
+        )}
+
+        {featureFlags?.employeeBenefits?.isEnabled ? (
+          <ConfigurationDialog
+            open={activeConfig === "employeeBenefits"}
+            onOpenChange={(open): void => void handleSave(open)}
+            zoomedVersion={zoomedVersion}
+          >
+            <SovendusEmployeeBenefitsSettings
+              currentSettings={currentSettings.employeeBenefits}
+              featureFlags={featureFlags?.employeeBenefits}
+              setCurrentSettings={setCurrentSettings}
+              defaultTab={activeTab}
             />
           </ConfigurationDialog>
         ) : (
@@ -343,7 +411,6 @@ export function SovendusBackendForm({
         <ConfigurationDialog
           open={activeConfig === "optimize"}
           onOpenChange={(open): void => void handleSave(open)}
-          title="Configure Optimize"
           zoomedVersion={zoomedVersion}
         >
           <SovendusOptimize
@@ -351,19 +418,20 @@ export function SovendusBackendForm({
             savedOptimizeSettings={currentStoredSettings.optimize}
             setCurrentSettings={setCurrentSettings}
             additionalSteps={additionalSteps?.optimize}
+            defaultTab={activeTab}
           />
         </ConfigurationDialog>
 
         <ConfigurationDialog
           open={activeConfig === "checkoutProducts"}
           onOpenChange={(open): void => void handleSave(open)}
-          title="Configure Checkout Products"
           zoomedVersion={zoomedVersion}
         >
           <SovendusCheckoutProducts
             enabled={currentSettings.checkoutProducts || false}
             setCurrentSettings={setCurrentSettings}
             additionalSteps={additionalSteps?.checkoutProducts}
+            defaultTab={activeTab}
           />
         </ConfigurationDialog>
       </div>
@@ -375,6 +443,7 @@ export function SovendusBackendForm({
     featureFlags?.rewards,
     currentSettings,
     activeConfig,
+    activeTab,
     additionalSteps?.voucherNetwork,
     additionalSteps?.rewards,
     additionalSteps?.optimize,

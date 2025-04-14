@@ -16,9 +16,9 @@ import Link from "next/link";
 import type { JSX, ReactNode } from "react";
 import { useState } from "react";
 
+import { SovendusAppLogo } from "../../package/components/layout";
 import { Button } from "../../package/components/shadcn/button";
 import { ScrollArea } from "../../package/components/shadcn/scroll-area";
-import { SovendusAppLogo } from "../../package/components/sovendus-app-logo";
 
 export function AdminSidebar({
   page,

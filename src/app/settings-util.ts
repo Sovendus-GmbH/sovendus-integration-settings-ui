@@ -2,7 +2,7 @@ import type { Dispatch, SetStateAction } from "react";
 import { useEffect, useState } from "react";
 import { type SovendusAppSettings, Versions } from "sovendus-integration-types";
 
-import { loggerInfo } from "../package/utils/utils";
+import { loggerInfo } from "../package";
 
 export const initialSettings: SovendusAppSettings = {
   version: Versions.THREE,

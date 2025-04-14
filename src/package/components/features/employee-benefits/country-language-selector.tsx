@@ -9,9 +9,9 @@ import {
 } from "sovendus-integration-types";
 import { LANGUAGES_BY_COUNTRIES } from "sovendus-integration-types";
 
-import { loggerError } from "../../utils/utils";
-import { Button } from "../shadcn/button";
-import { Popover, PopoverContent, PopoverTrigger } from "../shadcn/popover";
+import { loggerError } from "../../../utils";
+import { Button } from "../../shadcn/button";
+import { Popover, PopoverContent, PopoverTrigger } from "../../shadcn/popover";
 
 interface CountryLanguageSelectorProps {
   selectedOption?: `${CountryCodes}-${LanguageCodes}` | undefined;
@@ -110,7 +110,7 @@ export function CountryLanguageSelector({
     return (
       <span className="tw:flex tw:items-center">
         <span className="tw:mr-1.5 tw:text-lg">{getCountryFlag(country)}</span>
-        <span>{`${country}${languageName !== country ? ` - ${languageName}` : ""}`}</span>
+        <span>{`${languageName !== country ? `${languageName}` : ""}`}</span>
       </span>
     );
   };
@@ -328,11 +328,11 @@ const linksByCountry: {
     "https://sovendus.com/campaign/directlink/eb8ac7e7-8135-4328-b3a4-90e43f9e8a95",
   [CountryCodes.CH]: {
     [LanguageCodes.DE]:
-      "https://sovendus.com/campaign/directlink/2e7f5cf0-7fbe-4f1a-9337-ff5e214f049b",
+      "https://sovendus.com/campaign/directlink/df300cb4-b2b0-440a-bc73-a6501d78e973",
     [LanguageCodes.FR]:
-      "https://sovendus.com/campaign/directlink/9a7e13af-9bfc-4a0c-8f3b-f4aeed11a39a",
+      "https://sovendus.com/campaign/directlink/5e17dabd-f8d9-4547-b3a9-2e0f45d8185e",
     [LanguageCodes.IT]:
-      "https://sovendus.com/campaign/directlink/b2af35cd-339a-4f67-a9c3-89fcde9df5c1",
+      "https://sovendus.com/campaign/directlink/c779f47c-d794-473d-b751-0d3a5a0be544",
   },
   [CountryCodes.GB]:
     "https://sovendus.com/campaign/directlink/ddd1da8f-cae9-488a-9ab1-90b8f5692853",
