@@ -84,7 +84,7 @@ export function AdminSidebar({
           <SidebarItem
             icon={<Home />}
             label="Website"
-            href={urlPrefix ? `${urlPrefix}/` : "#"}
+            href={urlPrefix ? "/" : "#"}
             collapsed={collapsed}
           />
           <SidebarItem
