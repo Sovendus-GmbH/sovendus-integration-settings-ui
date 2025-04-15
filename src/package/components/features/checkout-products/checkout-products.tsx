@@ -105,7 +105,7 @@ function ConfigureContent({
                   "tw:text-sm tw:text-gray-800 tw:mt-1 tw:font-medium",
                 )}
               >
-                Display additional product offers during checkout
+                Handles conversion tracking for Checkout Products.
               </p>
             </div>
             <Switch
