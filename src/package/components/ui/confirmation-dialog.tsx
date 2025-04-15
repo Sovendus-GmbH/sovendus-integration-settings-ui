@@ -5,12 +5,6 @@ import React from "react";
 import { cn } from "../../utils";
 import { Button } from "../shadcn/button";
 import { Dialog, DialogContent } from "../shadcn/dialog";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "../shadcn/tooltip";
 
 interface ConfigurationDialogProps {
   open: boolean;
@@ -39,26 +33,17 @@ export function ConfigurationDialog({
           )}
         >
           <div className={cn("tw:flex tw:items-center tw:gap-2")}>
-            <TooltipProvider>
-              <Tooltip>
-                <TooltipTrigger>
-                  <Button
-                    variant={"unstyled"}
-                    size={"unstyled"}
-                    onClick={(): void => onOpenChange(false)}
-                    className={cn(
-                      "tw:p-2 tw:rounded-full tw:bg-green-200 tw:hover:bg-green-300 tw:transition-colors",
-                    )}
-                  >
-                    <X style={{ width: "unset", height: "unset" }} />
-                    <span className={cn("tw:sr-only")}>Close</span>
-                  </Button>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>Save and close</p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
+            <Button
+              variant={"unstyled"}
+              size={"unstyled"}
+              onClick={(): void => onOpenChange(false)}
+              className={cn(
+                "tw:p-2 tw:rounded-full tw:bg-green-200 tw:hover:bg-green-300 tw:transition-colors",
+              )}
+            >
+              <X style={{ width: "unset", height: "unset" }} />
+              <span className={cn("tw:sr-only")}>Close</span>
+            </Button>
           </div>
         </div>
         <div className=" tw:mt-[-70px]">

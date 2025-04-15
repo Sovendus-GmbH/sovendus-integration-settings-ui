@@ -3,7 +3,7 @@
 import { type JSX } from "react";
 import { type SovendusAppSettings } from "sovendus-integration-types";
 
-import { SovendusEmployeeBenefitsSelector } from "../package/components/features/employee-benefits/employee-benefits";
+import { SovendusEmployeeBenefitsWidget } from "../package/components/features/employee-benefits/employee-benefits-widget";
 import { AdminDashboard } from "./components/mock-admin-dashboard";
 import { initialSettings, useSettings } from "./settings-util";
 
@@ -28,7 +28,7 @@ export default function MockDashboard({
         <p className="tw:text-muted-foreground tw:mt-2">Welcome back, Admin</p>
       </div>
 
-      <SovendusEmployeeBenefitsSelector />
+      <SovendusEmployeeBenefitsWidget />
 
       {/* Overview Cards */}
       <div className="tw:grid tw:gap-4 tw:md:grid-cols-2 tw:lg:grid-cols-4">

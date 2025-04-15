@@ -20,11 +20,14 @@ interface SovendusEmployeeBenefitsFullPageProps {
   currentSettings?: EmployeeBenefitsSettings | undefined;
 }
 
-export function SovendusEmployeeBenefitsFullPage(
-  _props: SovendusEmployeeBenefitsFullPageProps,
-): JSX.Element {
+export function SovendusEmployeeBenefitsFullPage({
+  currentSettings,
+}: SovendusEmployeeBenefitsFullPageProps): JSX.Element {
   const [selectedOption, setSelectedOption] =
     useState<`${CountryCodes}-${LanguageCodes}`>();
+  if (!currentSettings?.addToSidebar) {
+    return <></>;
+  }
   const featuredOffers = [
     {
       title: "Online Shopping",

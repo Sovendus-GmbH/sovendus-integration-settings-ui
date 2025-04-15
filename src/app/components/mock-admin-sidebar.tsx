@@ -19,6 +19,7 @@ import { useState } from "react";
 import { SovendusAppLogo } from "../../package/components/layout";
 import { Button } from "../../package/components/shadcn/button";
 import { ScrollArea } from "../../package/components/shadcn/scroll-area";
+import { initialSettings, useSettings } from "../settings-util";
 
 export function AdminSidebar({
   page,
@@ -28,6 +29,12 @@ export function AdminSidebar({
   urlPrefix?: string;
 }): JSX.Element {
   const [collapsed, setCollapsed] = useState(false);
+
+  const { currentSettings } = useSettings(initialSettings);
+
+  if (!currentSettings) {
+    return <></>;
+  }
 
   const toggleSidebar = (): void => {
     setCollapsed(!collapsed);
@@ -117,13 +124,17 @@ export function AdminSidebar({
             href="#"
             collapsed={collapsed}
           />
-          <SidebarItem
-            icon={<SovendusAppLogo />}
-            label="Employee Benefits"
-            href={`${urlPrefix}/employee-benefits`}
-            collapsed={collapsed}
-            active={page === "eBenefits"}
-          />
+          {currentSettings.employeeBenefits?.addToSidebar ? (
+            <SidebarItem
+              icon={<SovendusAppLogo />}
+              label="Employee Benefits"
+              href={`${urlPrefix}/employee-benefits`}
+              collapsed={collapsed}
+              active={page === "eBenefits"}
+            />
+          ) : (
+            <></>
+          )}
         </div>
 
         <div className="tw:px-3 tw:py-2">
