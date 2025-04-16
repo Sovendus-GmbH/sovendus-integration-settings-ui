@@ -53,7 +53,7 @@ export function AdminSidebar({
         >
           <ShoppingCart className="tw:h-6 tw:w-6 tw:text-primary" />
           {!collapsed && (
-            <span className="tw:ml-2 tw:font-bold tw:text-lg">StyleShop</span>
+            <span className="tw:ml-2 tw:font-bold tw:text-lg">TestShop</span>
           )}
         </div>
         <Button
