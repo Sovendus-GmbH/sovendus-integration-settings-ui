@@ -92,6 +92,7 @@ export function AdminSidebar({
             icon={<Home />}
             label="Website"
             href={urlPrefix ? "/" : "#"}
+            refresh={true}
             collapsed={collapsed}
           />
           <SidebarItem
@@ -186,6 +187,7 @@ interface SidebarItemProps {
   href: string;
   collapsed: boolean;
   active?: boolean;
+  refresh?: boolean;
 }
 
 function SidebarItem({
@@ -194,9 +196,11 @@ function SidebarItem({
   href,
   collapsed,
   active,
+  refresh,
 }: SidebarItemProps): JSX.Element {
+  const Element = refresh ? "a" : Link;
   return (
-    <Link
+    <Element
       href={href}
       className={`tw:flex tw:items-center tw:py-2 tw:px-3 tw:rounded-md tw:text-sm ${
         active
@@ -206,6 +210,6 @@ function SidebarItem({
     >
       <span className="tw:mr-2">{icon}</span>
       {!collapsed && <span>{label}</span>}
-    </Link>
+    </Element>
   );
 }
