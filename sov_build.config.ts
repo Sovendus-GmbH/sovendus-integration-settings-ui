@@ -27,6 +27,7 @@ const buildConfig: BuildConfig = {
         output: "dist/ui/index",
         type: "react-tailwind",
         inlineCss: true,
+        modulesToExternalize: ["next/link", "next/router"],
         packageConfig: {
           dtsEntryRoot: "src/package/components/shadcn",
           dtsInclude: ["src/package/components/shadcn/**/*"],
@@ -63,7 +64,7 @@ const buildConfig: BuildConfig = {
         output: "dist/demo/index",
         type: "react-tailwind",
         inlineCss: true,
-        modulesToExternalize: ["next"],
+        modulesToExternalize: ["next/link", "next/router"],
         packageConfig: {
           dtsEntryRoot: "src/app",
           dtsInclude: ["src/app/**/*"],
@@ -77,7 +78,7 @@ const buildConfig: BuildConfig = {
         output: "dist/demo-style-less/index",
         type: "react-tailwind",
         inlineCss: false,
-        modulesToExternalize: ["next"],
+        modulesToExternalize: ["next/link", "next/router"],
         packageConfig: {
           dtsEntryRoot: "src/app",
           dtsInclude: ["src/app/**/*"],
