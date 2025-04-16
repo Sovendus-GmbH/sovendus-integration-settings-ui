@@ -63,6 +63,7 @@ const buildConfig: BuildConfig = {
         output: "dist/demo/index",
         type: "react-tailwind",
         inlineCss: true,
+        modulesToExternalize: ["next"],
         packageConfig: {
           dtsEntryRoot: "src/app",
           dtsInclude: ["src/app/**/*"],
@@ -76,6 +77,7 @@ const buildConfig: BuildConfig = {
         output: "dist/demo-style-less/index",
         type: "react-tailwind",
         inlineCss: false,
+        modulesToExternalize: ["next"],
         packageConfig: {
           dtsEntryRoot: "src/app",
           dtsInclude: ["src/app/**/*"],
