@@ -4,13 +4,14 @@ import { ChevronLeft, Gauge, Settings, Trash2 } from "lucide-react";
 import Link from "next/link";
 import type { Dispatch, JSX, SetStateAction } from "react";
 import { useState } from "react";
+
 import {
   Button,
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
-} from "sovendus-integration-settings-ui/ui";
+} from "../../package/components/shadcn";
 
 interface AdminBarProps {
   configContent?: (
