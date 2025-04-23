@@ -1,7 +1,6 @@
 "use client";
 
 import { ChevronLeft, Gauge, Settings, Trash2 } from "lucide-react";
-import Link from "next/link";
 import type { Dispatch, JSX, SetStateAction } from "react";
 import { useState } from "react";
 
@@ -33,13 +32,13 @@ export function AdminBar({
       <div className="tw:bg-black tw:text-white tw:h-10 tw:fixed tw:top-0 tw:left-0 tw:right-0 tw:z-50 tw:flex tw:items-center tw:px-4 tw:shadow-md">
         <div className="tw:flex tw:items-center tw:justify-between tw:w-full">
           <div className="tw:flex tw:items-center tw:space-x-4">
-            <Link
+            <a
               href={"/site"}
               className="tw:flex tw:items-center tw:text-sm tw:font-medium tw:hover:text-gray-300"
             >
               <ChevronLeft className="tw:h-4 tw:w-4 tw:mr-1" />
               Back to Website
-            </Link>
+            </a>
             <div className="tw:h-4 tw:border-r tw:border-gray-700"></div>
             <div className="tw:flex tw:items-center tw:text-sm">
               <Gauge className="tw:h-4 tw:w-4 tw:mr-1" />
