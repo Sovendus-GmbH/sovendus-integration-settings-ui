@@ -48,3 +48,7 @@ export async function saveSettings(
   localStorage.setItem("sovendus-settings", JSON.stringify(newSettings));
   return newSettings;
 }
+
+export function clearSettings(): void {
+  localStorage.removeItem("sovendus-settings");
+}

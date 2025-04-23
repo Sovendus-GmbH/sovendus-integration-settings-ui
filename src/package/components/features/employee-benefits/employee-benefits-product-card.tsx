@@ -16,14 +16,8 @@ import {
 } from "sovendus-integration-types";
 
 import { cn } from "../../../utils";
-import { Button } from "../../shadcn/button";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "../../shadcn/card";
+import { Button } from "../../shadcn";
+import { Card, CardContent, CardHeader, CardTitle } from "../../shadcn/card";
 import type { AvailableProducts } from "../../ui/backend-form";
 import { CountryLanguageSelector } from "./country-language-selector";
 
@@ -114,16 +108,52 @@ export function SovendusEmployeeBenefitsProductCard({
           </div>
         </div>
 
-        <div className={cn("tw:mb-4 tw:border-t tw:border-gray-100 tw:pt-4")}>
-          <h3 className={cn("tw:text-lg tw:font-semibold tw:mb-2")}>
-            Try it now!
-          </h3>
-          <p className={cn("tw:text-gray-700")}>
-            Select your region below to access exclusive discounts from top
-            brands for your employees:
-          </p>
+        <div className={cn("tw:border-t tw:border-gray-100 tw:pt-4 tw:mb-4")}>
+          <div
+            className={cn("tw:grid tw:grid-cols-12 tw:gap-4 tw:items-center")}
+          >
+            <div className={cn("tw:col-span-7")}>
+              <h3 className={cn("tw:text-lg tw:font-semibold tw:mb-2")}>
+                Try it now!
+              </h3>
+              <p className={cn("tw:text-gray-700")}>
+                Select your region below to access exclusive discounts from top
+                brands for your employees:
+              </p>
+            </div>
+            <div
+              className={cn("tw:col-span-5 tw:flex tw:justify-end tw:gap-3")}
+            >
+              <Button
+                variant="outline"
+                className={cn("tw:text-blue-600 tw:font-medium")}
+                disabled={buttonsDisabled}
+                onClick={(): void => {
+                  if (setActiveTab) {
+                    setActiveTab("benefits");
+                  }
+                  setActiveConfig("employeeBenefits");
+                }}
+              >
+                Learn More
+                <Presentation className={cn("tw:ml-1 tw:h-4 tw:w-4")} />
+              </Button>
+              <Button
+                className={cn("tw:bg-blue-600 tw:text-white")}
+                disabled={buttonsDisabled}
+                onClick={(): void => {
+                  if (setActiveTab) {
+                    setActiveTab("configure");
+                  }
+                  setActiveConfig("employeeBenefits");
+                }}
+              >
+                Configure
+                <ArrowRight className={cn("tw:ml-1 tw:h-4 tw:w-4")} />
+              </Button>
+            </div>
+          </div>
         </div>
-
         <div
           className={cn(
             "tw:bg-blue-50 tw:p-5 tw:rounded-lg tw:border tw:border-blue-200 tw:shadow-sm",
@@ -141,40 +171,6 @@ export function SovendusEmployeeBenefitsProductCard({
           />
         </div>
       </CardContent>
-
-      <CardFooter
-        className={cn(
-          "tw:bg-gray-50 tw:border-t tw:border-gray-100 tw:flex tw:justify-end tw:gap-4",
-        )}
-      >
-        <Button
-          variant="outline"
-          className={cn("tw:text-blue-600 tw:font-medium")}
-          disabled={buttonsDisabled}
-          onClick={(): void => {
-            if (setActiveTab) {
-              setActiveTab("benefits");
-            }
-            setActiveConfig("employeeBenefits");
-          }}
-        >
-          Learn More
-          <Presentation className={cn("tw:ml-1 tw:h-4 tw:w-4")} />
-        </Button>
-        <Button
-          className={cn("tw:bg-blue-600 tw:text-white")}
-          disabled={buttonsDisabled}
-          onClick={(): void => {
-            if (setActiveTab) {
-              setActiveTab("configure");
-            }
-            setActiveConfig("employeeBenefits");
-          }}
-        >
-          Configure
-          <ArrowRight className={cn("tw:ml-1 tw:h-4 tw:w-4")} />
-        </Button>
-      </CardFooter>
     </Card>
   );
 }
