@@ -5,6 +5,7 @@ import type { Dispatch, JSX, SetStateAction } from "react";
 import { useState } from "react";
 
 import {
+  Badge,
   Button,
   Dialog,
   DialogContent,
@@ -43,8 +44,10 @@ export function AdminBar({
             <div className="tw:flex tw:items-center tw:text-sm">
               <Gauge className="tw:h-4 tw:w-4 tw:mr-1" />
               <span>
-                Current Page Type:{" "}
-                <span className="tw:font-medium">{pageName}</span>
+                Current Page Type:
+                <Badge variant={"destructive"} className="ml-1 font-medium">
+                  {pageName}
+                </Badge>
               </span>
             </div>
           </div>
