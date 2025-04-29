@@ -2,10 +2,10 @@ import * as React from "react";
 
 /**
  * VisuallyHidden component
- * 
+ *
  * This component is used to hide content visually while keeping it accessible to screen readers.
  * It's useful for providing context to screen reader users without affecting the visual layout.
- * 
+ *
  * Usage:
  * <VisuallyHidden>This text is only visible to screen readers</VisuallyHidden>
  */
