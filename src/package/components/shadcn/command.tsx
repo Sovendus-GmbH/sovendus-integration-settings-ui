@@ -6,7 +6,8 @@ import { Search } from "lucide-react";
 import * as React from "react";
 
 import { cn } from "../../utils";
-import { Dialog, DialogContent } from "./dialog";
+import { Dialog, DialogContent, DialogTitle } from "./dialog";
+import { VisuallyHidden } from "./visually-hidden";
 
 const Command = React.forwardRef<
   React.ElementRef<typeof CommandPrimitive>,
@@ -30,6 +31,9 @@ const CommandDialog = ({
   return (
     <Dialog {...props}>
       <DialogContent className="tw:overflow-hidden tw:p-0 tw:shadow-lg">
+        <VisuallyHidden>
+          <DialogTitle>Command Dialog</DialogTitle>
+        </VisuallyHidden>
         <Command className="tw:[&_[cmdk-group-heading]]:px-2 tw:[&_[cmdk-group-heading]]:font-medium tw:[&_[cmdk-group-heading]]:text-muted-foreground tw:[&_[cmdk-group]:not([hidden])_~[cmdk-group]]:pt-0 tw:[&_[cmdk-group]]:px-2 tw:[&_[cmdk-input-wrapper]_svg]:h-5 tw:[&_[cmdk-input-wrapper]_svg]:w-5 tw:[&_[cmdk-input]]:h-12 tw:[&_[cmdk-item]]:px-2 tw:[&_[cmdk-item]]:py-3 tw:[&_[cmdk-item]_svg]:h-5 tw:[&_[cmdk-item]_svg]:w-5">
           {children}
         </Command>

@@ -4,7 +4,8 @@ import React from "react";
 
 import { cn } from "../../utils";
 import { Button } from "../shadcn/button";
-import { Dialog, DialogContent } from "../shadcn/dialog";
+import { Dialog, DialogContent, DialogTitle } from "../shadcn/dialog";
+import { VisuallyHidden } from "../shadcn/visually-hidden";
 
 interface ConfigurationDialogProps {
   open: boolean;
@@ -46,12 +47,10 @@ export function ConfigurationDialog({
             </Button>
           </div>
         </div>
-        <div className=" tw:mt-[-70px]">
-          {/* <DialogHeader className={cn("tw:pb-6 tw:mt-[-55px]")}>
-          <DialogTitle className={cn("tw:text-2xl")}>{title}</DialogTitle>
-          </DialogHeader> */}
-          {children}
-        </div>
+        <VisuallyHidden>
+          <DialogTitle>Configuration Dialog</DialogTitle>
+        </VisuallyHidden>
+        <div className=" tw:mt-[-70px]">{children}</div>
       </DialogContent>
     </Dialog>
   );
