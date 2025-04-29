@@ -29,7 +29,7 @@ const DialogOverlay = React.forwardRef<
   <Overlay
     ref={ref}
     className={cn(
-      "tw:fixed tw:inset-0 tw:z-48 tw:bg-black/80  tw:data-[state=open]:animate-in tw:data-[state=closed]:animate-out tw:data-[state=closed]:fade-out-0 tw:data-[state=open]:fade-in-0",
+      "tw:fixed tw:inset-0 tw:z-[998] tw:bg-black/80  tw:data-[state=open]:animate-in tw:data-[state=closed]:animate-out tw:data-[state=closed]:fade-out-0 tw:data-[state=open]:fade-in-0",
       className,
     )}
     {...props}
