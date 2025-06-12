@@ -6,22 +6,38 @@ import { type SovendusAppSettings } from "sovendus-integration-types";
 import { SovendusEmployeeBenefitsWidget } from "../package/components/features/employee-benefits/employee-benefits-widget";
 import { AdminBar } from "./components/admin-bar";
 import { AdminDashboard } from "./components/mock-admin-dashboard";
+import { DashboardTour } from "./components/tours/dashboard-tour";
+import { useOnboardingState } from "./onboarding-util";
 import { clearSettings, initialSettings, useSettings } from "./settings-util";
 
 export default function MockDashboard({
   initialSettings: _initialSettings,
   urlPrefix = "",
   clearStorage = clearSettings,
+  onboardingState: externalOnboardingState,
 }: {
   initialSettings?: SovendusAppSettings;
   urlPrefix?: string;
-  clearStorage: () => void;
+  clearStorage?: () => void;
+  onboardingState?: {
+    finishedHomeTour?: boolean;
+    finishedDashboardTour?: boolean;
+    finishedSettingsTour?: boolean;
+  };
 }): JSX.Element {
   const { currentSettings } = useSettings(_initialSettings || initialSettings);
 
+  const { onboardingState, updateOnboardingState } = useOnboardingState(
+    externalOnboardingState,
+  );
   if (!currentSettings) {
     return <></>;
   }
+
+  const handleTourComplete = (): void => {
+    updateOnboardingState({ finishedDashboardTour: true });
+  };
+
   return (
     <>
       <AdminBar pageName="Admin Dashboard" clearStorage={clearStorage} />
@@ -109,6 +125,13 @@ export default function MockDashboard({
           </div>
         </div>
       </AdminDashboard>
+
+      {/* Dashboard Tour */}
+      <DashboardTour
+        isEnabled={!onboardingState.finishedDashboardTour}
+        onComplete={handleTourComplete}
+        onboardingState={onboardingState}
+      />
     </>
   );
 }

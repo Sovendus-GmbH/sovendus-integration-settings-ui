@@ -95,7 +95,7 @@ function ConfigureContent({
   };
 
   return (
-    <div className={cn("tw:space-y-6")}>
+    <div className={cn("tw:space-y-6 tw:benefits-settings")}>
       {(featureFlags?.showWidgetOnDashboard || featureFlags?.addToSidebar) && (
         <Card
           className={cn("tw:border-2 tw:border-blue-500 tw:overflow-hidden")}

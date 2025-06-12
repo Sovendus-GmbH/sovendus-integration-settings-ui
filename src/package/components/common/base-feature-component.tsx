@@ -109,7 +109,11 @@ export function BaseFeatureComponent({
                     : "linear-gradient(to right, #3b82f6, #6366f1)",
         }}
       >
-        <div className={cn("tw:text-3xl tw:font-bold tw:mb-4 tw:text-white")}>
+        <div
+          className={cn(
+            "tw:text-3xl tw:font-bold tw:mb-4 tw:text-white tw:feature-title",
+          )}
+        >
           {title}
         </div>
         <p className={cn("tw:text-xl tw:mb-6")}>{description}</p>
@@ -158,6 +162,7 @@ export function BaseFeatureComponent({
               colorClass.hoverBg,
               colorClass.activeBg,
               "tw:data-[state=active]:text-white tw:data-[state=active]:shadow-md",
+              "tw:feature-tab-configure",
             )}
           >
             Configure
@@ -171,6 +176,7 @@ export function BaseFeatureComponent({
               colorClass.hoverBg,
               colorClass.activeBg,
               "tw:data-[state=active]:text-white tw:data-[state=active]:shadow-md",
+              "tw:feature-tab-benefits",
             )}
           >
             Key Benefits
@@ -184,6 +190,7 @@ export function BaseFeatureComponent({
               colorClass.hoverBg,
               colorClass.activeBg,
               "tw:data-[state=active]:text-white tw:data-[state=active]:shadow-md",
+              "tw:feature-tab-how-it-works",
             )}
           >
             How It Works

@@ -138,7 +138,7 @@ function ConfigureContent({
   }, [selectedTriggerPages]);
 
   return (
-    <div className={cn("tw:space-y-6")}>
+    <div className={cn("tw:space-y-6 tw:rewards-settings")}>
       <RewardsStatusAlert currentRewardsSettings={currentRewardsSettings} />
 
       {additionalSteps && (

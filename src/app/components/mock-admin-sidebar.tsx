@@ -157,6 +157,7 @@ export function AdminSidebar({
               href={`${urlPrefix}/settings`}
               collapsed={collapsed}
               active={page === "settings"}
+              className="tw:sidebar-sovendus-app"
             />
             <SidebarItem
               icon={<LifeBuoy />}
@@ -188,6 +189,7 @@ interface SidebarItemProps {
   collapsed: boolean;
   active?: boolean;
   refresh?: boolean;
+  className?: string;
 }
 
 function SidebarItem({
@@ -197,6 +199,7 @@ function SidebarItem({
   collapsed,
   active,
   refresh,
+  className = "",
 }: SidebarItemProps): JSX.Element {
   const Element = refresh ? "a" : Link;
   return (
@@ -206,7 +209,7 @@ function SidebarItem({
         active
           ? "tw:bg-accent tw:text-accent-foreground tw:font-medium"
           : "tw:text-muted-foreground tw:hover:bg-accent tw:hover:text-accent-foreground"
-      } ${collapsed ? "tw:justify-center" : ""}`}
+      } ${collapsed ? "tw:justify-center" : ""} ${className}`}
     >
       <span className="tw:mr-2">{icon}</span>
       {!collapsed && <span>{label}</span>}

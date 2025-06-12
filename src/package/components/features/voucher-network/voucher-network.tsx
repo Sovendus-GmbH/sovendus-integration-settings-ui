@@ -77,7 +77,7 @@ function ConfigureContent({
   const vnEnabled = isVnEnabled(currentSettings);
 
   return (
-    <div className={cn("tw:space-y-6")}>
+    <div className={cn("tw:space-y-6 tw:vn-settings")}>
       <Alert
         className={cn(
           `${
