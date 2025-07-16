@@ -157,3 +157,165 @@
     @apply tw:bg-background tw:text-foreground;
   }
 }
+
+/* Zoom functionality for platforms that need 1.5x scaling */
+/* Instead of transform scale, we increase actual dimensions by 1.5x */
+@layer utilities {
+  /* Text size scaling */
+  .zoomed .tw\:text-xs { font-size: calc(0.75rem * 1.5) !important; }
+  .zoomed .tw\:text-sm { font-size: calc(0.875rem * 1.5) !important; }
+  .zoomed .tw\:text-base { font-size: calc(1rem * 1.5) !important; }
+  .zoomed .tw\:text-lg { font-size: calc(1.125rem * 1.5) !important; }
+  .zoomed .tw\:text-xl { font-size: calc(1.25rem * 1.5) !important; }
+  .zoomed .tw\:text-2xl { font-size: calc(1.5rem * 1.5) !important; }
+  .zoomed .tw\:text-3xl { font-size: calc(1.875rem * 1.5) !important; }
+  .zoomed .tw\:text-4xl { font-size: calc(2.25rem * 1.5) !important; }
+  .zoomed .tw\:text-5xl { font-size: calc(3rem * 1.5) !important; }
+
+  /* Padding scaling */
+  .zoomed .tw\:p-1 { padding: calc(0.25rem * 1.5) !important; }
+  .zoomed .tw\:p-2 { padding: calc(0.5rem * 1.5) !important; }
+  .zoomed .tw\:p-3 { padding: calc(0.75rem * 1.5) !important; }
+  .zoomed .tw\:p-4 { padding: calc(1rem * 1.5) !important; }
+  .zoomed .tw\:p-5 { padding: calc(1.25rem * 1.5) !important; }
+  .zoomed .tw\:p-6 { padding: calc(1.5rem * 1.5) !important; }
+  .zoomed .tw\:p-8 { padding: calc(2rem * 1.5) !important; }
+
+  /* Padding X scaling */
+  .zoomed .tw\:px-1 { padding-left: calc(0.25rem * 1.5) !important; padding-right: calc(0.25rem * 1.5) !important; }
+  .zoomed .tw\:px-2 { padding-left: calc(0.5rem * 1.5) !important; padding-right: calc(0.5rem * 1.5) !important; }
+  .zoomed .tw\:px-3 { padding-left: calc(0.75rem * 1.5) !important; padding-right: calc(0.75rem * 1.5) !important; }
+  .zoomed .tw\:px-4 { padding-left: calc(1rem * 1.5) !important; padding-right: calc(1rem * 1.5) !important; }
+  .zoomed .tw\:px-6 { padding-left: calc(1.5rem * 1.5) !important; padding-right: calc(1.5rem * 1.5) !important; }
+
+  /* Padding Y scaling */
+  .zoomed .tw\:py-1 { padding-top: calc(0.25rem * 1.5) !important; padding-bottom: calc(0.25rem * 1.5) !important; }
+  .zoomed .tw\:py-2 { padding-top: calc(0.5rem * 1.5) !important; padding-bottom: calc(0.5rem * 1.5) !important; }
+  .zoomed .tw\:py-3 { padding-top: calc(0.75rem * 1.5) !important; padding-bottom: calc(0.75rem * 1.5) !important; }
+  .zoomed .tw\:py-4 { padding-top: calc(1rem * 1.5) !important; padding-bottom: calc(1rem * 1.5) !important; }
+  .zoomed .tw\:py-6 { padding-top: calc(1.5rem * 1.5) !important; padding-bottom: calc(1.5rem * 1.5) !important; }
+
+  /* Margin scaling */
+  .zoomed .tw\:m-1 { margin: calc(0.25rem * 1.5) !important; }
+  .zoomed .tw\:m-2 { margin: calc(0.5rem * 1.5) !important; }
+  .zoomed .tw\:m-3 { margin: calc(0.75rem * 1.5) !important; }
+  .zoomed .tw\:m-4 { margin: calc(1rem * 1.5) !important; }
+  .zoomed .tw\:m-5 { margin: calc(1.25rem * 1.5) !important; }
+  .zoomed .tw\:m-6 { margin: calc(1.5rem * 1.5) !important; }
+  .zoomed .tw\:m-8 { margin: calc(2rem * 1.5) !important; }
+
+  /* Margin X scaling */
+  .zoomed .tw\:mx-auto { margin-left: auto !important; margin-right: auto !important; }
+  .zoomed .tw\:mx-1 { margin-left: calc(0.25rem * 1.5) !important; margin-right: calc(0.25rem * 1.5) !important; }
+  .zoomed .tw\:mx-2 { margin-left: calc(0.5rem * 1.5) !important; margin-right: calc(0.5rem * 1.5) !important; }
+  .zoomed .tw\:mx-4 { margin-left: calc(1rem * 1.5) !important; margin-right: calc(1rem * 1.5) !important; }
+
+  /* Margin Y scaling */
+  .zoomed .tw\:my-1 { margin-top: calc(0.25rem * 1.5) !important; margin-bottom: calc(0.25rem * 1.5) !important; }
+  .zoomed .tw\:my-2 { margin-top: calc(0.5rem * 1.5) !important; margin-bottom: calc(0.5rem * 1.5) !important; }
+  .zoomed .tw\:my-4 { margin-top: calc(1rem * 1.5) !important; margin-bottom: calc(1rem * 1.5) !important; }
+
+  /* Margin top scaling */
+  .zoomed .tw\:mt-1 { margin-top: calc(0.25rem * 1.5) !important; }
+  .zoomed .tw\:mt-2 { margin-top: calc(0.5rem * 1.5) !important; }
+  .zoomed .tw\:mt-4 { margin-top: calc(1rem * 1.5) !important; }
+  .zoomed .tw\:mt-6 { margin-top: calc(1.5rem * 1.5) !important; }
+  .zoomed .tw\:mt-8 { margin-top: calc(2rem * 1.5) !important; }
+  .zoomed .tw\:-mt-\[70px\] { margin-top: calc(-70px * 1.5) !important; }
+
+  /* Gap scaling for flexbox and grid */
+  .zoomed .tw\:gap-1 { gap: calc(0.25rem * 1.5) !important; }
+  .zoomed .tw\:gap-2 { gap: calc(0.5rem * 1.5) !important; }
+  .zoomed .tw\:gap-3 { gap: calc(0.75rem * 1.5) !important; }
+  .zoomed .tw\:gap-4 { gap: calc(1rem * 1.5) !important; }
+  .zoomed .tw\:gap-6 { gap: calc(1.5rem * 1.5) !important; }
+  .zoomed .tw\:gap-8 { gap: calc(2rem * 1.5) !important; }
+
+  /* Space between scaling */
+  .zoomed .tw\:space-y-1 > :not([hidden]) ~ :not([hidden]) { margin-top: calc(0.25rem * 1.5) !important; }
+  .zoomed .tw\:space-y-2 > :not([hidden]) ~ :not([hidden]) { margin-top: calc(0.5rem * 1.5) !important; }
+  .zoomed .tw\:space-y-4 > :not([hidden]) ~ :not([hidden]) { margin-top: calc(1rem * 1.5) !important; }
+  .zoomed .tw\:space-y-6 > :not([hidden]) ~ :not([hidden]) { margin-top: calc(1.5rem * 1.5) !important; }
+  .zoomed .tw\:space-y-8 > :not([hidden]) ~ :not([hidden]) { margin-top: calc(2rem * 1.5) !important; }
+
+  /* Width and height scaling for icons and small elements */
+  .zoomed .tw\:w-4 { width: calc(1rem * 1.5) !important; }
+  .zoomed .tw\:w-5 { width: calc(1.25rem * 1.5) !important; }
+  .zoomed .tw\:w-6 { width: calc(1.5rem * 1.5) !important; }
+  .zoomed .tw\:w-8 { width: calc(2rem * 1.5) !important; }
+  .zoomed .tw\:h-4 { height: calc(1rem * 1.5) !important; }
+  .zoomed .tw\:h-5 { height: calc(1.25rem * 1.5) !important; }
+  .zoomed .tw\:h-6 { height: calc(1.5rem * 1.5) !important; }
+  .zoomed .tw\:h-8 { height: calc(2rem * 1.5) !important; }
+  .zoomed .tw\:h-10 { height: calc(2.5rem * 1.5) !important; }
+  .zoomed .tw\:h-\[55px\] { height: calc(55px * 1.5) !important; }
+
+  /* Border radius scaling */
+  .zoomed .tw\:rounded { border-radius: calc(0.25rem * 1.5) !important; }
+  .zoomed .tw\:rounded-md { border-radius: calc(0.375rem * 1.5) !important; }
+  .zoomed .tw\:rounded-lg { border-radius: calc(0.5rem * 1.5) !important; }
+  .zoomed .tw\:rounded-full { border-radius: 9999px !important; }
+
+  /* Border width scaling */
+  .zoomed .tw\:border { border-width: calc(1px * 1.5) !important; }
+  .zoomed .tw\:border-2 { border-width: calc(2px * 1.5) !important; }
+  .zoomed .tw\:border-b { border-bottom-width: calc(1px * 1.5) !important; }
+
+  /* Dialog specific scaling - using simpler selectors */
+  .zoomed[class*="max-w-[1200px]"] { max-width: calc(1200px * 0.67) !important; }
+  .zoomed [class*="max-w-[1200px]"] { max-width: calc(1200px * 0.67) !important; }
+  .zoomed[class*="max-w-[800px]"] { max-width: calc(800px * 0.67) !important; }
+  .zoomed [class*="max-w-[800px]"] { max-width: calc(800px * 0.67) !important; }
+  .zoomed[class*="max-h-[90vh]"] { max-height: 90vh !important; }
+  .zoomed [class*="max-h-[90vh]"] { max-height: 90vh !important; }
+  .zoomed[class*="max-h-[80vh]"] { max-height: 80vh !important; }
+  .zoomed [class*="max-h-[80vh]"] { max-height: 80vh !important; }
+
+  /* Position and z-index scaling */
+  .zoomed .tw\:top-0 { top: 0 !important; }
+  .zoomed[class*="z-[51]"] { z-index: 51 !important; }
+  .zoomed [class*="z-[51]"] { z-index: 51 !important; }
+  .zoomed[class*="z-[998]"] { z-index: 998 !important; }
+  .zoomed [class*="z-[998]"] { z-index: 998 !important; }
+
+  /* Margin right scaling */
+  .zoomed[class*="mr-[5px]"] { margin-right: calc(5px * 1.5) !important; }
+  .zoomed [class*="mr-[5px]"] { margin-right: calc(5px * 1.5) !important; }
+
+  /* Line height scaling */
+  .zoomed .tw\:leading-none { line-height: 1 !important; }
+  .zoomed .tw\:leading-tight { line-height: 1.25 !important; }
+  .zoomed .tw\:leading-snug { line-height: 1.375 !important; }
+  .zoomed .tw\:leading-normal { line-height: 1.5 !important; }
+  .zoomed .tw\:leading-relaxed { line-height: 1.625 !important; }
+
+  /* Font weight remains the same */
+  .zoomed .tw\:font-normal { font-weight: 400 !important; }
+  .zoomed .tw\:font-medium { font-weight: 500 !important; }
+  .zoomed .tw\:font-semibold { font-weight: 600 !important; }
+  .zoomed .tw\:font-bold { font-weight: 700 !important; }
+
+  /* Additional common utilities */
+  .zoomed .tw\:min-h-0 { min-height: 0px !important; }
+  .zoomed .tw\:min-h-full { min-height: 100% !important; }
+  .zoomed .tw\:min-w-0 { min-width: 0px !important; }
+
+  /* Flex and grid utilities remain the same */
+  .zoomed .tw\:flex { display: flex !important; }
+  .zoomed .tw\:grid { display: grid !important; }
+  .zoomed .tw\:hidden { display: none !important; }
+  .zoomed .tw\:block { display: block !important; }
+  .zoomed .tw\:inline-block { display: inline-block !important; }
+
+  /* Position utilities remain the same */
+  .zoomed .tw\:relative { position: relative !important; }
+  .zoomed .tw\:absolute { position: absolute !important; }
+  .zoomed .tw\:fixed { position: fixed !important; }
+  .zoomed .tw\:sticky { position: sticky !important; }
+
+  /* Overflow utilities remain the same */
+  .zoomed .tw\:overflow-hidden { overflow: hidden !important; }
+  .zoomed .tw\:overflow-auto { overflow: auto !important; }
+  .zoomed .tw\:overflow-y-auto { overflow-y: auto !important; }
+  .zoomed .tw\:overflow-visible { overflow: visible !important; }
+}
