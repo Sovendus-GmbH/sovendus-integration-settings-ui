@@ -286,6 +286,7 @@ function getCountryFlag(countryCode: CountryCodes): string {
     [CountryCodes.NO]: "🇳🇴",
     [CountryCodes.PL]: "🇵🇱",
     [CountryCodes.SE]: "🇸🇪",
+    [CountryCodes.CZ]: "🇨🇿",
   };
 
   return flagEmojis[countryCode] || "🌐";
@@ -336,4 +337,6 @@ const linksByCountry: {
   },
   [CountryCodes.GB]:
     "https://sovendus.com/campaign/directlink/ddd1da8f-cae9-488a-9ab1-90b8f5692853",
+  [CountryCodes.CZ]:
+    "https://sovendus.com/tobeadded",
 };

@@ -71,10 +71,10 @@
     "types",
     "typescript"
   ],
-  "author": "Marcus Brandstaetter <techsupport@sovendus.com>",
+  "author": "Kevin Barth <techsupport@sovendus.com>",
   "contributors": [
     {
-      "name": "Marcus Brandstaetter - Sovendus GmbH",
+      "name": "Kevin Barth - Sovendus GmbH",
       "email": "techsupport@sovendus.com"
     }
   ],
@@ -83,7 +83,7 @@
     "react-dom": ">=18.0.0"
   },
   "dependencies": {
-    "sovendus-integration-types": "3.9.4"
+    "sovendus-integration-types": "3.9.5"
   },
   "devDependencies": {
     "@hookform/resolvers": "5.2.1",
