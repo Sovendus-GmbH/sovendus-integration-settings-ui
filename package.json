@@ -83,7 +83,7 @@
     "react-dom": ">=18.0.0"
   },
   "dependencies": {
-    "sovendus-integration-types": "3.8.16"
+    "sovendus-integration-types": "3.9.4"
   },
   "devDependencies": {
     "@hookform/resolvers": "5.2.1",
